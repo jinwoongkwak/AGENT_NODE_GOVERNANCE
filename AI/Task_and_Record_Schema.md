@@ -1,34 +1,33 @@
 ---
 type: jm-protocol
 layer: ai
-status: draft
-version: 0.2.0
-updated: 2026-09-15
+status: specification
+version: 1.0.0
+updated: 2026-09-16
 ---
 
 # 작업과-기록-스키마
 
 ## overview
 
+**적용 범위:** 확장 모드 사양입니다. 기본 운영은 [설치 안내](../Setup/README.md#도입-모드)를 따릅니다. 사양 채택은 Router 구현·시험 완료를 뜻하지 않습니다.
+
 AI 작업 문서가 가져야 할 종류, frontmatter 필드, 본문 구획, 문서 사이 규칙을 정의합니다. 문서가 어디에 쓰이는지는 [문서 체계](../Architecture/Document_System.md#작업-문서)에 있습니다.
 
-| 섹션 | 내용 | 상태 | 근거 |
-|---|---|---|---|
-| [스키마란](#스키마란) | 스키마의 뜻, 템플릿·검사기와의 차이 | proposed | 제안서 02 |
-| [문서-종류](#문서-종류) | 대표 task와 교환 기록 종류 | adopted, proposed | DEC-HQ-005, 제안서 02 |
-| [대표-task-필드](#대표-task-필드) | TaskNote frontmatter | adopted, proposed | 기존 AI_Protocol §4, 제안서 02 Q3 |
-| [교환-기록-필드](#교환-기록-필드) | 교환 기록 frontmatter | proposed | 제안서 02 Q1 |
-| [id와-파일명](#id와-파일명) | 작업 ID, 기록 파일명, 번호 | adopted, proposed | Conventions Naming, 제안서 02 |
-| [버전](#버전) | 버전 필드와 run의 관계 | adopted, proposed | DEC-HQ-005, 제안서 02 |
-| [불변식](#불변식) | 문서 사이에 항상 성립할 규칙 | proposed | 제안서 02 |
-| [기계-판독-블록](#기계-판독-블록) | Router가 읽는 json 규칙 | proposed | 제안서 02 Q4 |
-| [스키마-변경](#스키마-변경) | 스키마를 바꾸는 법, 문서별 버전 필드를 두지 않는 이유 | proposed | 제안서 02 Q2 |
-| [관련-문서](#관련-문서) | Router와 기록 형식 | — | — |
+| 섹션 | 내용 | 적용 |
+|---|---|---|
+| [스키마란](#스키마란) | 스키마의 뜻, 템플릿·검사기와의 차이 | 확장 사양 |
+| [문서-종류](#문서-종류) | 대표 task와 교환 기록 종류 | 확장 사양 |
+| [대표-task-필드](#대표-task-필드) | TaskNote frontmatter | 확장 사양 |
+| [교환-기록-필드](#교환-기록-필드) | 교환 기록 frontmatter | 확장 사양 |
+| [id와-파일명](#id와-파일명) | 작업 ID, 기록 파일명, 번호 | 확장 사양 |
+| [버전](#버전) | 버전 필드와 run의 관계 | 확장 사양 |
+| [불변식](#불변식) | 문서 사이에 항상 성립할 규칙 | 확장 사양 |
+| [기계-판독-블록](#기계-판독-블록) | Router가 읽는 json 규칙 | 확장 사양 |
+| [스키마-변경](#스키마-변경) | 스키마를 바꾸는 법, 문서별 버전 필드를 두지 않는 이유 | 확장 사양 |
+| [관련-문서](#관련-문서) | Router와 기록 형식 | 확장 사양 |
 
 ## 스키마란
-
-> [!NOTE]
-> 제안 — 제안서 02 결정 대기.
 
 **스키마는 "이 종류의 문서는 어떤 칸을 반드시 갖고, 각 칸에 어떤 값만 들어갈 수 있는가"를 적은 약속입니다.** 측정 데이터로 비유하면 CSV의 열 이름·단위·허용 범위를 정한 정의서입니다. 데이터 파일이 수백 개여도 정의서는 하나이고, 검사기는 정의서를 기준으로 파일을 통과시키거나 거부합니다.
 
@@ -68,10 +67,7 @@ T-260915-A7F2 evaluation 저장 거부
 
 현재 AI 작업 문서는 대표 task 한 종류, 곧 [TaskNote](../Architecture/Document_System.md#작업-문서)입니다.
 
-### 교환-기록-종류-제안
-
-> [!NOTE]
-> 제안 — 제안서 02 결정 대기.
+### 교환-기록-종류-확장
 
 | 종류 | 작성 역할 | 용도 | 필수 `##` 구획 | `responds_to` |
 |---|---|---|---|---|
@@ -99,22 +95,19 @@ T-260915-A7F2 evaluation 저장 거부
 | `proposal_version`, `approved_version` | 제안은 `V<major>.<minor>.<patch>`, 미승인 값은 `approved_version: ""` | 제안·승인 버전 ([버전](#버전)) |
 | `execution_mode` | `autonomous`, `after-approval`, `manual` | [실행 모드](../Architecture/Risk_and_Authority.md#실행-모드) |
 | `report_policy` | `decision-only`, `milestone`, `final` | [보고 정책](../HQ/Control_Settings.md#보고-정책) |
-| `blocked_by` | task 링크 또는 외부 조건 | 실행을 막는 의존성 (선택) |
+| `blockedBy` | task 링크 목록 | 실행을 막는 task 의존성. 외부 조건은 현재 상태 본문 (선택) |
 | `projects` | [프로젝트 키](../Architecture/Company_Profile.md#프로젝트-키)의 값 | 묶음 |
 | `write_scope` | 경로 목록 | [쓰기 범위](../HQ/Control_Settings.md#쓰기-범위) |
 | `priority`, `due` | 작업 관리 도구의 값 | 선택 |
 
 `status`·`owner`·`hq`는 [작업 상태](../Architecture/Command_and_Report_Flow.md#작업-상태)의 여섯 조합만 허용합니다.
 
-### 대표-task-필드-변경-제안
-
-> [!NOTE]
-> 제안 — 제안서 02 Q3 결정 대기.
+### 대표-task-필드-변경-확장
 
 | 후보 | 판정 | 이유 |
 |---|---|---|
 | `task_id` | **추가** | 긴 제목 대신 기록 파일명 접두사로 씀. 제목이 바뀌어도 기록 이름 유지 |
-| `blocked_by` | 이름을 `blockedBy`로 | 새 필드가 아니라 작업 관리 도구의 필드 이름에 맞춤 |
+| `blocked_by` | legacy 읽기 호환, 새 작업은 `blockedBy` | 기존 외부 조건은 본문에 보존 |
 | `doc_kind` | 추가 안 함 | 필드가 없으면 대표 task |
 | `schema_version` | 개별 기록 필드 대신 run의 instruction 본문에 고정 | [스키마 변경](#스키마-변경) |
 | `project_key` | 추가 안 함 | 저장 폴더가 곧 프로젝트 키 |
@@ -123,14 +116,11 @@ T-260915-A7F2 evaluation 저장 거부
 
 ## 교환-기록-필드
 
-> [!NOTE]
-> 제안 — 제안서 02 Q1 결정 대기.
-
 frontmatter에는 기계가 분기·검사·필터에 쓰는 값만 두고, 다른 곳에서 알 수 있는 값은 두지 않습니다.
 
 | 필드 | 적용 종류 | 값 |
 |---|---|---|
-| `doc_kind` | 전체 | [교환 기록 종류](#교환-기록-종류-제안)의 8종 |
+| `doc_kind` | 전체 | [교환 기록 종류](#교환-기록-종류-확장)의 8종 |
 | `parent_task` | 전체 | 대표 task의 전체 경로 링크 |
 | `responds_to` | 표에서 허용한 종류 | 같은 task 기록의 전체 경로 링크 |
 | `verdict` | `evaluation`, `verification` | evaluation: `pass`, `revise`, `hq-required` · verification: `pass`, `fail`, `inconclusive` |
@@ -149,10 +139,7 @@ verdict: revise
 
 대표 task는 파일 이름이 제목이자 ID입니다 ([명명 규칙](../Architecture/Company_Profile.md#명명-규칙)).
 
-### 기록-id-제안
-
-> [!NOTE]
-> 제안 — 제안서 02 결정 대기.
+### 기록-id-확장
 
 | 대상 | 규칙 | 예 |
 |---|---|---|
@@ -166,10 +153,7 @@ verdict: revise
 
 대표 task의 `proposal_version`과 `approved_version`은 `V<major>.<minor>.<patch>` 형식입니다. 버전을 올리는 기준은 [버전 규칙](../HQ/Commands_and_Approval.md#버전-규칙)에만 정의합니다.
 
-### run과-버전-제안
-
-> [!NOTE]
-> 제안 — 제안서 02 결정 대기.
+### run과-버전-확장
 
 | 변경 | 계약 버전 | run |
 |---|---|---|
@@ -179,9 +163,6 @@ verdict: revise
 | plan 수정, 재평가, 재실행 | 변경 없음 | 유지 (순번만 증가) |
 
 ## 불변식
-
-> [!NOTE]
-> 제안 — 제안서 02 결정 대기.
 
 | ID | 규칙 | 검사 |
 |---|---|---|
@@ -198,10 +179,7 @@ verdict: revise
 
 ## 기계-판독-블록
 
-> [!NOTE]
-> 제안 — 제안서 02 Q4 결정 대기.
-
-이 블록은 **확장 모드의 제안 스키마**이며 Router 구현 전에는 실행 가능한 검사기라고 간주하지 않습니다. 기본 모드·legacy task에는 기존 필드가 적용됩니다. `blocked_by`의 기존 외부 조건 문장은 본문으로 보존하고, `blockedBy`에는 task 링크 목록만 둡니다. Router가 구현되면 이 블록을 읽어 검사합니다. 위의 표와 블록이 다르면 `check-schema`가 실패합니다. `{hq-owner}`는 Router가 [회사 프로필](../Architecture/Company_Profile.md#사람과-역할-배정)의 값으로 바꿔 읽습니다.
+이 블록은 **확장 모드의 스키마**이며 Router 구현 전에는 실행 가능한 검사기라고 간주하지 않습니다. 기본 모드는 교환 기록을 쓰지 않으며 기존 task는 legacy로 읽습니다. `blocked_by`의 기존 외부 조건 문장은 본문으로 보존하고, `blockedBy`에는 task 링크 목록만 둡니다. Router가 구현되면 이 블록을 읽어 검사합니다. 위의 표와 블록이 다르면 `check-schema`가 실패합니다. `{hq-owner}`는 Router가 [회사 프로필](../Architecture/Company_Profile.md#사람과-역할-배정)의 값으로 바꿔 읽습니다.
 
 ```json
 {
@@ -250,9 +228,6 @@ verdict: revise
 ```
 
 ## 스키마-변경
-
-> [!NOTE]
-> 제안 — 제안서 02 Q2 결정 대기.
 
 | 변경 | 스키마 번호 | 기존 문서 |
 |---|---|---|

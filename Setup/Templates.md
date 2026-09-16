@@ -1,9 +1,9 @@
 ---
 type: jm-protocol
 layer: setup
-status: draft
-version: 0.2.0
-updated: 2026-09-15
+status: active
+version: 1.0.0
+updated: 2026-09-16
 ---
 
 # 초기-템플릿
@@ -12,15 +12,15 @@ updated: 2026-09-15
 
 새 회사의 시작에 필요한 틀입니다. 코드 블록의 내용을 회사 저장소에 복사하고 자리표시자를 채웁니다. 이 문서 자체에는 `task` 태그가 없으며 작업으로 색인하지 않습니다.
 
-| 섹션 | 내용 | 상태 | 근거 |
-|---|---|---|---|
-| [회사-프로필](#회사-프로필) | 회사별 값 | proposed | 검토 C1·C10 |
-| [진입-파일](#진입-파일) | Agent 읽기 순서 | proposed | 검토 C9 |
-| [영역-context](#영역-context) | 영역별 권한과 정본 | proposed | 검토 C9 |
-| [작업-노트](#작업-노트) | 기본 모드 TaskNote | proposed | 검토 C4 |
-| [프로젝트-상태](#프로젝트-상태) | STATUS 본문 | proposed | 검토 C9 |
-| [결정-기록](#결정-기록) | 실제 HQ 결정 | proposed | 검토 C10 |
-| [관련-문서](#관련-문서) | 설치와 스키마 | — | — |
+| 섹션 | 내용 | 적용 |
+|---|---|---|
+| [회사-프로필](#회사-프로필) | 회사별 값 | 운영 매뉴얼 |
+| [진입-파일](#진입-파일) | Agent 읽기 순서 | 운영 매뉴얼 |
+| [영역-context](#영역-context) | 영역별 권한과 정본 | 운영 매뉴얼 |
+| [작업-노트](#작업-노트) | 기본 모드 TaskNote | 운영 매뉴얼 |
+| [프로젝트-상태](#프로젝트-상태) | STATUS 본문 | 운영 매뉴얼 |
+| [결정-기록](#결정-기록) | 실제 HQ 결정 | 운영 매뉴얼 |
+| [관련-문서](#관련-문서) | 설치와 스키마 | 운영 매뉴얼 |
 
 ## 회사-프로필
 
@@ -67,7 +67,7 @@ updated: 2026-09-15
 2. <로컬 Company_Profile.md>와 <프로토콜>/AI/README.md를 읽는다.
 3. 요청 TaskNote, 작업 대상의 가장 가까운 _AI/CONTEXT.md, 그 정본을 읽는다.
 4. 승인된 범위에서 백업·실행·검증하고 TaskNote에 기록한다.
-5. proposed 조항이나 저장소 업데이트를 운영 승인으로 간주하지 않는다.
+5. 확장 사양 조항이나 저장소 업데이트를 운영 승인으로 간주하지 않는다.
 ```
 
 ## 영역-context
@@ -108,7 +108,7 @@ execution_mode: autonomous
 report_policy: final
 projects: []
 write_scope: []
-blocked_by: []
+blockedBy: []
 ---
 
 # 지시
@@ -127,7 +127,7 @@ blocked_by: []
 결과·변경 파일·검증·미해결·다음 인계.
 ```
 
-의존성 필드는 기본 모드에서 현행 `blocked_by`를 유지합니다. TaskNotes용 `blockedBy` 전환은 [스키마](../AI/Task_and_Record_Schema.md#대표-task-필드-변경-제안) 승인 후 적용하며 외부 조건은 본문에 보존합니다.
+의존성은 `blockedBy`에 task 링크 목록을 씁니다. 기존 `blocked_by`는 읽을 때 호환하되, 새 작업은 canonical 필드를 사용하고 외부 대기 조건은 본문에 보존합니다.
 
 ## 프로젝트-상태
 

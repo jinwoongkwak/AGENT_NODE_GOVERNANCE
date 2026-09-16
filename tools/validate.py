@@ -22,8 +22,9 @@ def prose(text):
 
 
 def main():
+    ERRORS.clear()
     docs = sorted(ROOT.rglob('*.md'))
-    docs = [p for p in docs if '.git' not in p.relative_to(ROOT).parts]
+    docs = [p for p in docs if not any(x.startswith('.') for x in p.relative_to(ROOT).parts)]
     sources = {p: p.read_text(encoding='utf-8-sig') for p in docs}
     headings = {}
     incoming = Counter()
@@ -41,7 +42,8 @@ def main():
         front = text.split('---', 2)[1] if text.startswith('---') else ''
         for field in ['type', 'layer', 'status', 'version', 'updated']:
             require(re.search(rf'^{field}: .+', front, re.M), f'{label}: missing {field}')
-        require('version: 0.2.0' in front, f'{label}: release version mismatch')
+        version = '0.2.0' if label == 'AI_Agent_Company_Comparison.md' else '1.0.0'
+        require(f'version: {version}' in front, f'{label}: release version mismatch')
         h2 = re.findall(r'^## (.+)$', body, re.M)
         require(h2 and h2[0] == 'overview', f'{label}: overview must be first')
         last = '관리자-검토-체크리스트' if p == ROOT / 'README.md' else '관련-문서'
@@ -105,7 +107,7 @@ def main():
         print('\n'.join(f'ERROR {e}' for e in ERRORS))
         return 1
     print(f'PASS: {len(docs)} documents; {link_count} internal links; {len(kinds)} record kinds; '
-          f'{len(clauses)} role clauses; C1-C10; release 0.2.0')
+          f'{len(clauses)} role clauses; C1-C10; release 1.0.0')
     print('Not checked: Obsidian UI, Mermaid rendering, Router runtime, HQ approval.')
     return 0
 

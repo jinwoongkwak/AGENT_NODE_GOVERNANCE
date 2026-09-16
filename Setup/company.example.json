@@ -1,0 +1,9 @@
+{
+  "company": "Example Research",
+  "hq_person": "Research Owner",
+  "hq_owner": "owner",
+  "research_focus": "A research question to be decided by HQ",
+  "projects": [
+    {"id": "P2601_EXAMPLE", "title": "Example project", "kind": "research"}
+  ]
+}

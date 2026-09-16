@@ -25,7 +25,7 @@ AGENT_NODE_GOVERNANCE에 나오는 용어의 뜻과 그 용어를 정의한 섹�
 | 용어 | 뜻 | 정의 | 상태 |
 |---|---|---|---|
 | 1인 기업 모델 | 한 사람은 결정만 맡고 나머지 일은 AI Agent가 끝내는 운영 방식 | [왜-1인-기업-모델인가](Operating_Model.md#왜-1인-기업-모델인가) | 운영 |
-| HQ | 목표·우선순위·승인을 결정하는 사람. 이 회사에서는 [`{hq-person}`](Company_Profile.md#사람과-역할-배정) | [hq와-ai의-뜻](Operating_Model.md#hq와-ai의-뜻) | 운영 |
+| HQ | 목표·우선순위·승인을 결정하는 사람. 이 회사에서는 [`{hq-person}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#사람과-역할-배정) | [hq와-ai의-뜻](Operating_Model.md#hq와-ai의-뜻) | 운영 |
 | AI Agent | HQ의 지시를 받아 일을 수행하는 AI 실행 주체 | [hq와-ai의-뜻](Operating_Model.md#hq와-ai의-뜻) | 운영 |
 | 과정 역할 | 작업 순서에서 맡는 책임. Coordinator, Planner, Evaluator, Executor | [과정-역할](Organization.md#과정-역할) | 확장 사양 |
 | Coordinator | 작업 계약 고정, 호출 순서, 상태, 저장, HQ 인계를 맡는 역할 | [역할-요약](../AI/Roles/Coordinator.md#역할-요약) | 확장 사양 |
@@ -77,7 +77,7 @@ AGENT_NODE_GOVERNANCE에 나오는 용어의 뜻과 그 용어를 정의한 섹�
 | 용어 | 뜻 | 정의 | 상태 |
 |---|---|---|---|
 | 작업 공간 계층 | 문서 저장소, 작업 관리, 버전 관리, 동기화, 런타임 | [작업-공간-계층](Workspace_and_Tools.md#작업-공간-계층) | 운영 |
-| 휴지통 | 삭제 대신 파일을 옮기는 곳 ([`{trash}`](Company_Profile.md#작업-공간-경로)) | [파일-작업](../AI/Common_Rules.md#파일-작업) | 운영 |
+| 휴지통 | 삭제 대신 파일을 옮기는 곳 ([`{trash}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#작업-공간-경로)) | [파일-작업](../AI/Common_Rules.md#파일-작업) | 운영 |
 | 백업 | 수정 전에 만드는 복구 지점. git commit 또는 zip | [백업](../AI/Common_Rules.md#백업) | 운영 |
 | 중첩 저장소 | 작업 공간 안에 있는 git 저장소 (submodule) | [중첩-저장소](../AI/Common_Rules.md#중첩-저장소) | 운영 |
 | Router | TaskNote와 교환 기록 파일을 만들고 제자리에 두는 명령줄 프로그램 | [router의-역할](../AI/Routing.md#router의-역할) | 확장 사양 |

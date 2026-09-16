@@ -63,7 +63,7 @@ def main():
                 continue
             target = unquote(target.strip('<>'))
             rel, _, anchor = target.partition('#')
-            dest = (p.parent / rel).resolve() if rel else p
+            dest = build_entry.resolve_link(p, rel)
             require(dest.is_relative_to(ROOT), f'{p.name}: link outside package {target}')
             require(dest.is_file(), f'{p.name}: missing file {target}')
             if anchor and dest in headings:
@@ -117,7 +117,7 @@ def main():
             if not line.startswith('|') or '확장' in line:
                 continue
             for target in re.findall(r'\]\(([^)]+)\)', line):
-                dest = (page.parent / unquote(target).split('#')[0]).resolve()
+                dest = build_entry.resolve_link(page, unquote(target).split('#')[0])
                 if dest.is_relative_to(ROOT) and dest.relative_to(ROOT).as_posix() in extended:
                     require(False, f'{label}: table row links {target} without a 확장 사양 marker')
 

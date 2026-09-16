@@ -5,8 +5,8 @@
  "note": "mode basic 문서만 기본 운영에 적용됩니다. extended와 reference는 Agent_Entry.md의 작업 유형별 경로가 요구할 때만 엽니다.",
  "totals": {
   "documents": 37,
-  "bytes": 314804,
-  "basic": 214999,
+  "bytes": 315959,
+  "basic": 216154,
   "extended": 77996,
   "reference": 21809
  },
@@ -106,7 +106,7 @@
    "path": "Architecture/Command_and_Report_Flow.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 10076,
+   "bytes": 10181,
    "when_to_read": "HQ와 AI Agent 사이에서 지시·결정·실행 지시·보고가 오가는 길을 설명합니다."
   },
   {
@@ -120,21 +120,21 @@
    "path": "Architecture/Document_System.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 6824,
+   "bytes": 6999,
    "when_to_read": "회사의 기억은 문서에 있습니다 (운영 원칙). 이 문서는 어떤 문서가 정본이고, 작업은 어떤 문서로 관리하며, 어떤 정보..."
   },
   {
    "path": "Architecture/Glossary.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 8448,
+   "bytes": 8518,
    "when_to_read": "AGENT_NODE_GOVERNANCE에 나오는 용어의 뜻과 그 용어를 정의한 섹션입니다."
   },
   {
    "path": "Architecture/Operating_Model.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 6269,
+   "bytes": 6339,
    "when_to_read": "이 회사가 왜 사람 한 명과 AI Agent로 운영되는지, 그 운영을 지탱하는 원칙이 무엇인지 설명합니다."
   },
   {
@@ -148,29 +148,29 @@
    "path": "Architecture/README.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 3918,
+   "bytes": 4058,
    "when_to_read": "Architecture 폴더는 회사가 어떻게 생겼는지 설명합니다."
   },
   {
    "path": "Architecture/Risk_and_Authority.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 6718,
+   "bytes": 6788,
    "when_to_read": "어떤 일을 AI가 스스로 하고 어떤 일에 HQ의 승인이 필요한지 정의합니다."
-  },
-  {
-   "path": "Architecture/Workspace_Layout.md",
-   "status": "active",
-   "mode": "basic",
-   "bytes": 4163,
-   "when_to_read": "폴더보다 정보의 소유권을 먼저 정합니다."
   },
   {
    "path": "Architecture/Workspace_and_Tools.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 8584,
+   "bytes": 9074,
    "when_to_read": "회사가 돌아가는 작업 공간을 도구 이름이 아닌 기능 계층으로 설명합니다."
+  },
+  {
+   "path": "Architecture/Workspace_Layout.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 4198,
+   "when_to_read": "폴더보다 정보의 소유권을 먼저 정합니다."
   },
   {
    "path": "HQ/Commands_and_Approval.md",
@@ -229,18 +229,18 @@
    "when_to_read": "관리자가 1인 연구 회사를 이해하고 제어하며, AI가 같은 구조의 회사를 설립하고 자료를 배치할 수 있도록 정한 운영 매..."
   },
   {
-   "path": "Setup/AI_Bootstrap.md",
-   "status": "active",
-   "mode": "basic",
-   "bytes": 6087,
-   "when_to_read": "이 문서를 AI에게 시작 컨텍스트로 주면 같은 운영 구조의 회사를 설립할 수 있습니다."
-  },
-  {
    "path": "Setup/Adoption.md",
    "status": "active",
    "mode": "basic",
    "bytes": 3890,
    "when_to_read": "문서를 배포한 상태와 회사가 실제 운영에 채택한 상태를 구분합니다."
+  },
+  {
+   "path": "Setup/AI_Bootstrap.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 6087,
+   "when_to_read": "이 문서를 AI에게 시작 컨텍스트로 주면 같은 운영 구조의 회사를 설립할 수 있습니다."
   },
   {
    "path": "Setup/Material_Placement.md",

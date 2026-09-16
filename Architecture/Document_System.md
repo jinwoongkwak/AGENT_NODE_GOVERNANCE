@@ -28,16 +28,16 @@ updated: 2026-09-16
 | 문서 | 역할 | 누가 쓰나 | 규칙 |
 |---|---|---|---|
 | STATUS | 프로젝트의 현재 상태. Agent가 가장 먼저 읽는 인계 문서 | 본문은 Agent (위험도 1), frontmatter의 `status`·`phase`·`priority`·`next_deadline`은 HQ 결정 (위험도 2) | AI 분석만으로 상태를 바꾸지 않고 원 증거를 확인. AI가 쓴 초안은 `draft_by`를 달고 모르는 값은 "확인 필요" |
-| Decisions | HQ 결정의 영구 기록 `DEC-<ID>-NNN` | Agent가 HQ가 결정한 내용을 기록 | 위치는 [`{decision-log}`](Company_Profile.md#작업-공간-경로) |
+| Decisions | HQ 결정의 영구 기록 `DEC-<ID>-NNN` | Agent가 HQ가 결정한 내용을 기록 | 위치는 [`{decision-log}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#작업-공간-경로) |
 | 프로젝트 색인 | HQ가 보는 프로젝트 요약 표, 각 STATUS로 링크 | Agent | 위치는 `{project-index}` |
-| CONTEXT | 영역별 목적, 정본 목록, 기본 [쓰기 범위](../HQ/Control_Settings.md#쓰기-범위), 기밀 영역 | HQ 결정으로 변경 | 위치는 [`{context-file}`](Company_Profile.md#작업-공간-경로). 목록의 정본이 없으면 대체물을 만들지 않고 공백을 보고 |
+| CONTEXT | 영역별 목적, 정본 목록, 기본 [쓰기 범위](../HQ/Control_Settings.md#쓰기-범위), 기밀 영역 | HQ 결정으로 변경 | 위치는 [`{context-file}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#작업-공간-경로). 목록의 정본이 없으면 대체물을 만들지 않고 공백을 보고 |
 | Wiki | 재사용하는 절차와 개념 | Agent | 두 번째 프로젝트가 필요로 할 때 프로젝트에서 승격하고, 원본을 복제하지 않음 |
 
-STATUS 필드 값은 [회사 프로필](Company_Profile.md#영역과-정본)의 영역별 정본 목록을 따릅니다. 변경 권한의 경계는 [위험도](Risk_and_Authority.md#위험도)에 있습니다.
+STATUS 필드 값은 [회사 프로필](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#영역과-정본)의 영역별 정본 목록을 따릅니다. 변경 권한의 경계는 [위험도](Risk_and_Authority.md#위험도)에 있습니다.
 
 ## 작업-문서
 
-TaskNote는 AI 작업의 유일한 명령·보고 단위입니다. 작업 하나에 TaskNote 하나를 두고, 채팅으로 온 요청도 행동 전에 TaskNote부터 만듭니다. 위치는 [`{task-folder}`](Company_Profile.md#작업-공간-경로)이고, 현재 파일 이름이 제목이자 식별자입니다. 확장 모드에서는 제목 변경에도 유지되는 `task_id`를 사용합니다.
+TaskNote는 AI 작업의 유일한 명령·보고 단위입니다. 작업 하나에 TaskNote 하나를 두고, 채팅으로 온 요청도 행동 전에 TaskNote부터 만듭니다. 위치는 [`{task-folder}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#작업-공간-경로)이고, 현재 파일 이름이 제목이자 식별자입니다. 확장 모드에서는 제목 변경에도 유지되는 `task_id`를 사용합니다.
 
 | 구획 | 담는 것 | 주 독자 |
 |---|---|---|
@@ -94,4 +94,4 @@ TaskNote는 AI 작업의 유일한 명령·보고 단위입니다. 작업 하나
 - [작업과 기록 스키마](../AI/Task_and_Record_Schema.md) — 문서 종류와 필드의 정확한 규칙
 - [기록 형식](../AI/Reporting_Style.md) — `# 기록`과 결정표를 쓰는 법
 - [명령과 보고 체계](Command_and_Report_Flow.md) — 문서가 흐름 속에서 쓰이는 순서
-- [회사 프로필](Company_Profile.md) — 문서의 실제 경로
+- [회사 프로필](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md) — 문서의 실제 경로

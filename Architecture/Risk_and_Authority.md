@@ -27,7 +27,7 @@ updated: 2026-09-16
 |---|---|---|---|
 | 0 | 검색, 분석, 목록 작성 | `# 지시`, `# 현재 상태`, `# 기록` | autonomous, 최종 보고 1회 |
 | 1 | 범위 안의 되돌릴 수 있는 텍스트 수정: 링크 수정, 노트 편집, STATUS 본문 갱신, DEC 기록, TaskNote 생성 | 위험도 0 구조 + 짧은 `# 실행 계획`. 먼저 [백업](../AI/Common_Rules.md#백업) | autonomous (HQ가 더 엄격한 모드를 고를 수 있음) |
-| 2 | 파일 이동·삭제, [버전 관리](../AI/Common_Rules.md#버전-관리) 상태 변경, STATUS frontmatter 필드, [기밀 영역](Company_Profile.md#기밀-영역), 외부 전송, 작업 공간 설정, 20개 넘는 파일의 일괄 수정 | 버전 붙은 전체 구조, [결정표](../HQ/Commands_and_Approval.md#결정표-작성), 계획, 검증, 복구 방법 | manual: 먼저 승인, 실행 지시를 기다림 |
+| 2 | 파일 이동·삭제, [버전 관리](../AI/Common_Rules.md#버전-관리) 상태 변경, STATUS frontmatter 필드, [기밀 영역](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#기밀-영역), 외부 전송, 작업 공간 설정, 20개 넘는 파일의 일괄 수정 | 버전 붙은 전체 구조, [결정표](../HQ/Commands_and_Approval.md#결정표-작성), 계획, 검증, 복구 방법 | manual: 먼저 승인, 실행 지시를 기다림 |
 
 - **애매하면 높은 쪽:** 두 등급 사이에서 판단이 갈리면 높은 등급을 씁니다.
 
@@ -81,7 +81,7 @@ HQ가 미리 위임한 선택은 [작업 계약](../AI/Roles/Coordinator.md#계�
 
 | 행위 | 할 수 있는 주체 | 이유 |
 |---|---|---|
-| 주 브랜치([`{main-branch}`](Company_Profile.md#버전-관리-설정))에 merge, commit, push | HQ | 정본 이력의 최종 관문 |
+| 주 브랜치([`{main-branch}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#버전-관리-설정))에 merge, commit, push | HQ | 정본 이력의 최종 관문 |
 | 버전 관리 이력 재작성, 변경 폐기 | HQ | 되돌릴 수 없음 |
 | 버전 관리에서 제외했던 파일을 추적 대상으로 변경 | HQ 결정 | 기밀·라이선스 자료 유출 위험 |
 | 파일 영구 삭제 ([휴지통](../AI/Common_Rules.md#파일-작업) 비우기) | HQ | 복구 불가 |

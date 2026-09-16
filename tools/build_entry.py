@@ -64,6 +64,21 @@ def drop_mermaid(body):
     return re.sub(r'^```mermaid\n.*?^```\n?', '', body, flags=re.M | re.S).strip('\n')
 
 
+def resolve_link(src, rel):
+    """Resolve a link path from ``src``.
+
+    Obsidian may rewrite links as vault paths that start with the package
+    folder name (``AGENT_NODE_GOVERNANCE/Architecture/...``); those resolve
+    from the package root. Everything else is relative to the source file.
+    """
+    if not rel:
+        return src
+    head, _, rest = rel.partition('/')
+    if head == ROOT.name and rest:
+        return (ROOT / rest).resolve()
+    return (src.parent / rel).resolve()
+
+
 def rewrite_links(body, src, dest):
     """Re-anchor relative links so they resolve from the destination document."""
     lines = body.splitlines()
@@ -74,7 +89,7 @@ def rewrite_links(body, src, dest):
         if re.match(r'^[a-z]+://', target):
             return match.group(0)
         rel, _, anchor = target.partition('#')
-        source = (src.parent / rel).resolve() if rel else src
+        source = resolve_link(src, rel)
         new = posixpath.relpath(source.as_posix(), dest.parent.as_posix())
         return f']({new}#{anchor})' if anchor else f']({new})'
 
@@ -162,8 +177,8 @@ def main():
             return 1
         print('PASS: entry blocks and manifest match the canonical sections')
         return 0
-    ENTRY.write_text(entry, encoding='utf-8')
-    MANIFEST.write_text(manifest, encoding='utf-8')
+    ENTRY.write_text(entry, encoding='utf-8', newline='\n')
+    MANIFEST.write_text(manifest, encoding='utf-8', newline='\n')
     print(f'wrote {ENTRY.relative_to(ROOT)} ({len(entry.encode())} bytes) '
           f'and {MANIFEST.relative_to(ROOT)}')
     return 0

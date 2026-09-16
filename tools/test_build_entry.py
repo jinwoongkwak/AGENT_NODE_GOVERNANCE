@@ -39,6 +39,11 @@ class RewriteTests(unittest.TestCase):
         self.assertIn('](../Architecture/Company_Profile.md#기밀-영역)', out)
         self.assertIn('](Common_Rules.md#백업)', out)
 
+    def test_vault_path_links_resolve_from_the_package_root(self):
+        name = build_entry.ROOT.name
+        out = self.rewrite(f'[a]({name}/Architecture/Company_Profile.md#기밀-영역)')
+        self.assertIn('](../Architecture/Company_Profile.md#기밀-영역)', out)
+
     def test_bare_anchor_points_back_at_the_source(self):
         self.assertIn('](../Architecture/Risk_and_Authority.md#위험도)', self.rewrite('[a](#위험도)'))
 
@@ -75,10 +80,10 @@ class OutputTests(unittest.TestCase):
         source = build_entry.ROOT / 'Architecture/Risk_and_Authority.md'
         original = source.read_text(encoding='utf-8')
         try:
-            source.write_text(original.replace('애매하면 높은 쪽', '애매하면 낮은 쪽'), encoding='utf-8')
+            source.write_text(original.replace('애매하면 높은 쪽', '애매하면 낮은 쪽'), encoding='utf-8', newline='\n')
             self.assertNotEqual(build_entry.render()[0], self.entry)
         finally:
-            source.write_text(original, encoding='utf-8')
+            source.write_text(original, encoding='utf-8', newline='\n')
         self.assertEqual(build_entry.render()[0], self.entry)
 
     def test_entry_stays_within_budget(self):

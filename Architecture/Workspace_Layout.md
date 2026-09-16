@@ -48,7 +48,7 @@ workspace/
   .trash/                    # 사용자만 영구 삭제
 ```
 
-이는 새 회사의 예시입니다. 기존 회사의 TaskNotes 경로와 연구실 영역은 [회사 프로필](Company_Profile.md#작업-공간-경로)에 따라 유지합니다. `50_PSYLAB` 같은 기관별 영역은 선택 사항이며 모든 회사에 의무적으로 만들지 않습니다.
+이는 새 회사의 예시입니다. 기존 회사의 TaskNotes 경로와 연구실 영역은 [회사 프로필](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#작업-공간-경로)에 따라 유지합니다. `50_PSYLAB` 같은 기관별 영역은 선택 사항이며 모든 회사에 의무적으로 만들지 않습니다.
 
 ## 프로젝트-수명
 

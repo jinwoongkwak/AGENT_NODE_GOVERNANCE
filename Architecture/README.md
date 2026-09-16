@@ -29,7 +29,7 @@ Architecture 폴더는 회사가 어떻게 생겼는지 설명합니다. 누가 
 | 5 | [위험도와 권한](Risk_and_Authority.md) | 어떤 일에 승인이 필요한지 판단할 수 있음 |
 | 6 | [작업 공간과 도구](Workspace_and_Tools.md) | 필요한 도구와 그 역할을 알 수 있음 |
 
-[회사 프로필](Company_Profile.md)과 [용어집](Glossary.md)은 처음부터 읽기보다 링크를 따라 필요할 때 엽니다.
+[회사 프로필](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md)과 [용어집](Glossary.md)은 처음부터 읽기보다 링크를 따라 필요할 때 엽니다.
 
 이 순서는 사람이 구조를 배우는 경로입니다. 지시를 처리하는 Agent는 [Agent 진입점](../AI/Agent_Entry.md)만 읽고, 나머지는 [작업 유형별 경로](../AI/Agent_Entry.md#작업-유형별-경로)가 요구할 때만 엽니다.
 
@@ -44,7 +44,7 @@ Architecture 폴더는 회사가 어떻게 생겼는지 설명합니다. 누가 
 | [위험도와 권한](Risk_and_Authority.md) | 어디까지 맡기나 | [위험도](Risk_and_Authority.md#위험도), [판단 권한 경계](Risk_and_Authority.md#판단-권한-경계) |
 | [작업 공간과 도구](Workspace_and_Tools.md) | 어떤 도구 위에서 돌아가나 | [작업 공간 계층](Workspace_and_Tools.md#작업-공간-계층), [도구 요구 조건](Workspace_and_Tools.md#도구-요구-조건) |
 | [작업 공간 구조](Workspace_Layout.md) | 무엇을 어느 폴더에 두나 | [최소 구조](Workspace_Layout.md#최소-구조), [배치 판단](Workspace_Layout.md#배치-판단) |
-| [회사 프로필](Company_Profile.md) | 이 회사의 실제 값은 무엇인가 | [작업 공간 경로](Company_Profile.md#작업-공간-경로), [알려진 문제](Company_Profile.md#알려진-문제) |
+| [회사 프로필](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md) | 이 회사의 실제 값은 무엇인가 | [작업 공간 경로](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#작업-공간-경로), [알려진 문제](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#알려진-문제) |
 | [용어집](Glossary.md) | 이 말은 무슨 뜻이고 어디서 정의했나 | [작업 용어](Glossary.md#작업-용어) |
 
 ## 관련-문서

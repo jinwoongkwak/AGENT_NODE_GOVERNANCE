@@ -67,7 +67,7 @@ sequenceDiagram
 
 - **작업 단위:** TaskNote 하나에는 결과 하나와 승인 경계 하나만 둡니다. 서로 독립된 산출물이 있거나 HQ 결정·행동이 10개를 넘으면 나눕니다.
 
-- **제목:** 해야 할 일을 바로 나타내는 제목을 씁니다 ([명명 규칙](Company_Profile.md#명명-규칙)).
+- **제목:** 해야 할 일을 바로 나타내는 제목을 씁니다 ([명명 규칙](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#명명-규칙)).
 
 - **초안만 원할 때:** HQ가 `초안:`으로 요청하면 결정 대기에서 멈춥니다 ([채팅 명령](../HQ/Commands_and_Approval.md#채팅-명령)).
 
@@ -83,7 +83,7 @@ sequenceDiagram
 |  4a | AI Agent | after-approval이면 승인이 실행 권한도 줌         | `to-do / ai / none`             |
 |  4b | AI Agent | manual이면 실행 지시를 기다림                   | `to-do / {hq-owner} / dispatch` |
 
-`{hq-owner}` 값은 [회사 프로필](Company_Profile.md#사람과-역할-배정)에 있습니다. HQ가 `수정:`을 보내면 AI Agent는 제안 버전을 올리고 이전 승인을 무효로 한 뒤 다시 결정 대기로 돌아갑니다 ([수정과 중단](../HQ/Commands_and_Approval.md#수정과-중단)).
+`{hq-owner}` 값은 [회사 프로필](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#사람과-역할-배정)에 있습니다. HQ가 `수정:`을 보내면 AI Agent는 제안 버전을 올리고 이전 승인을 무효로 한 뒤 다시 결정 대기로 돌아갑니다 ([수정과 중단](../HQ/Commands_and_Approval.md#수정과-중단)).
 
 ## 실행-지시-흐름
 
@@ -113,7 +113,7 @@ sequenceDiagram
 
 | 상태 | `status` | `owner` | `hq` | 뜻 |
 |---|---|---|---|---|
-| 제안 검토 | `to-do` | [`{hq-owner}`](Company_Profile.md#사람과-역할-배정) | `decide` | HQ가 선택하거나 승인해야 함 |
+| 제안 검토 | `to-do` | [`{hq-owner}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile.md#사람과-역할-배정) | `decide` | HQ가 선택하거나 승인해야 함 |
 | 실행 지시 대기 | `to-do` | `{hq-owner}` | `dispatch` | 승인된 manual 작업이 실행 지시를 기다림 |
 | 준비 | `to-do` | `ai` | `none` | 선택된 실행 모드로 AI가 실행할 수 있음 |
 | 진행 중 | `in-progress` | `ai` | `none` | AI가 승인 범위를 실행 중 |

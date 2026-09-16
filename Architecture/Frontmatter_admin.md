@@ -1,7 +1,7 @@
 ---
 type: agent-node-governance
 layer: architecture
-status: draft
+status: active
 version: 1.2.0
 updated: 2026-09-16
 ---
@@ -10,29 +10,29 @@ updated: 2026-09-16
 
 ## overview
 
-**초안입니다.** 작업 문서와 지식 문서의 frontmatter를 문서 종류별로 한 가지 형식으로 맞추기 위한 규칙입니다. HQ가 이 문서를 고쳐 승인하면, 같은 내용을 기계 판독판 [Frontmatter_agent.json](Frontmatter_agent.json)에 맞춰 넣고 그때부터 적용합니다.
+작업 문서와 지식 문서의 frontmatter를 문서 종류별로 한 가지 형식으로 맞추는 규칙입니다. HQ가 승인했고, 같은 규칙의 기계 판독판이 [Frontmatter_agent.json](Frontmatter_agent.json)입니다. 이 문서가 사람이 읽는 정본이고, 규칙을 바꾸려면 이 문서를 먼저 고쳐 승인받습니다.
 
 | 섹션 | 내용 | 적용 |
 |---|---|---|
-| [초안-상태](#초안-상태) | 승인 전 사용 범위와 파일 구성 | 초안 |
-| [공통-표기](#공통-표기) | 모든 종류에 공통인 YAML 표기 | 초안 |
-| [문서-종류](#문서-종류) | 종류별 위치와 식별 방법 | 초안 |
-| [tasknote](#tasknote) | TaskNote 필드와 허용 값 | 초안 |
-| [프로젝트-status](#프로젝트-status) | STATUS 필드와 허용 값 | 초안 |
-| [프로젝트-readme](#프로젝트-readme) | 프로젝트 README 필드 | 초안 |
-| [결정-기록과-색인](#결정-기록과-색인) | Decisions와 색인 문서 | 초안 |
-| [기술-wiki와-저장소-카드](#기술-wiki와-저장소-카드) | 기술 Wiki와 repo-card | 초안 |
-| [이론-wiki](#이론-wiki) | 이론 Wiki 노트 | 초안 |
-| [hq-결정-기록](#hq-결정-기록) | HQ가 정한 것과 반영한 곳 | 초안 |
-| [관련-문서](#관련-문서) | 스키마·권한·검사기 | 초안 |
+| [적용-상태](#적용-상태) | 적용 범위와 파일 구성 | 운영 매뉴얼 |
+| [공통-표기](#공통-표기) | 모든 종류에 공통인 YAML 표기 | 운영 매뉴얼 |
+| [문서-종류](#문서-종류) | 종류별 위치와 식별 방법 | 운영 매뉴얼 |
+| [tasknote](#tasknote) | TaskNote 필드와 허용 값 | 운영 매뉴얼 |
+| [프로젝트-status](#프로젝트-status) | STATUS 필드와 허용 값 | 운영 매뉴얼 |
+| [프로젝트-readme](#프로젝트-readme) | 프로젝트 README 필드 | 운영 매뉴얼 |
+| [결정-기록과-색인](#결정-기록과-색인) | Decisions와 색인 문서 | 운영 매뉴얼 |
+| [기술-wiki와-저장소-카드](#기술-wiki와-저장소-카드) | 기술 Wiki와 repo-card | 운영 매뉴얼 |
+| [이론-wiki](#이론-wiki) | 이론 Wiki 노트 | 운영 매뉴얼 |
+| [hq-결정-기록](#hq-결정-기록) | HQ가 정한 것과 반영한 곳 | 운영 매뉴얼 |
+| [관련-문서](#관련-문서) | 스키마·권한·검사기 | 운영 매뉴얼 |
 
-## 초안-상태
+## 적용-상태
 
-- **승인 전:** Agent는 이 규칙으로 기존 문서를 고치지 않습니다. 새 문서를 만들 때만 참고합니다.
+- **적용 범위:** 새로 만드는 문서는 이 규칙을 따릅니다. 기존 문서는 그 문서를 고치는 작업에서 함께 맞추고, 전체를 한 번에 바꾸는 일은 [TaskNote](Document_System_admin.md#작업-문서)로 제안해 승인받습니다.
 
-- **표와 JSON:** 이 문서는 사람이 읽고 고치는 판입니다. 같은 규칙을 [Frontmatter_agent.json](Frontmatter_agent.json)이 기계가 읽는 형태로 담습니다. 승인 전에는 두 파일이 어긋날 수 있고, 승인 뒤에는 이 문서를 기준으로 JSON을 맞춥니다.
+- **표와 JSON:** 이 문서는 사람이 읽고 고치는 정본이고, 같은 규칙을 [Frontmatter_agent.json](Frontmatter_agent.json)이 기계가 읽는 형태로 담습니다. 규칙을 바꿀 때는 이 문서를 먼저 고쳐 승인받고 JSON을 맞춥니다.
 
-- **회사 값:** `{hq-owner}`, 폴더 경로, `contexts`, STATUS 값 목록은 회사 로컬 파일(이 회사는 `NODE_PROFILE/Frontmatter_Local_agent.json`)에 둡니다.
+- **회사 값:** `{hq-owner}`, 폴더 경로, `contexts`, `recommended_model` 모델 목록, STATUS 값 목록은 회사 로컬 파일(이 회사는 `NODE_PROFILE/Frontmatter_Local_agent.json`)에 둡니다.
 
 - **검사:** [check_frontmatter.py](../tools/check_frontmatter.py)가 위반을 보고만 하고 파일은 고치지 않습니다.
 

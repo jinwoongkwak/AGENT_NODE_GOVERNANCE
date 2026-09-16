@@ -57,7 +57,7 @@ HQ가 목적·기준·우선순위·위임 밖의 결정을 맡고, Agent가 승
 | [명령과 보고](Architecture/Command_and_Report_Flow_admin.md), [문서 체계](Architecture/Document_System_admin.md) | 정보 흐름과 정본 |
 | [권한](Architecture/Risk_and_Authority_admin.md), [도구](Architecture/Workspace_and_Tools_admin.md) | 안전과 실행 환경 |
 | [폴더 구조](Architecture/Workspace_Layout_admin.md), [회사 프로필](Architecture/Company_Profile_admin.md), [용어집](Architecture/Glossary_admin.md) | 경로·회사 값·개념 |
-| [frontmatter (초안)](Architecture/Frontmatter_admin.md), [기계 판독판](Architecture/Frontmatter_agent.json) | 문서 종류별 frontmatter 필드와 허용 값. HQ 승인 전 |
+| [frontmatter](Architecture/Frontmatter_admin.md), [기계 판독판](Architecture/Frontmatter_agent.json) | 문서 종류별 frontmatter 필드와 허용 값 |
 | [제어 설정](HQ/Control_Settings_admin.md), [명령·승인](HQ/Commands_and_Approval_admin.md), [검토·종료](HQ/Review_and_Closure_admin.md) | 관리자 실무 |
 | [Agent 진입점](AI/Agent_Entry_agent.md) | 지시를 받은 Agent가 매번 먼저 읽는 판단 기준 |
 | [공통 규칙](AI/Common_Rules_agent.md), [흐름](AI/Workflow_agent.md), [기록](AI/Reporting_Style_agent.md) | 기본 Agent 운영 |

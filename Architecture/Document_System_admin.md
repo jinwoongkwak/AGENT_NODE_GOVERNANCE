@@ -52,7 +52,7 @@ TaskNote는 AI 작업의 유일한 명령·보고 단위입니다. 작업 하나
 
 - **별도 파일 금지:** 지시서나 보고서 파일을 따로 만들지 않습니다. 원 데이터·이미지·로그는 원래 위치를 링크합니다.
 
-- **필드:** frontmatter 필드와 허용 값은 [대표 task 필드](../AI/Task_and_Record_Schema_agent.md#대표-task-필드)에 있습니다.
+- **필드:** frontmatter 필드와 허용 값은 [대표 task 필드](../AI/Task_and_Record_Schema_agent.md#대표-task-필드)에 있습니다. 문서 종류 전체를 한 형식으로 맞추는 [frontmatter 초안](Frontmatter_admin.md)은 HQ 승인 전입니다.
 
 ## 교환-기록
 

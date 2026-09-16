@@ -99,6 +99,12 @@ def main():
     require(len(schema['task']['state_combinations']) == 6, 'schema: state combinations')
     require(re.fullmatch(schema['task']['patterns']['approved_version'], '') is not None, 'schema: unapproved value')
 
+    frontmatter = json.loads((ROOT / 'Architecture/Frontmatter_agent.json').read_text(encoding='utf-8'))
+    for name, kind in frontmatter['kinds'].items():
+        require(set(kind['order']) <= set(kind['fields']), f'frontmatter: {name} order has unknown fields')
+        for field, spec in kind['fields'].items():
+            require(spec['type'] in frontmatter['types'], f'frontmatter: {name}.{field} unknown type')
+
     entry_text, manifest_text = build_entry.render()
     for path, generated in [(build_entry.ENTRY, entry_text), (build_entry.MANIFEST, manifest_text)]:
         name = path.relative_to(ROOT).as_posix()

@@ -57,6 +57,7 @@ HQ가 목적·기준·우선순위·위임 밖의 결정을 맡고, Agent가 승
 | [명령과 보고](Architecture/Command_and_Report_Flow_admin.md), [문서 체계](Architecture/Document_System_admin.md) | 정보 흐름과 정본 |
 | [권한](Architecture/Risk_and_Authority_admin.md), [도구](Architecture/Workspace_and_Tools_admin.md) | 안전과 실행 환경 |
 | [폴더 구조](Architecture/Workspace_Layout_admin.md), [회사 프로필](Architecture/Company_Profile_admin.md), [용어집](Architecture/Glossary_admin.md) | 경로·회사 값·개념 |
+| [frontmatter (초안)](Architecture/Frontmatter_admin.md), [기계 판독판](Architecture/Frontmatter_agent.json) | 문서 종류별 frontmatter 필드와 허용 값. HQ 승인 전 |
 | [제어 설정](HQ/Control_Settings_admin.md), [명령·승인](HQ/Commands_and_Approval_admin.md), [검토·종료](HQ/Review_and_Closure_admin.md) | 관리자 실무 |
 | [Agent 진입점](AI/Agent_Entry_agent.md) | 지시를 받은 Agent가 매번 먼저 읽는 판단 기준 |
 | [공통 규칙](AI/Common_Rules_agent.md), [흐름](AI/Workflow_agent.md), [기록](AI/Reporting_Style_agent.md) | 기본 Agent 운영 |
@@ -91,7 +92,7 @@ Agent는 진입점 한 문서로 판단을 끝내고, 나머지 문서는 [작�
 
 | 버전 | 날짜 | 내용 |
 |---|---|---|
-| 1.2.0 | 2026-09-16 | 문서 파일 이름에 주 독자 접미사 `_agent`·`_admin` 적용, 검사기가 Obsidian vault 경로 형식 링크를 해석 |
+| 1.2.0 | 2026-09-16 | 문서 파일 이름에 주 독자 접미사 `_agent`·`_admin` 적용, 검사기가 Obsidian vault 경로 형식 링크를 해석, frontmatter 형식 초안(`Frontmatter_admin.md`·`Frontmatter_agent.json`)과 보고 전용 검사기 추가 |
 | 1.1.0 | 2026-09-16 | Agent 진입점 문서와 컨텍스트 매니페스트 추가, 작업 유형별 읽기 경로, 확장 사양 표시, 생성물 드리프트 검사, 저장소 이름 AGENT_NODE_GOVERNANCE 반영 |
 | 1.0.0 | 2026-09-16 | C1–C10 승인 반영, 기본 운영 매뉴얼, 회사 설정 분리, AI 설립·자료 배치 지침과 생성·검사 도구 |
 | 0.2.0 | 2026-09-15 | 구조 검토, Setup·템플릿·이전 절차·관리자 체크리스트 |

@@ -1,8 +1,8 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: architecture
 status: active
-version: 1.0.0
+version: 1.1.0
 updated: 2026-09-16
 ---
 
@@ -31,6 +31,8 @@ Architecture 폴더는 회사가 어떻게 생겼는지 설명합니다. 누가 
 
 [회사 프로필](Company_Profile.md)과 [용어집](Glossary.md)은 처음부터 읽기보다 링크를 따라 필요할 때 엽니다.
 
+이 순서는 사람이 구조를 배우는 경로입니다. 지시를 처리하는 Agent는 [Agent 진입점](../AI/Agent_Entry.md)만 읽고, 나머지는 [작업 유형별 경로](../AI/Agent_Entry.md#작업-유형별-경로)가 요구할 때만 엽니다.
+
 ## 문서-목록
 
 | 문서 | 답하는 질문 | 주요 섹션 |
@@ -47,6 +49,6 @@ Architecture 폴더는 회사가 어떻게 생겼는지 설명합니다. 누가 
 
 ## 관련-문서
 
-- [POD_PROTOCOL 안내](../README.md) — 전체 문서 지도와 독자별 경로
+- [AGENT_NODE_GOVERNANCE 안내](../README.md) — 전체 문서 지도와 독자별 경로
 - [HQ 안내](../HQ/README.md) — 운영자가 할 일
 - [AI 안내](../AI/README.md) — Agent가 일하는 방식

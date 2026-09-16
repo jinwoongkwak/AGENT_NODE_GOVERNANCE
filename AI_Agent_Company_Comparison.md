@@ -1,5 +1,5 @@
 ---
-type: pod-protocol-analysis
+type: agent-node-governance-analysis
 layer: analysis
 status: draft
 version: 0.2.0
@@ -56,7 +56,7 @@ updated: 2026-09-15
 
 읽으면서 확인한 것은, 이 프로토콜의 거의 모든 조항이 IT 기업이 이미 쓰는 장치와 1:1로 대응한다는 점입니다. 발명이 아니라 **사람 조직의 통제 장치를 1인 + 문서 환경으로 옮긴 번역**에 가깝습니다.
 
-| POD_PROTOCOL | IT 기업의 대응물 | 차이 |
+| AGENT_NODE_GOVERNANCE | IT 기업의 대응물 | 차이 |
 |---|---|---|
 | TaskNote 1개 = 승인 경계 1개 | Jira 티켓 + Definition of Done, Kanban WIP 제한 | 개념 동일. JM이 "티켓 하나에 결과 하나"를 더 엄격히 강제 |
 | 위험도 0·1·2 | ITIL 변경 유형(standard·normal·emergency), 변경 영향도 등급 | JM에는 emergency(긴급 우회) 등급이 없음 |
@@ -128,7 +128,7 @@ flowchart LR
 
 왼쪽은 판단을 여러 사람과 기계 게이트에 나눠 담고, 오른쪽은 모든 판단을 한 노드로 모읍니다. 그래서 왼쪽의 과제는 정렬(alignment)이고 오른쪽의 과제는 **한 사람의 주의력과 되돌릴 수 없는 행위** 두 가지뿐입니다. 프로토콜의 무게 중심이 위험도·승인·기록에 쏠려 있고 인사·소통·계획에 아무 조항이 없는 이유가 여기 있습니다.
 
-| 항목        | IT 기업의 일반적 장치    | POD_PROTOCOL           | 판정                                                                  |
+| 항목        | IT 기업의 일반적 장치    | AGENT_NODE_GOVERNANCE           | 판정                                                                  |
 | --------- | ---------------- | --------------------- | ------------------------------------------------------------------- |
 | 작업 추적     | 티켓 + DoD         | TaskNote + 완료 기준      | 동등                                                                  |
 | 변경 관리     | ITIL 3등급 + CAB   | 위험도 3등급, CAB 불필요      | 동등 (긴급 등급만 결손)                                                      |
@@ -181,7 +181,7 @@ flowchart LR
 
 ## 관련-문서
 
-- [POD_PROTOCOL 안내](README.md) — 전체 문서 지도와 승인 체크리스트
+- [AGENT_NODE_GOVERNANCE 안내](README.md) — 전체 문서 지도와 승인 체크리스트
 - [운영 모델](Architecture/Operating_Model.md) — 이 구조가 나온 전제와 적용 한계
 - [위험도와 권한](Architecture/Risk_and_Authority.md) — 비교의 중심이 된 통제 장치
 - [조직 구조](Architecture/Organization.md) — 역할 분리와 [책임 매트릭스](Architecture/Organization.md#책임-매트릭스)

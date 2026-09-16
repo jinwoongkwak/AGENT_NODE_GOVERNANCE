@@ -1,8 +1,8 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: architecture
 status: active
-version: 1.0.0
+version: 1.1.0
 updated: 2026-09-16
 ---
 
@@ -10,7 +10,7 @@ updated: 2026-09-16
 
 ## overview
 
-POD_PROTOCOL에 나오는 용어의 뜻과 그 용어를 정의한 섹션입니다. 다른 문서는 문서마다 용어를 처음 쓸 때 `정의` 열의 섹션으로 링크합니다 ([링크와 연결](../HQ/Protocol_Governance.md#링크와-연결)).
+AGENT_NODE_GOVERNANCE에 나오는 용어의 뜻과 그 용어를 정의한 섹션입니다. 다른 문서는 문서마다 용어를 처음 쓸 때 `정의` 열의 섹션으로 링크합니다 ([링크와 연결](../HQ/Protocol_Governance.md#링크와-연결)).
 
 | 섹션 | 내용 | 적용 |
 |---|---|---|

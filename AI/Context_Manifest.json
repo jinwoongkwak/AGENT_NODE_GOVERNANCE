@@ -1,0 +1,274 @@
+{
+ "schema": 1,
+ "protocol_version": "1.1.0",
+ "entry": "AI/Agent_Entry.md",
+ "note": "mode basic 문서만 기본 운영에 적용됩니다. extended와 reference는 Agent_Entry.md의 작업 유형별 경로가 요구할 때만 엽니다.",
+ "totals": {
+  "documents": 37,
+  "bytes": 314804,
+  "basic": 214999,
+  "extended": 77996,
+  "reference": 21809
+ },
+ "documents": [
+  {
+   "path": "AI/Agent_Entry.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 10704,
+   "when_to_read": "Agent가 HQ 지시를 받고 다음 행동을 정할 때 읽는 단일 문서입니다."
+  },
+  {
+   "path": "AI/Common_Rules.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 12725,
+   "when_to_read": "역할과 상관없이 모든 AI Agent가 지키는 규칙입니다."
+  },
+  {
+   "path": "AI/README.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 5923,
+   "when_to_read": "AI 폴더는 AI Agent의 매뉴얼입니다."
+  },
+  {
+   "path": "AI/Reporting_Style.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 5934,
+   "when_to_read": "AI가 TaskNote의 # 기록, # 결정 및 승인, # 근거와 채팅 최종 보고를 쓰는 형식입니다."
+  },
+  {
+   "path": "AI/Roles/Coordinator.md",
+   "status": "specification",
+   "mode": "extended",
+   "bytes": 17263,
+   "when_to_read": "**적용 범위:** 확장 모드 사양입니다."
+  },
+  {
+   "path": "AI/Roles/Evaluator.md",
+   "status": "specification",
+   "mode": "extended",
+   "bytes": 13026,
+   "when_to_read": "**적용 범위:** 확장 모드 사양입니다."
+  },
+  {
+   "path": "AI/Roles/Executor.md",
+   "status": "specification",
+   "mode": "extended",
+   "bytes": 8417,
+   "when_to_read": "**적용 범위:** 확장 모드 사양입니다."
+  },
+  {
+   "path": "AI/Roles/Planner.md",
+   "status": "specification",
+   "mode": "extended",
+   "bytes": 7670,
+   "when_to_read": "**적용 범위:** 확장 모드 사양입니다."
+  },
+  {
+   "path": "AI/Roles/Specialist_Roles.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 3379,
+   "when_to_read": "전문 역할은 분야별 기준을 가진 역할입니다."
+  },
+  {
+   "path": "AI/Routing.md",
+   "status": "specification",
+   "mode": "extended",
+   "bytes": 14957,
+   "when_to_read": "**적용 범위:** 확장 모드 사양입니다."
+  },
+  {
+   "path": "AI/Task_and_Record_Schema.md",
+   "status": "specification",
+   "mode": "extended",
+   "bytes": 16663,
+   "when_to_read": "**적용 범위:** 확장 모드 사양입니다."
+  },
+  {
+   "path": "AI/Workflow.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 13120,
+   "when_to_read": "AI 작업이 접수부터 종료까지 어떤 순서로 진행되고, 각 단계를 어느 역할이 맡는지 설명합니다."
+  },
+  {
+   "path": "AI_Agent_Company_Comparison.md",
+   "status": "draft",
+   "mode": "reference",
+   "bytes": 21809,
+   "when_to_read": "이 저장소의 프로토콜 전체를 읽고, 사람 여럿이 운영하는 IT 기업의 조직·프로세스와 비교한 분석입니다."
+  },
+  {
+   "path": "Architecture/Command_and_Report_Flow.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 10076,
+   "when_to_read": "HQ와 AI Agent 사이에서 지시·결정·실행 지시·보고가 오가는 길을 설명합니다."
+  },
+  {
+   "path": "Architecture/Company_Profile.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 5732,
+   "when_to_read": "공통 규칙을 실제 회사에 연결하는 설정 계약입니다."
+  },
+  {
+   "path": "Architecture/Document_System.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 6824,
+   "when_to_read": "회사의 기억은 문서에 있습니다 (운영 원칙). 이 문서는 어떤 문서가 정본이고, 작업은 어떤 문서로 관리하며, 어떤 정보..."
+  },
+  {
+   "path": "Architecture/Glossary.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 8448,
+   "when_to_read": "AGENT_NODE_GOVERNANCE에 나오는 용어의 뜻과 그 용어를 정의한 섹션입니다."
+  },
+  {
+   "path": "Architecture/Operating_Model.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 6269,
+   "when_to_read": "이 회사가 왜 사람 한 명과 AI Agent로 운영되는지, 그 운영을 지탱하는 원칙이 무엇인지 설명합니다."
+  },
+  {
+   "path": "Architecture/Organization.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 7008,
+   "when_to_read": "회사를 구성하는 주체와 책임을 설명합니다."
+  },
+  {
+   "path": "Architecture/README.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 3918,
+   "when_to_read": "Architecture 폴더는 회사가 어떻게 생겼는지 설명합니다."
+  },
+  {
+   "path": "Architecture/Risk_and_Authority.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 6718,
+   "when_to_read": "어떤 일을 AI가 스스로 하고 어떤 일에 HQ의 승인이 필요한지 정의합니다."
+  },
+  {
+   "path": "Architecture/Workspace_Layout.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 4163,
+   "when_to_read": "폴더보다 정보의 소유권을 먼저 정합니다."
+  },
+  {
+   "path": "Architecture/Workspace_and_Tools.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 8584,
+   "when_to_read": "회사가 돌아가는 작업 공간을 도구 이름이 아닌 기능 계층으로 설명합니다."
+  },
+  {
+   "path": "HQ/Commands_and_Approval.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 8217,
+   "when_to_read": "HQ가 AI에게 지시하고, 제안서를 읽고, 결정·승인·실행 지시를 전하는 방법입니다."
+  },
+  {
+   "path": "HQ/Control_Settings.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 9039,
+   "when_to_read": "HQ가 작업마다 조절할 수 있는 값과 기본값입니다."
+  },
+  {
+   "path": "HQ/HQ_Role.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 5074,
+   "when_to_read": "HQ가 책임지는 일, AI에게 넘기지 않는 판단, 운영 주기, 주의력을 아끼는 규칙을 설명합니다."
+  },
+  {
+   "path": "HQ/Operating_Manual.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 6412,
+   "when_to_read": "관리자는 연구 목적·우선순위·성공 기준과 위임 밖의 결정을 맡습니다."
+  },
+  {
+   "path": "HQ/Protocol_Governance.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 12839,
+   "when_to_read": "AGENT_NODE_GOVERNANCE을 바꾸고, 정본으로 교체하고, 기여하고, 다른 기업에 옮기는 방법입니다."
+  },
+  {
+   "path": "HQ/README.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 3008,
+   "when_to_read": "처음에는 관리자 운영 매뉴얼을 읽습니다."
+  },
+  {
+   "path": "HQ/Review_and_Closure.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 5629,
+   "when_to_read": "HQ가 작업의 현황을 보고, 끝난 결과를 검토하고, 작업을 닫거나 후속 작업으로 넘기는 방법입니다."
+  },
+  {
+   "path": "README.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 10944,
+   "when_to_read": "관리자가 1인 연구 회사를 이해하고 제어하며, AI가 같은 구조의 회사를 설립하고 자료를 배치할 수 있도록 정한 운영 매..."
+  },
+  {
+   "path": "Setup/AI_Bootstrap.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 6087,
+   "when_to_read": "이 문서를 AI에게 시작 컨텍스트로 주면 같은 운영 구조의 회사를 설립할 수 있습니다."
+  },
+  {
+   "path": "Setup/Adoption.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 3890,
+   "when_to_read": "문서를 배포한 상태와 회사가 실제 운영에 채택한 상태를 구분합니다."
+  },
+  {
+   "path": "Setup/Material_Placement.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 5132,
+   "when_to_read": "파일 확장자보다 소유권·용도·수명·접근 제한을 먼저 확인합니다."
+  },
+  {
+   "path": "Setup/Migration.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 6284,
+   "when_to_read": "기존 작업 공간을 승인된 프로토콜에 맞추는 절차입니다."
+  },
+  {
+   "path": "Setup/README.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 7166,
+   "when_to_read": "새 1인 연구 기업을 시작하거나 기존 작업 공간에 프로토콜을 도입하는 안내입니다."
+  },
+  {
+   "path": "Setup/Templates.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 5753,
+   "when_to_read": "새 회사의 시작에 필요한 틀입니다."
+  }
+ ]
+}

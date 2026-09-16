@@ -1,8 +1,8 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: hq
 status: active
-version: 1.0.0
+version: 1.1.0
 updated: 2026-09-16
 ---
 
@@ -43,6 +43,6 @@ updated: 2026-09-16
 
 ## 관련-문서
 
-- [POD_PROTOCOL 안내](../README.md) — 전체 문서 지도
+- [AGENT_NODE_GOVERNANCE 안내](../README.md) — 전체 문서 지도
 - [Architecture 안내](../Architecture/README.md) — 회사 구조
 - [AI 안내](../AI/README.md) — AI가 HQ 지시를 받아 일하는 방식

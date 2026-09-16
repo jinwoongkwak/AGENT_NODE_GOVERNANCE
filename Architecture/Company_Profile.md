@@ -1,8 +1,8 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: architecture
 status: active
-version: 1.0.0
+version: 1.1.0
 updated: 2026-09-16
 ---
 
@@ -95,7 +95,7 @@ TaskNotes를 사용하면 `blockedBy`는 task 링크 목록으로 사용하고 �
 
 ## 알려진-문제
 
-실행 환경의 충돌·설정·미구현 기능은 로컬 프로필에서 관리합니다. 현재 공통 패키지는 기본 모드·문서 검사·새 회사 생성·구조 검사를 제공하고, Router 자동 운영은 설계만 제공합니다.
+실행 환경의 충돌·설정·미구현 기능은 로컬 프로필에서 관리합니다. 현재 공통 패키지는 기본 모드·문서 검사·새 회사 생성·구조 검사·진입점 생성을 제공하고, Router 자동 운영은 설계만 제공합니다.
 
 ## 관련-문서
 

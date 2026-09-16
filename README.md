@@ -1,12 +1,12 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: root
 status: active
-version: 1.0.0
+version: 1.1.0
 updated: 2026-09-16
 ---
 
-# pod-protocol-운영-매뉴얼
+# agent-node-governance-운영-매뉴얼
 
 ## overview
 
@@ -29,7 +29,7 @@ updated: 2026-09-16
 | 할 일 | 시작 문서 |
 |---|---|
 | 회사가 어떻게 작동하는지 이해·제어 | [관리자 운영 매뉴얼](HQ/Operating_Manual.md) |
-| 현재 작업을 맡길 Agent | [AI 안내](AI/README.md) → 회사 로컬 프로필·채택 기록·TaskNote |
+| 현재 작업을 맡길 Agent | [Agent 진입점](AI/Agent_Entry.md) → 회사 로컬 프로필·채택 기록·TaskNote |
 | 같은 형식의 새 회사를 설립 | [AI 회사 설립 지침](Setup/AI_Bootstrap.md) |
 | 기존 자료를 적절한 곳에 배치 | [자료 배치 기준](Setup/Material_Placement.md) |
 | 기존 회사를 전환 | [이전 절차](Setup/Migration.md) |
@@ -58,10 +58,11 @@ HQ가 목적·기준·우선순위·위임 밖의 결정을 맡고, Agent가 승
 | [권한](Architecture/Risk_and_Authority.md), [도구](Architecture/Workspace_and_Tools.md) | 안전과 실행 환경 |
 | [폴더 구조](Architecture/Workspace_Layout.md), [회사 프로필](Architecture/Company_Profile.md), [용어집](Architecture/Glossary.md) | 경로·회사 값·개념 |
 | [제어 설정](HQ/Control_Settings.md), [명령·승인](HQ/Commands_and_Approval.md), [검토·종료](HQ/Review_and_Closure.md) | 관리자 실무 |
+| [Agent 진입점](AI/Agent_Entry.md) | 지시를 받은 Agent가 매번 먼저 읽는 판단 기준 |
 | [공통 규칙](AI/Common_Rules.md), [흐름](AI/Workflow.md), [기록](AI/Reporting_Style.md) | 기본 Agent 운영 |
 | [스키마](AI/Task_and_Record_Schema.md), [라우팅](AI/Routing.md) | 확장 모드 사양 |
 | [채택 기록](Setup/Adoption.md), [템플릿](Setup/Templates.md) | 회사별 설치·승인 |
-| [설립 도구](tools/bootstrap.py), [구조 검사](tools/check_workspace.py), [문서 검사](tools/validate.py) | 제공되는 실행 도구 |
+| [설립 도구](tools/bootstrap.py), [구조 검사](tools/check_workspace.py), [문서 검사](tools/validate.py), [진입점 생성](tools/build_entry.py) | 제공되는 실행 도구 |
 
 [기업 구조 비교](AI_Agent_Company_Comparison.md)는 0.2.0 시점의 참고 분석입니다. 현행 규칙이나 현재 구현 상태의 정본이 아닙니다.
 
@@ -78,7 +79,9 @@ HQ가 목적·기준·우선순위·위임 밖의 결정을 맡고, Agent가 승
 
 ## 독자별-읽는-순서
 
-관리자는 [운영 매뉴얼](HQ/Operating_Manual.md), 실행 Agent는 [AI 안내](AI/README.md), 새 회사 설립 Agent는 [설립 지침](Setup/AI_Bootstrap.md)부터 읽습니다. 용어는 [용어집](Architecture/Glossary.md)에서 찾습니다.
+관리자는 [운영 매뉴얼](HQ/Operating_Manual.md), 실행 Agent는 [Agent 진입점](AI/Agent_Entry.md), 새 회사 설립 Agent는 [설립 지침](Setup/AI_Bootstrap.md)부터 읽습니다. 용어는 [용어집](Architecture/Glossary.md)에서 찾습니다.
+
+Agent는 진입점 한 문서로 판단을 끝내고, 나머지 문서는 [작업 유형별 경로](AI/Agent_Entry.md#작업-유형별-경로)가 요구할 때만 엽니다. 사람이 구조를 배우는 순서는 [Architecture 안내](Architecture/README.md#읽는-순서)에 있습니다.
 
 ## 도입과-구조-개선
 
@@ -88,6 +91,7 @@ HQ가 목적·기준·우선순위·위임 밖의 결정을 맡고, Agent가 승
 
 | 버전 | 날짜 | 내용 |
 |---|---|---|
+| 1.1.0 | 2026-09-16 | Agent 진입점 문서와 컨텍스트 매니페스트 추가, 작업 유형별 읽기 경로, 확장 사양 표시, 생성물 드리프트 검사, 저장소 이름 AGENT_NODE_GOVERNANCE 반영 |
 | 1.0.0 | 2026-09-16 | C1–C10 승인 반영, 기본 운영 매뉴얼, 회사 설정 분리, AI 설립·자료 배치 지침과 생성·검사 도구 |
 | 0.2.0 | 2026-09-15 | 구조 검토, Setup·템플릿·이전 절차·관리자 체크리스트 |
 | 0.1.0 | 2026-09-15 | 첫 통합 초안 |

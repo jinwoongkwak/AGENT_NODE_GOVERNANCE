@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.2.0
+version: 1.3.0
 updated: 2026-09-16
 ---
 
@@ -27,7 +27,7 @@ updated: 2026-09-16
 
 | 문서 | 역할 | 누가 쓰나 | 규칙 |
 |---|---|---|---|
-| STATUS | 프로젝트의 현재 상태. Agent가 가장 먼저 읽는 인계 문서 | 본문은 Agent (위험도 1), frontmatter의 `status`·`phase`·`priority`·`next_deadline`은 HQ 결정 (위험도 2) | AI 분석만으로 상태를 바꾸지 않고 원 증거를 확인. AI가 쓴 초안은 `draft_by`를 달고 모르는 값은 "확인 필요" |
+| STATUS | 프로젝트의 현재 상태. Agent가 가장 먼저 읽는 인계 문서 | 본문은 Agent (위험도 1), frontmatter의 `status`·`phase`·`next_deadline`은 HQ 결정 (위험도 2) | AI 분석만으로 상태를 바꾸지 않고 원 증거를 확인. AI가 쓴 초안은 `draft_by`를 달고 모르는 값은 "확인 필요" |
 | Decisions | HQ 결정의 영구 기록 `DEC-<ID>-NNN` | Agent가 HQ가 결정한 내용을 기록 | 위치는 [`{decision-log}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#작업-공간-경로) |
 | 프로젝트 색인 | HQ가 보는 프로젝트 요약 표, 각 STATUS로 링크 | Agent | 위치는 `{project-index}` |
 | CONTEXT | 영역별 목적, 정본 목록, 기본 [쓰기 범위](../HQ/Control_Settings_admin.md#쓰기-범위), 기밀 영역 | HQ 결정으로 변경 | 위치는 [`{context-file}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#작업-공간-경로). 목록의 정본이 없으면 대체물을 만들지 않고 공백을 보고 |
@@ -52,7 +52,7 @@ TaskNote는 AI 작업의 유일한 명령·보고 단위입니다. 작업 하나
 
 - **별도 파일 금지:** 지시서나 보고서 파일을 따로 만들지 않습니다. 원 데이터·이미지·로그는 원래 위치를 링크합니다.
 
-- **필드:** frontmatter 필드와 허용 값은 [대표 task 필드](../AI/Task_and_Record_Schema_agent.md#대표-task-필드)에 있습니다. 문서 종류 전체를 한 형식으로 맞추는 [frontmatter 초안](Frontmatter_admin.md)은 HQ 승인 전입니다.
+- **필드:** frontmatter 필드와 허용 값은 [대표 task 필드](../AI/Task_and_Record_Schema_agent.md#대표-task-필드)에 있습니다. 문서 종류 전체를 한 형식으로 맞추는 규칙은 [frontmatter](Frontmatter_admin.md)에 있습니다.
 
 ## 교환-기록
 

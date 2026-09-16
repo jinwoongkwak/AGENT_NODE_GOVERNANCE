@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.2.0
+version: 1.3.0
 updated: 2026-09-16
 ---
 
@@ -74,7 +74,7 @@ AI는 원래 완료 기준과 검증이 끝난 뒤에만 작업을 닫습니다.
 | 결과의 종류 | 반영할 곳 | 규칙 |
 |---|---|---|
 | 프로젝트의 현재 상태 | [STATUS](../Architecture/Document_System_admin.md#정본-문서) 본문 | AI가 근거 링크와 함께 갱신 ([위험도](../Architecture/Risk_and_Authority_admin.md#위험도) 1) |
-| STATUS의 상태·단계·우선순위·마감 필드 | STATUS frontmatter | 결정표로 제안만 하고 HQ가 결정 (위험도 2) |
+| STATUS의 상태·단계·마감 필드 | STATUS frontmatter | 결정표로 제안만 하고 HQ가 결정 (위험도 2) |
 | HQ가 내린 결정 | Decisions | `DEC-<ID>-NNN`으로 기록 |
 | 재사용할 지식 | Technical·Theory Wiki | 원본을 복제하지 않음 |
 

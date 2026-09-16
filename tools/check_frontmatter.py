@@ -223,7 +223,8 @@ class Checker:
         if [k for k in order if k in kind['order']] != expected:
             out.append(('key-order', ''))
         if name == 'tasknote' and variant in kind.get('state_combinations_apply_to', 'ai'):
-            combo = [self.scalar(fields.get(k)) for k in ('status', 'owner', 'hq')]
+            keys = kind.get('state_combination_fields', ('status', 'owner', 'hq_todo'))
+            combo = [self.scalar(fields.get(k)) for k in keys]
             allowed = [[self.fill(x) for x in c] for c in kind['state_combinations']]
             if None not in combo and not any(None in c for c in allowed) and combo not in allowed:
                 out.append(('bad-state', '/'.join(combo)))

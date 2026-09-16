@@ -22,17 +22,18 @@ LOCAL = {
 AI_TASK = '''---
 title: 좋은 작업
 status: to-do
-priority: normal
 tags:
   - task
   - ai
 projects:
   - "[[Projects/P2601_DEMO/README|P2601]]"
 owner: ai
-hq: none
+hq_todo: none
 risk: 1
+llm_model: Claude Sonnet 5
 proposal_version: V1.0.0
 approved_version: ""
+recommended_model: Claude Sonnet 5
 execution_mode: autonomous
 report_policy: final
 write_scope:
@@ -76,29 +77,53 @@ class CheckerTests(unittest.TestCase):
             self.assertIn(code, codes)
 
     def test_style_order_and_required_fields(self):
-        text = AI_TASK.replace('tags:\n  - task\n  - ai\n', 'tags: [task, ai]\n').replace('priority: normal\n', '')
+        text = AI_TASK.replace('tags:\n  - task\n  - ai\n', 'tags: [task, ai]\n').replace('llm_model: Claude Sonnet 5\n', '')
         text = text.replace('title: 좋은 작업\nstatus: to-do\n', 'status: to-do\ntitle: 좋은 작업\n')
         _, codes = self.codes('Tasks/AI/x.md', text)
         for code in ['inline-list', 'missing-required', 'key-order']:
             self.assertIn(code, codes)
 
     def test_state_combination_uses_local_owner(self):
-        ok = AI_TASK.replace('owner: ai\nhq: none', 'owner: boss\nhq: decide')
-        bad = AI_TASK.replace('owner: ai\nhq: none', 'owner: boss\nhq: none')
+        ok = AI_TASK.replace('owner: ai\nhq_todo: none', 'owner: boss\nhq_todo: decide')
+        bad = AI_TASK.replace('owner: ai\nhq_todo: none', 'owner: boss\nhq_todo: none')
         self.assertNotIn('bad-state', self.codes('Tasks/AI/x.md', ok)[1])
         self.assertIn('bad-state', self.codes('Tasks/AI/x.md', bad)[1])
 
     def test_human_task_only_needs_common_fields(self):
-        text = '---\ntitle: 사람 일\nstatus: done\npriority: high\ntags:\n  - task\ncontexts:\n  - Lab\nurgency: 3\n---\n'
+        text = ('---\ntitle: 사람 일\nstatus: delayed\ntags:\n  - task\n  - admin\n'
+                'contexts:\n  - Lab\nForToday: false\nwaiting: true\n---\n')
         self.assertEqual(self.codes('Tasks/Research/사람 일.md', text), ('tasknote', []))
 
-    def test_project_status_range_and_pattern(self):
-        text = ('---\nproject_id: bad id\nstatus: active\nphase: design\npriority: 0\n'
+    def test_human_task_without_admin_tag_and_dropped_fields(self):
+        text = ('---\ntitle: 사람 일\nstatus: done\npriority: high\ntags:\n  - task\n'
+                'contexts:\n  - Lab\nurgency: 3\n---\n')
+        _, codes = self.codes('Tasks/Research/사람 일.md', text)
+        self.assertEqual(codes.count('deprecated-key'), 2)
+        self.assertIn('missing-tag', codes)
+
+    def test_project_status_pattern_and_dropped_priority(self):
+        text = ('---\nproject_id: bad id\nstatus: active\nphase: design\npriority: 1\n'
                 'next_action: 다음 행동\nnext_deadline:\nupdated: 2026-09-16\n---\n')
         name, codes = self.codes('Projects/P2601_DEMO/STATUS.md', text)
         self.assertEqual(name, 'project_status')
-        self.assertIn('out-of-range', codes)
         self.assertIn('bad-format', codes)
+        self.assertIn('deprecated-key', codes)
+
+    def test_project_readme_renamed_and_dropped_fields(self):
+        text = ('---\nproject_id: P2601_DEMO\ntype: collaboration\ncodename: demo\n'
+                'partners:\n  - 어떤 연구실\ncreated: 2026-09-16\n---\n')
+        name, codes = self.codes('Projects/P2601_DEMO/README.md', text)
+        self.assertEqual(name, 'project_readme')
+        self.assertEqual(codes.count('deprecated-key'), 2)
+
+    def test_theory_wiki_requires_updated_and_drops_related(self):
+        text = ('---\nauthor: 사람\naffiliation: 어딘가\ntags:\n  - theory\n'
+                'created: 2026-09-16\nlanguage: KR\nsources:\n  - 어떤 책\n'
+                'related:\n  - "[[Theory/x]]"\n---\n')
+        name, codes = self.codes('Theory/x.md', text)
+        self.assertEqual(name, 'theory_wiki')
+        self.assertIn('missing-required', codes)
+        self.assertIn('deprecated-key', codes)
 
     def test_repo_card_and_missing_frontmatter(self):
         self.assertEqual(self.codes('Tech/Repos/x.md', '# no frontmatter\n'), ('technical_wiki', ['no-frontmatter']))

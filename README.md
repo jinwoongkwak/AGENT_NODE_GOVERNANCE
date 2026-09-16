@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: root
 status: active
-version: 1.2.0
+version: 1.3.0
 updated: 2026-09-16
 ---
 
@@ -92,6 +92,7 @@ Agent는 진입점 한 문서로 판단을 끝내고, 나머지 문서는 [작�
 
 | 버전 | 날짜 | 내용 |
 |---|---|---|
+| 1.3.0 | 2026-09-16 | frontmatter 형식 승인. TaskNote `hq` → `hq_todo`, `priority`·`urgency` 삭제, `status`에 `delayed` 추가, AI가 쓴 문서에 `llm_model`, 제안서에 `recommended_model` 도입, 프로젝트 README `partners` → `collaborators`와 `codename` 삭제, 이론 Wiki 필드 정리 |
 | 1.2.0 | 2026-09-16 | 문서 파일 이름에 주 독자 접미사 `_agent`·`_admin` 적용, 검사기가 Obsidian vault 경로 형식 링크를 해석, frontmatter 형식 초안(`Frontmatter_admin.md`·`Frontmatter_agent.json`)과 보고 전용 검사기 추가 |
 | 1.1.0 | 2026-09-16 | Agent 진입점 문서와 컨텍스트 매니페스트 추가, 작업 유형별 읽기 경로, 확장 사양 표시, 생성물 드리프트 검사, 저장소 이름 AGENT_NODE_GOVERNANCE 반영 |
 | 1.0.0 | 2026-09-16 | C1–C10 승인 반영, 기본 운영 매뉴얼, 회사 설정 분리, AI 설립·자료 배치 지침과 생성·검사 도구 |

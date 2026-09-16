@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: setup
 status: active
-version: 1.2.0
+version: 1.3.0
 updated: 2026-09-16
 ---
 

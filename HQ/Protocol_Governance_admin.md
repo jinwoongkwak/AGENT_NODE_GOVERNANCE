@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.2.0
+version: 1.3.0
 updated: 2026-09-16
 ---
 
@@ -80,7 +80,7 @@ AGENT_NODE_GOVERNANCE의 운영 규칙 채택은 HQ 결정으로만 바뀝니다
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.2.0
+version: 1.3.0
 updated: YYYY-MM-DD
 ---
 

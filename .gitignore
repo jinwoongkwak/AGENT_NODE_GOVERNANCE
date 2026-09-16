@@ -1,0 +1,16 @@
+# Company data and local runtimes belong in the company workspace.
+.local/
+local/
+.env
+.env.*
+!.env.example
+.obsidian/
+.trash/
+.venv/
+__pycache__/
+*.pyc
+*.tmp
+*.log
+*.zip
+Thumbs.db
+.DS_Store

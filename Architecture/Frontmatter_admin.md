@@ -50,7 +50,7 @@ python AGENT_NODE_GOVERNANCE/tools/check_frontmatter.py --root . --local NODE_PR
 | 링크 | vault 기준 전체 경로, 큰따옴표. 연결할 문서가 있으면 항상 링크로 쓰고, 링크를 만들 수 없을 때만 텍스트 | `"[[20_PROJECTS/P2501_PKG_PD_CODESIGN/README\|P2501]]"` |
 | 필수 값을 모를 때 | 키는 두고 값을 비움. 본문에 "확인 필요" | `next_deadline:` |
 | 선택 값이 없을 때 | 키는 두고 값을 비움. 키를 지우지 않음 | `track:` |
-| 키 이름 | `snake_case`. 작업 관리 도구가 정한 키는 그 이름 그대로 | `dateCreated`, `dateModified` |
+| 키 이름 | `snake_case`. 작업 관리 도구가 정한 키는 그 이름 그대로 | `blockedBy`, `dateCreated` |
 | 키 순서 | 종류별 표의 순서. 표에 없는 도구 관리 키는 맨 뒤 | — |
 | 텍스트 값 | 한 줄. 문장 설명·링크·강조는 본문에 | — |
 | AI 작성 표시 | AI가 초안을 쓰거나 고친 문서는 `llm_model`에 모델 이름을 적음. 사람이 쓴 문서는 키를 두고 값을 비움 | `llm_model: Claude Sonnet 5` |
@@ -93,14 +93,15 @@ AGENT_NODE_GOVERNANCE 자체 문서의 frontmatter는 [문서 작성 규칙](../
 | 13 | `execution_mode` | AI | 값 목록 | HQ |
 | 14 | `report_policy` | AI | 값 목록 | HQ |
 | 15 | `write_scope` | AI | vault 기준 경로 목록 | HQ |
-| 16 | `scheduled` | 선택 | 날짜 또는 날짜와 시각 | HQ |
-| 17 | `due` | 선택 | 날짜 또는 날짜와 시각 | HQ |
-| 18 | `completedDate` | 선택 | 날짜 | 작업 관리 도구 |
-| 19 | `timeEstimate` | 선택 | 분 단위 정수 | HQ |
-| 20 | `ForToday` | 사람 선택 | `true`/`false` | HQ |
-| 21 | `waiting` | 선택 | 기다리는 대상의 task 링크 목록. 비어 있으면 기다리는 것이 없음 | Agent |
-| 22 | `dateCreated` | 선택 | 날짜와 시각 | 작업 관리 도구 |
-| 23 | `dateModified` | 선택 | 날짜와 시각 | 작업 관리 도구 |
+| 16 | `blockedBy` | 선택 | 막고 있는 task의 링크 목록 | Agent |
+| 17 | `scheduled` | 선택 | 날짜 또는 날짜와 시각 | HQ |
+| 18 | `due` | 선택 | 날짜 또는 날짜와 시각 | HQ |
+| 19 | `completedDate` | 선택 | 날짜 | 작업 관리 도구 |
+| 20 | `timeEstimate` | 선택 | 분 단위 정수 | HQ |
+| 21 | `ForToday` | 사람 선택 | `true`/`false` | HQ |
+| 22 | `waiting` | 사람 선택 | `true`/`false` | HQ |
+| 23 | `dateCreated` | 선택 | 날짜와 시각 | 작업 관리 도구 |
+| 24 | `dateModified` | 선택 | 날짜와 시각 | 작업 관리 도구 |
 
 ### tasknote-허용-값
 
@@ -133,7 +134,7 @@ AI TaskNote의 `status`·`owner`·`hq_todo`는 [작업 상태](Command_and_Repor
 | 구분 | 키 | 처리 |
 |---|---|---|
 | 도구 관리 | `timeEntries`, `recurrence`, `recurrence_anchor`, `recurrence_parent`, `complete_instances`, `skipped_instances`, `reminders`, `pomodoros`, `tasknotes_manual_order` | 사람·Agent가 직접 쓰지 않음 |
-| 폐기 | `blockedBy`, `blocked_by` | `waiting`으로 합침 |
+| 폐기 | `blocked_by` | `blockedBy`로 바꿈 |
 | 폐기 | `project` | `projects`로 바꿈 |
 | 폐기 | `hq` | `hq_todo`로 바꿈 |
 | 폐기 | `priority`, `urgency` | 필드를 지움 |
@@ -224,7 +225,7 @@ frontmatter가 없는 기술 Wiki 노트에는 이 표의 필드를 모두 넣�
 | # | 대상 | 결정 | 반영한 곳 |
 |---|---|---|---|
 | Q1 | TaskNote `status` | legacy 값 `shelved`는 `delayed`로 바꾸고 `delayed`를 허용 값에 추가 | [tasknote-허용-값](#tasknote-허용-값) |
-| Q2 | 사람 TaskNote | `urgency` 삭제, `ForToday` 유지, `blockedBy`는 `waiting`으로 합침 | [tasknote-필드](#tasknote-필드) |
+| Q2 | 사람 TaskNote | `urgency`만 삭제. `ForToday`·`waiting`은 `true`/`false`로 유지하고 `blockedBy`는 별도 링크 필드로 둠 | [tasknote-필드](#tasknote-필드) |
 | Q3 | 참조 값 | 연결할 문서가 있으면 링크로 쓰고, 링크를 만들 수 없을 때만 텍스트 | [공통-표기](#공통-표기) |
 | Q4 | `priority` | 모든 문서 종류에서 삭제 | [tasknote-필드](#tasknote-필드), [프로젝트-status](#프로젝트-status) |
 | Q5 | 공동 연구 README `type` | `collaboration` | [프로젝트-readme](#프로젝트-readme) |

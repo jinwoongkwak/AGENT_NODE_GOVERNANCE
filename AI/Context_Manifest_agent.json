@@ -5,10 +5,10 @@
  "note": "mode basic 문서만 기본 운영에 적용됩니다. extended와 reference는 Agent_Entry_agent.md의 작업 유형별 경로가 요구할 때만 엽니다.",
  "totals": {
   "documents": 38,
-  "bytes": 333881,
+  "bytes": 335578,
   "basic": 221111,
   "extended": 78788,
-  "reference": 33982
+  "reference": 35679
  },
  "documents": [
   {
@@ -127,7 +127,7 @@
    "path": "Architecture/Frontmatter_admin.md",
    "status": "draft",
    "mode": "reference",
-   "bytes": 11975,
+   "bytes": 13672,
    "when_to_read": "**초안입니다.** 작업 문서와 지식 문서의 frontmatter를 문서 종류별로 한 가지 형식으로 맞추기 위한 규칙입니다."
   },
   {

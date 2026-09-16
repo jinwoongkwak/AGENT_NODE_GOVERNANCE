@@ -46,7 +46,7 @@ Architecture 폴더는 회사가 어떻게 생겼는지 설명합니다. 누가 
 | [작업 공간 구조](Workspace_Layout_admin.md) | 무엇을 어느 폴더에 두나 | [최소 구조](Workspace_Layout_admin.md#최소-구조), [배치 판단](Workspace_Layout_admin.md#배치-판단) |
 | [회사 프로필](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md) | 이 회사의 실제 값은 무엇인가 | [작업 공간 경로](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#작업-공간-경로), [알려진 문제](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#알려진-문제) |
 | [용어집](Glossary_admin.md) | 이 말은 무슨 뜻이고 어디서 정의했나 | [작업 용어](Glossary_admin.md#작업-용어) |
-| [frontmatter (초안)](Frontmatter_admin.md) | 문서 종류마다 frontmatter에 어떤 필드와 값을 쓰나 | [tasknote](Frontmatter_admin.md#tasknote), [hq-결정-필요](Frontmatter_admin.md#hq-결정-필요) |
+| [frontmatter (초안)](Frontmatter_admin.md) | 문서 종류마다 frontmatter에 어떤 필드와 값을 쓰나 | [tasknote](Frontmatter_admin.md#tasknote), [hq-결정-기록](Frontmatter_admin.md#hq-결정-기록) |
 
 ## 관련-문서
 

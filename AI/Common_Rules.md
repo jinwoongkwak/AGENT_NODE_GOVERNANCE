@@ -1,5 +1,5 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: ai
 status: active
 version: 1.1.0

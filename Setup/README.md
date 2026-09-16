@@ -1,5 +1,5 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: setup
 status: active
 version: 1.1.0
@@ -42,8 +42,8 @@ updated: 2026-09-16
 6. [채택 기록](Adoption.md#승인-기록)에 검토한 버전·commit·프로필·권한·도입 모드를 기록합니다. 기본 모드의 합성 작업 하나를 끝낸 뒤 운영을 시작합니다.
 
 ```sh
-git clone https://github.com/jinwoongkwak/POD_PROTOCOL.git
-cd POD_PROTOCOL
+git clone https://github.com/jinwoongkwak/AGENT_NODE_GOVERNANCE.git
+cd AGENT_NODE_GOVERNANCE
 git status --short --branch
 python tools/validate.py
 ```

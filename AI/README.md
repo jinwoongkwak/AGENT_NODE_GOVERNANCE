@@ -1,5 +1,5 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: ai
 status: active
 version: 1.1.0
@@ -84,6 +84,6 @@ flowchart LR
 ## 관련-문서
 
 - [Agent 진입점](Agent_Entry.md) — 지시를 받고 가장 먼저 읽는 문서
-- [POD_PROTOCOL 안내](../README.md) — 전체 문서 지도
+- [AGENT_NODE_GOVERNANCE 안내](../README.md) — 전체 문서 지도
 - [조직 구조](../Architecture/Organization.md) — 역할이 회사 구조에서 차지하는 위치
 - [HQ 안내](../HQ/README.md) — AI에게 지시하는 사람의 매뉴얼

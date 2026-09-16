@@ -1,5 +1,5 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: architecture
 status: active
 version: 1.1.0
@@ -77,7 +77,7 @@ TaskNote는 AI 작업의 유일한 명령·보고 단위입니다. 작업 하나
 | 긴 분석, 증거 요약 | TaskNote `# 근거` | 새 보고서 파일 |
 | 원 데이터·이미지·실행 로그 | 원래 위치 (링크만) | TaskNote에 복사 |
 | 재사용 지식 | Technical·Theory Wiki | TaskNote |
-| 운영 규칙 | 현재 활성화된 규약. POD_PROTOCOL은 [채택 절차](../Setup/Adoption.md#적용-상태) 완료 후 정본 | 여러 문서에 중복 |
+| 운영 규칙 | 현재 활성화된 규약. AGENT_NODE_GOVERNANCE은 [채택 절차](../Setup/Adoption.md#적용-상태) 완료 후 정본 | 여러 문서에 중복 |
 | 역할 사이 전달물 (확장 사양) | [교환 기록](#교환-기록) | 대표 노트 본문 |
 
 ## 문서-수명

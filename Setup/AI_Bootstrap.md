@@ -1,5 +1,5 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: setup
 status: active
 version: 1.1.0
@@ -37,7 +37,7 @@ updated: 2026-09-16
 ## ai에게-줄-요청
 
 ```text
-이 POD_PROTOCOL을 읽고 새 1인 연구 회사를 설립해줘.
+이 AGENT_NODE_GOVERNANCE을 읽고 새 1인 연구 회사를 설립해줘.
 
 회사 이름: <이름>
 연구 목표: <질문과 원하는 결과>

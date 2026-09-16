@@ -1,5 +1,5 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: architecture
 status: active
 version: 1.1.0
@@ -30,7 +30,7 @@ workspace/
     Decisions.md              # 회사 차원의 결정
     10_PLANNING/TaskNotes/Tasks/AI/        # 지시·승인·실행·보고
     90_SYSTEM/
-      POD_PROTOCOL/            # 상위 프로토콜 저장소
+      AGENT_NODE_GOVERNANCE/            # 상위 프로토콜 저장소
       company.json            # 기계가 읽는 회사 설정
       Company_Profile.md      # 이 회사의 경로·도구·기밀 정책
       Protocol_Adoption.md    # 채택 commit·선택·승인

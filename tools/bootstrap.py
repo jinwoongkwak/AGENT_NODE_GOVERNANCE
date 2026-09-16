@@ -11,7 +11,7 @@ import re
 import sys
 
 PROTOCOL = Path(__file__).resolve().parents[1]
-PROTOCOL_PATH = '00_HQ/90_SYSTEM/POD_PROTOCOL'
+PROTOCOL_PATH = '00_HQ/90_SYSTEM/AGENT_NODE_GOVERNANCE'
 TASKS = '00_HQ/10_PLANNING/TaskNotes/Tasks/AI'
 VERSION = '1.1.0'
 
@@ -128,11 +128,11 @@ def build(c, copy_protocol=True):
 | HQ | {c['hq_person']} (`{c['hq_owner']}`) |
 | 연구 분야 | {c['research_focus']} |
 | 운영 모드 | basic |
-| 프로토콜 | [{VERSION} 매뉴얼](POD_PROTOCOL/README.md) |
+| 프로토콜 | [{VERSION} 매뉴얼](AGENT_NODE_GOVERNANCE/README.md) |
 | TaskNote | `{TASKS}/` |
 | 기밀·제한 자료 | 도입 전에 HQ가 경로와 허용 처리 환경을 확인해야 함 |
 | Git·백업·실행 기기 | 도입 시 실제 환경에서 지정·검증 |
-| 자료 배치 | [배치 기준](POD_PROTOCOL/Setup/Material_Placement.md) |
+| 자료 배치 | [배치 기준](AGENT_NODE_GOVERNANCE/Setup/Material_Placement.md) |
 ''')
     put('00_HQ/90_SYSTEM/Protocol_Adoption.md', f'''# 프로토콜 채택 기록
 
@@ -152,7 +152,7 @@ def build(c, copy_protocol=True):
 ''')
     put('00_HQ/README.md', f'''# {c['company']} 운영 홈
 
-- [관리자 운영 매뉴얼](90_SYSTEM/POD_PROTOCOL/HQ/Operating_Manual.md)
+- [관리자 운영 매뉴얼](90_SYSTEM/AGENT_NODE_GOVERNANCE/HQ/Operating_Manual.md)
 - [프로젝트 현황](Project_Index.md)
 - [HQ 결정](Decisions.md)
 - [HQ 행동 보기](10_PLANNING/TaskNotes/Views/hq-actions.base)
@@ -174,7 +174,7 @@ def build(c, copy_protocol=True):
     for folder, title in [('10_INBOX','미분류 자료'),('30_TECHNICAL_WIKI','재사용 절차'),('40_THEORY_WIKI','개념과 이론'),('90_ARCHIVE','종료 자료')]:
         put(folder+'/README.md', f'# {title}\n\n배치 기준은 [매뉴얼](../{PROTOCOL_PATH}/Setup/Material_Placement.md)을 따릅니다.\n')
         put(folder+'/_AI/CONTEXT.md', f'# {title} Context\n\n정본은 `../README.md`와 개별 자료입니다. 작업 범위와 회사 기밀 정책을 확인합니다.\n')
-    put('00_HQ/_AI/CONTEXT.md', '# HQ Context\n\n정본: `../Project_Index.md`, `../Decisions.md`, TaskNote. 판단 기준은 `../90_SYSTEM/POD_PROTOCOL/AI/Agent_Entry.md`, 회사 값은 `../90_SYSTEM/Company_Profile.md`.\n')
+    put('00_HQ/_AI/CONTEXT.md', '# HQ Context\n\n정본: `../Project_Index.md`, `../Decisions.md`, TaskNote. 판단 기준은 `../90_SYSTEM/AGENT_NODE_GOVERNANCE/AI/Agent_Entry.md`, 회사 값은 `../90_SYSTEM/Company_Profile.md`.\n')
     put('20_PROJECTS/README.md', '# Projects\n\n[프로젝트 현황](../00_HQ/Project_Index.md)을 사용합니다.\n')
     put(TASKS+'/README.md', '# AI Tasks\n\n작업 하나당 TaskNote 하나. 템플릿은 `00_HQ/90_SYSTEM/AI_Control/Templates/AI_TASK.md`. 이 색인은 task가 아닙니다.\n')
     put('00_HQ/90_SYSTEM/AI_Control/Templates/AI_TASK.md', task_template())

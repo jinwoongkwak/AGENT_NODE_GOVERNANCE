@@ -1,5 +1,5 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: ai
 status: active
 version: 1.1.0
@@ -187,4 +187,4 @@ Agent가 HQ 지시를 받고 다음 행동을 정할 때 읽는 단일 문서입
 - [공통 규칙](Common_Rules.md) — 기밀·파일 작업·백업·버전 관리의 정본
 - [작업 흐름](Workflow.md) — 여덟 단계 루프의 단계별 할 일
 - [위험도와 권한](../Architecture/Risk_and_Authority.md) — 판단 기준의 정본
-- [POD_PROTOCOL 안내](../README.md) — 전체 문서 지도
+- [AGENT_NODE_GOVERNANCE 안내](../README.md) — 전체 문서 지도

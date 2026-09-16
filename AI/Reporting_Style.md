@@ -1,5 +1,5 @@
 ---
-type: pod-protocol
+type: agent-node-governance
 layer: ai
 status: active
 version: 1.1.0
@@ -83,7 +83,7 @@ AI가 [TaskNote](../Architecture/Document_System.md#작업-문서)의 `# 기록`
 
 ## 링크
 
-작업 기록의 링크는 작업 공간에서 바로 열리는 형식으로 씁니다. 이 회사의 형식은 [`{record-link-format}`](../Architecture/Company_Profile.md#도구-설정)에 있습니다. POD_PROTOCOL 문서 자체의 링크 규칙은 [링크와 연결](../HQ/Protocol_Governance.md#링크와-연결)을 따릅니다.
+작업 기록의 링크는 작업 공간에서 바로 열리는 형식으로 씁니다. 이 회사의 형식은 [`{record-link-format}`](../Architecture/Company_Profile.md#도구-설정)에 있습니다. AGENT_NODE_GOVERNANCE 문서 자체의 링크 규칙은 [링크와 연결](../HQ/Protocol_Governance.md#링크와-연결)을 따릅니다.
 
 | 규칙 | 내용 |
 |---|---|

@@ -13,7 +13,7 @@ import sys
 PROTOCOL = Path(__file__).resolve().parents[1]
 PROTOCOL_PATH = '00_HQ/90_SYSTEM/AGENT_NODE_GOVERNANCE'
 TASKS = '00_HQ/10_PLANNING/TaskNotes/Tasks/AI'
-VERSION = '1.1.0'
+VERSION = '1.2.0'
 
 
 def atom(value, label):
@@ -109,9 +109,9 @@ def build(c, copy_protocol=True):
 
 1. `00_HQ/90_SYSTEM/Protocol_Adoption.md`의 활성화 상태·commit·모드를 확인합니다.
 2. `00_HQ/90_SYSTEM/company.json`과 같은 폴더의 `Company_Profile.md`에서 경로·owner·기밀 범위를 확인합니다.
-3. `{PROTOCOL_PATH}/AI/Agent_Entry.md`를 읽습니다. 읽는 순서·위험도·실행 모드·상태 조합·금지 행위·기록 틀이 이 한 문서에 있습니다.
+3. `{PROTOCOL_PATH}/AI/Agent_Entry_agent.md`를 읽습니다. 읽는 순서·위험도·실행 모드·상태 조합·금지 행위·기록 틀이 이 한 문서에 있습니다.
 4. 해당 TaskNote와 작업 영역의 가장 가까운 `_AI/CONTEXT.md`, 그 CONTEXT가 지정한 정본을 읽습니다.
-5. 그 밖의 프로토콜 문서는 Agent_Entry.md의 작업 유형별 경로가 요구할 때만 엽니다. 전체 목록은 `{PROTOCOL_PATH}/AI/Context_Manifest.json`이고, mode가 extended이거나 reference인 문서는 기본 운영에서 열지 않습니다.
+5. 그 밖의 프로토콜 문서는 Agent_Entry_agent.md의 작업 유형별 경로가 요구할 때만 엽니다. 전체 목록은 `{PROTOCOL_PATH}/AI/Context_Manifest_agent.json`이고, mode가 extended이거나 reference인 문서는 기본 운영에서 열지 않습니다.
 6. 승인된 범위에서 백업·실행·검증·기록합니다. 기존 대화의 명시 권한은 다시 묻지 않습니다.
 7. 기밀 원문은 명시 범위에서만 열고 외부 AI에 보내지 않습니다. 영구 삭제 금지, Git은 ai/work, main 병합은 HQ입니다.
 8. draft 작업 공간은 설치·분류 계획만 준비합니다. 실제 운영은 HQ 승인·검증·채택 기록 후 활성화합니다.
@@ -132,7 +132,7 @@ def build(c, copy_protocol=True):
 | TaskNote | `{TASKS}/` |
 | 기밀·제한 자료 | 도입 전에 HQ가 경로와 허용 처리 환경을 확인해야 함 |
 | Git·백업·실행 기기 | 도입 시 실제 환경에서 지정·검증 |
-| 자료 배치 | [배치 기준](AGENT_NODE_GOVERNANCE/Setup/Material_Placement.md) |
+| 자료 배치 | [배치 기준](AGENT_NODE_GOVERNANCE/Setup/Material_Placement_agent.md) |
 ''')
     put('00_HQ/90_SYSTEM/Protocol_Adoption.md', f'''# 프로토콜 채택 기록
 
@@ -152,7 +152,7 @@ def build(c, copy_protocol=True):
 ''')
     put('00_HQ/README.md', f'''# {c['company']} 운영 홈
 
-- [관리자 운영 매뉴얼](90_SYSTEM/AGENT_NODE_GOVERNANCE/HQ/Operating_Manual.md)
+- [관리자 운영 매뉴얼](90_SYSTEM/AGENT_NODE_GOVERNANCE/HQ/Operating_Manual_admin.md)
 - [프로젝트 현황](Project_Index.md)
 - [HQ 결정](Decisions.md)
 - [HQ 행동 보기](10_PLANNING/TaskNotes/Views/hq-actions.base)
@@ -172,9 +172,9 @@ def build(c, copy_protocol=True):
         put(path+'/_AI/CONTEXT.md', f'# Project Context\n\n## 정본\n\n- `../README.md`\n- `../STATUS.md`\n- `../10_NOTES/Decisions.md`\n- `../30_SOURCE/Data_Index.md`\n- `../30_SOURCE/Repositories.md`\n\n## 범위\n\nTaskNote가 명시한 `{path}/` 하위만 수정합니다. 회사 기밀 정책을 따릅니다.\n')
     put('00_HQ/Project_Index.md', index)
     for folder, title in [('10_INBOX','미분류 자료'),('30_TECHNICAL_WIKI','재사용 절차'),('40_THEORY_WIKI','개념과 이론'),('90_ARCHIVE','종료 자료')]:
-        put(folder+'/README.md', f'# {title}\n\n배치 기준은 [매뉴얼](../{PROTOCOL_PATH}/Setup/Material_Placement.md)을 따릅니다.\n')
+        put(folder+'/README.md', f'# {title}\n\n배치 기준은 [매뉴얼](../{PROTOCOL_PATH}/Setup/Material_Placement_agent.md)을 따릅니다.\n')
         put(folder+'/_AI/CONTEXT.md', f'# {title} Context\n\n정본은 `../README.md`와 개별 자료입니다. 작업 범위와 회사 기밀 정책을 확인합니다.\n')
-    put('00_HQ/_AI/CONTEXT.md', '# HQ Context\n\n정본: `../Project_Index.md`, `../Decisions.md`, TaskNote. 판단 기준은 `../90_SYSTEM/AGENT_NODE_GOVERNANCE/AI/Agent_Entry.md`, 회사 값은 `../90_SYSTEM/Company_Profile.md`.\n')
+    put('00_HQ/_AI/CONTEXT.md', '# HQ Context\n\n정본: `../Project_Index.md`, `../Decisions.md`, TaskNote. 판단 기준은 `../90_SYSTEM/AGENT_NODE_GOVERNANCE/AI/Agent_Entry_agent.md`, 회사 값은 `../90_SYSTEM/Company_Profile.md`.\n')
     put('20_PROJECTS/README.md', '# Projects\n\n[프로젝트 현황](../00_HQ/Project_Index.md)을 사용합니다.\n')
     put(TASKS+'/README.md', '# AI Tasks\n\n작업 하나당 TaskNote 하나. 템플릿은 `00_HQ/90_SYSTEM/AI_Control/Templates/AI_TASK.md`. 이 색인은 task가 아닙니다.\n')
     put('00_HQ/90_SYSTEM/AI_Control/Templates/AI_TASK.md', task_template())

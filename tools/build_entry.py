@@ -13,8 +13,8 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-ENTRY = ROOT / 'AI/Agent_Entry.md'
-MANIFEST = ROOT / 'AI/Context_Manifest.json'
+ENTRY = ROOT / 'AI/Agent_Entry_agent.md'
+MANIFEST = ROOT / 'AI/Context_Manifest_agent.json'
 OPEN_MARK = re.compile(r'^<!-- generated:(\S+) -->$', re.M)
 CLOSE_MARK = '<!-- /generated -->'
 MODES = {'active': 'basic', 'specification': 'extended', 'draft': 'reference'}
@@ -152,7 +152,7 @@ def build_manifest(entry_text):
         'protocol_version': version,
         'entry': ENTRY.relative_to(ROOT).as_posix(),
         'note': 'mode basic 문서만 기본 운영에 적용됩니다. extended와 reference는 '
-                'Agent_Entry.md의 작업 유형별 경로가 요구할 때만 엽니다.',
+                'Agent_Entry_agent.md의 작업 유형별 경로가 요구할 때만 엽니다.',
         'totals': totals,
         'documents': entries,
     }

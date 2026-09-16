@@ -16,7 +16,7 @@ class BootstrapTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.root = Path(tempfile.mkdtemp(prefix='agent-node-governance-test-')).resolve()
-        cls.config = json.loads((bootstrap.PROTOCOL/'Setup/company.example.json').read_text())
+        cls.config = json.loads((bootstrap.PROTOCOL/'Setup/company.example_agent.json').read_text())
         print('Retained test workspace:', cls.root)
 
     def test_dry_run_does_not_write(self):

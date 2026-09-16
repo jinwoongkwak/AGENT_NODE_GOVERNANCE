@@ -47,7 +47,7 @@ def main():
         front = text.split('---', 2)[1] if text.startswith('---') else ''
         for field in ['type', 'layer', 'status', 'version', 'updated']:
             require(re.search(rf'^{field}: .+', front, re.M), f'{label}: missing {field}')
-        version = '0.2.0' if label == 'AI_Agent_Company_Comparison.md' else '1.1.0'
+        version = '0.2.0' if label == 'AI_Agent_Company_Comparison_admin.md' else '1.2.0'
         require(f'version: {version}' in front, f'{label}: release version mismatch')
         h2 = re.findall(r'^## (.+)$', body, re.M)
         require(h2 and h2[0] == 'overview', f'{label}: overview must be first')
@@ -74,7 +74,7 @@ def main():
     for p in docs:
         require(incoming[p] > 0, f'{p.name}: orphan document')
 
-    schema_text = sources[ROOT / 'AI/Task_and_Record_Schema.md']
+    schema_text = sources[ROOT / 'AI/Task_and_Record_Schema_agent.md']
     blocks = re.findall(r'```json\n(.*?)\n```', schema_text, re.S)
     require(len(blocks) == 1, 'schema: expected exactly one JSON block')
     schema = json.loads(blocks[0])
@@ -106,8 +106,8 @@ def main():
         require(current == generated, f'{name}: stale, run python tools/build_entry.py')
     entry_bytes = len(entry_text.encode('utf-8'))
     require(entry_bytes <= ENTRY_MAX_BYTES,
-            f'Agent_Entry.md: {entry_bytes} bytes over the {ENTRY_MAX_BYTES} budget')
-    require(entry_text.count('\n') + 1 <= ENTRY_MAX_LINES, 'Agent_Entry.md: over the line budget')
+            f'Agent_Entry_agent.md: {entry_bytes} bytes over the {ENTRY_MAX_BYTES} budget')
+    require(entry_text.count('\n') + 1 <= ENTRY_MAX_LINES, 'Agent_Entry_agent.md: over the line budget')
 
     extended = {p.relative_to(ROOT).as_posix() for p, text in sources.items()
                 if 'status: specification' in text.split('---', 2)[1]}
@@ -134,7 +134,7 @@ def main():
         print('\n'.join(f'ERROR {e}' for e in ERRORS))
         return 1
     print(f'PASS: {len(docs)} documents; {link_count} internal links; {len(kinds)} record kinds; '
-          f'{len(clauses)} role clauses; C1-C10; entry {entry_bytes}B; release 1.1.0')
+          f'{len(clauses)} role clauses; C1-C10; entry {entry_bytes}B; release 1.2.0')
     print('Not checked: Obsidian UI, Mermaid rendering, Router runtime, HQ approval.')
     return 0
 

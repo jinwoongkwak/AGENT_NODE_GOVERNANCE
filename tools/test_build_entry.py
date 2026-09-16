@@ -28,24 +28,24 @@ class SectionTests(unittest.TestCase):
 
 class RewriteTests(unittest.TestCase):
     def setUp(self):
-        self.src = build_entry.ROOT / 'Architecture/Risk_and_Authority.md'
+        self.src = build_entry.ROOT / 'Architecture/Risk_and_Authority_admin.md'
         self.dest = build_entry.ENTRY
 
     def rewrite(self, body):
         return build_entry.rewrite_links(body, self.src, self.dest)
 
     def test_sibling_and_parent_links_resolve_from_the_destination(self):
-        out = self.rewrite('[a](Company_Profile.md#기밀-영역) [b](../AI/Common_Rules.md#백업)')
-        self.assertIn('](../Architecture/Company_Profile.md#기밀-영역)', out)
-        self.assertIn('](Common_Rules.md#백업)', out)
+        out = self.rewrite('[a](Company_Profile_admin.md#기밀-영역) [b](../AI/Common_Rules_agent.md#백업)')
+        self.assertIn('](../Architecture/Company_Profile_admin.md#기밀-영역)', out)
+        self.assertIn('](Common_Rules_agent.md#백업)', out)
 
     def test_vault_path_links_resolve_from_the_package_root(self):
         name = build_entry.ROOT.name
-        out = self.rewrite(f'[a]({name}/Architecture/Company_Profile.md#기밀-영역)')
-        self.assertIn('](../Architecture/Company_Profile.md#기밀-영역)', out)
+        out = self.rewrite(f'[a]({name}/Architecture/Company_Profile_admin.md#기밀-영역)')
+        self.assertIn('](../Architecture/Company_Profile_admin.md#기밀-영역)', out)
 
     def test_bare_anchor_points_back_at_the_source(self):
-        self.assertIn('](../Architecture/Risk_and_Authority.md#위험도)', self.rewrite('[a](#위험도)'))
+        self.assertIn('](../Architecture/Risk_and_Authority_admin.md#위험도)', self.rewrite('[a](#위험도)'))
 
     def test_absolute_urls_and_fenced_examples_are_untouched(self):
         self.assertIn('](https://example.test/x)', self.rewrite('[a](https://example.test/x)'))
@@ -77,7 +77,7 @@ class OutputTests(unittest.TestCase):
         self.assertEqual(build_entry.build_entry(self.entry), self.entry)
 
     def test_edited_canonical_section_is_detected(self):
-        source = build_entry.ROOT / 'Architecture/Risk_and_Authority.md'
+        source = build_entry.ROOT / 'Architecture/Risk_and_Authority_admin.md'
         original = source.read_text(encoding='utf-8')
         try:
             source.write_text(original.replace('애매하면 높은 쪽', '애매하면 낮은 쪽'), encoding='utf-8', newline='\n')
@@ -105,10 +105,10 @@ class OutputTests(unittest.TestCase):
     def test_extension_documents_are_marked_as_skippable(self):
         data = json.loads(self.manifest)
         by_path = {d['path']: d['mode'] for d in data['documents']}
-        for path in ['AI/Routing.md', 'AI/Task_and_Record_Schema.md', 'AI/Roles/Coordinator.md']:
+        for path in ['AI/Routing_agent.md', 'AI/Task_and_Record_Schema_agent.md', 'AI/Roles/Coordinator_agent.md']:
             self.assertEqual(by_path[path], 'extended')
-        self.assertEqual(by_path['AI_Agent_Company_Comparison.md'], 'reference')
-        self.assertEqual(by_path['AI/Agent_Entry.md'], 'basic')
+        self.assertEqual(by_path['AI_Agent_Company_Comparison_admin.md'], 'reference')
+        self.assertEqual(by_path['AI/Agent_Entry_agent.md'], 'basic')
 
 
 if __name__ == '__main__':

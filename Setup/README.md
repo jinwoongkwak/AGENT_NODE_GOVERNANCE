@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: setup
 status: active
-version: 1.1.0
+version: 1.2.0
 updated: 2026-09-16
 ---
 
@@ -26,20 +26,20 @@ updated: 2026-09-16
 | 모드 | 필수 | 사용 조건 | 기록 |
 |---|---|---|---|
 | 기본 — 초기 권장 | Markdown, 백업, 단일 Agent, HQ | Router 없이도 시작 가능. 위험도와 승인 경계 유지 | TaskNote, STATUS, Decisions |
-| 확장 — 선택 | 기본 + Router, 역할별 호출, 잠금·재개 검증 | [라우팅 시험](../AI/Routing.md#시험)과 [파일럿](Migration.md#파일럿)을 통과한 뒤 별도 활성화 | 표준·엄격 작업에 교환 기록 추가 |
+| 확장 — 선택 | 기본 + Router, 역할별 호출, 잠금·재개 검증 | [라우팅 시험](../AI/Routing_agent.md#시험)과 [파일럿](Migration_admin.md#파일럿)을 통과한 뒤 별도 활성화 | 표준·엄격 작업에 교환 기록 추가 |
 
 위험도와 검토 깊이는 모드와 별개입니다. 기본 모드의 중요한 결과는 HQ가 검토하며, 같은 Agent의 자체 확인을 독립 평가라고 적지 않습니다. 확장 모드의 독립 평가가 불가능하면 그 경로를 멈추고 도입 계획을 조정합니다.
 
 ## 새-기업-시작
 
-자세한 입력·명령·검수는 [AI 회사 설립 지침](AI_Bootstrap.md)을, 자료 분류는 [자료 배치 기준](Material_Placement.md)을 따릅니다.
+자세한 입력·명령·검수는 [AI 회사 설립 지침](AI_Bootstrap_agent.md)을, 자료 분류는 [자료 배치 기준](Material_Placement_agent.md)을 따릅니다.
 
 1. Git 저장소를 복제하고 검토할 commit을 고정합니다. 기존 회사의 작업 공간 전체를 복사할 필요는 없습니다.
-2. [작업 공간 구조](../Architecture/Workspace_Layout.md#최소-구조)를 참고해 빈 작업 공간을 만듭니다. 필요한 폴더만 생성합니다.
+2. [작업 공간 구조](../Architecture/Workspace_Layout_admin.md#최소-구조)를 참고해 빈 작업 공간을 만듭니다. 필요한 폴더만 생성합니다.
 3. 프로토콜은 작업 공간의 시스템 폴더에 submodule로 연결하거나 별도 저장소로 유지합니다. 프로토콜 작업 브랜치는 `ai/work`를 기본으로 사용합니다.
-4. [템플릿](Templates.md)의 코드 블록으로 로컬 회사 프로필·진입 파일·CONTEXT·TaskNote·STATUS·Decisions를 만듭니다. 자리표시자를 모두 채우고 로컬 프로필 위치를 진입 파일에 적습니다.
-5. 공통 프로토콜의 [회사 프로필](../Architecture/Company_Profile.md)은 로컬 설정 계약입니다. 로컬 프로필이 회사 값의 정본이며 상위 문서 전체를 회사마다 수정하지 않습니다.
-6. [채택 기록](Adoption.md#승인-기록)에 검토한 버전·commit·프로필·권한·도입 모드를 기록합니다. 기본 모드의 합성 작업 하나를 끝낸 뒤 운영을 시작합니다.
+4. [템플릿](Templates_agent.md)의 코드 블록으로 로컬 회사 프로필·진입 파일·CONTEXT·TaskNote·STATUS·Decisions를 만듭니다. 자리표시자를 모두 채우고 로컬 프로필 위치를 진입 파일에 적습니다.
+5. 공통 프로토콜의 [회사 프로필](../Architecture/Company_Profile_admin.md)은 로컬 설정 계약입니다. 로컬 프로필이 회사 값의 정본이며 상위 문서 전체를 회사마다 수정하지 않습니다.
+6. [채택 기록](Adoption_admin.md#승인-기록)에 검토한 버전·commit·프로필·권한·도입 모드를 기록합니다. 기본 모드의 합성 작업 하나를 끝낸 뒤 운영을 시작합니다.
 
 ```sh
 git clone https://github.com/jinwoongkwak/AGENT_NODE_GOVERNANCE.git
@@ -52,20 +52,20 @@ python tools/validate.py
 
 ## 기존-기업-전환
 
-기존 회사는 [이전 절차](Migration.md)를 따릅니다. README 체크리스트 승인 → 대상 파일 대응표와 복구 지점 준비 → 파일럿 → 실행 지시 → 단계별 이전 → 검증 → 활성화 기록 순서입니다.
+기존 회사는 [이전 절차](Migration_admin.md)를 따릅니다. README 체크리스트 승인 → 대상 파일 대응표와 복구 지점 준비 → 파일럿 → 실행 지시 → 단계별 이전 → 검증 → 활성화 기록 순서입니다.
 
 **프로토콜 GitHub 배포는 회사 재구조화 승인이 아닙니다.** `확장 사양` 조항이나 신규 역할을 먼저 활성화하지 않습니다.
 
 ## 검증
 
-저장소 루트에서 `python tools/validate.py`를 실행합니다. Python 표준 라이브러리만 사용하며 파일을 수정하지 않습니다. 정본 섹션을 고친 뒤에는 `python tools/build_entry.py`로 [Agent 진입점](../AI/Agent_Entry.md)과 [컨텍스트 매니페스트](../AI/Context_Manifest.json)를 다시 생성합니다. 생성하지 않으면 `validate.py`가 실패합니다.
+저장소 루트에서 `python tools/validate.py`를 실행합니다. Python 표준 라이브러리만 사용하며 파일을 수정하지 않습니다. 정본 섹션을 고친 뒤에는 `python tools/build_entry.py`로 [Agent 진입점](../AI/Agent_Entry_agent.md)과 [컨텍스트 매니페스트](../AI/Context_Manifest_agent.json)를 다시 생성합니다. 생성하지 않으면 `validate.py`가 실패합니다.
 
 | 검사 | 확인하는 것 | 확인하지 않는 것 |
 |---|---|---|
 | 문서 | 상대 링크·파일·제목 앵커·overview·버전·충돌 표시 | 실제 Obsidian UI와 Mermaid 렌더링 |
 | 스키마 | JSON 파싱·종류·필수 구획·판정 값의 표 일치 | Router 런타임 동작, 권한 강제 |
 | 승인 목록 | 마지막 섹션과 C1–C10 존재 | HQ가 내용을 이해하거나 승인했는지 |
-| 진입점 생성물 | [Agent 진입점](../AI/Agent_Entry.md)의 생성 블록·매니페스트가 정본 섹션과 일치, 진입 문서 크기 한도, 확장 사양 표시 | Agent가 실제로 그 순서로 읽는지 |
+| 진입점 생성물 | [Agent 진입점](../AI/Agent_Entry_agent.md)의 생성 블록·매니페스트가 정본 섹션과 일치, 진입 문서 크기 한도, 확장 사양 표시 | Agent가 실제로 그 순서로 읽는지 |
 | 진입점 시험 (`python tools/test_build_entry.py`) | 섹션 추출, 링크 재작성, 드리프트 검출, 매니페스트 적용 범위 | 문서 내용의 타당성 |
 | 생성기 시험 (`python tools/test_bootstrap.py`) | dry-run 무변경, 새 구조 생성·hash, 재실행·덮어쓰기·경로 이탈 거부, 승인 미상속 | 실제 회사 자료 분류·권한 판단 |
 | 회사 구조 (`python tools/check_workspace.py <workspace>`) | 필수 파일·회사 설정·프로젝트 정본·경로 범위 | 플러그인 UI, 실제 승인, 연구 내용 |
@@ -87,7 +87,7 @@ python tools/validate.py
 
 ## 관련-문서
 
-- [템플릿](Templates.md) — 초기 파일에 복사할 틀
-- [채택과 버전 고정](Adoption.md) — 회사별 결정 기록
-- [이전 절차](Migration.md) — 기존 작업 공간 적용
+- [템플릿](Templates_agent.md) — 초기 파일에 복사할 틀
+- [채택과 버전 고정](Adoption_admin.md) — 회사별 결정 기록
+- [이전 절차](Migration_admin.md) — 기존 작업 공간 적용
 - [관리자 검토](../README.md#관리자-검토-체크리스트) — 이번 버전 승인 목록

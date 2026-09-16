@@ -2,7 +2,7 @@
 type: pod-protocol
 layer: hq
 status: active
-version: 1.0.0
+version: 1.1.0
 updated: 2026-09-16
 ---
 
@@ -80,7 +80,7 @@ POD_PROTOCOL의 운영 규칙 채택은 HQ 결정으로만 바뀝니다. 요청�
 type: pod-protocol
 layer: architecture
 status: active
-version: 1.0.0
+version: 1.1.0
 updated: YYYY-MM-DD
 ---
 

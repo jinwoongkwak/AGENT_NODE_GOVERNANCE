@@ -6,7 +6,12 @@ import re
 import sys
 from urllib.parse import unquote
 
+import build_entry
+
 ROOT = Path(__file__).resolve().parents[1]
+ENTRY_MAX_BYTES = 11000
+ENTRY_MAX_LINES = 250
+NAVIGATION = ['README.md', 'AI/README.md']
 ERRORS = []
 
 
@@ -42,7 +47,7 @@ def main():
         front = text.split('---', 2)[1] if text.startswith('---') else ''
         for field in ['type', 'layer', 'status', 'version', 'updated']:
             require(re.search(rf'^{field}: .+', front, re.M), f'{label}: missing {field}')
-        version = '0.2.0' if label == 'AI_Agent_Company_Comparison.md' else '1.0.0'
+        version = '0.2.0' if label == 'AI_Agent_Company_Comparison.md' else '1.1.0'
         require(f'version: {version}' in front, f'{label}: release version mismatch')
         h2 = re.findall(r'^## (.+)$', body, re.M)
         require(h2 and h2[0] == 'overview', f'{label}: overview must be first')
@@ -94,6 +99,28 @@ def main():
     require(len(schema['task']['state_combinations']) == 6, 'schema: state combinations')
     require(re.fullmatch(schema['task']['patterns']['approved_version'], '') is not None, 'schema: unapproved value')
 
+    entry_text, manifest_text = build_entry.render()
+    for path, generated in [(build_entry.ENTRY, entry_text), (build_entry.MANIFEST, manifest_text)]:
+        name = path.relative_to(ROOT).as_posix()
+        current = path.read_text(encoding='utf-8') if path.is_file() else None
+        require(current == generated, f'{name}: stale, run python tools/build_entry.py')
+    entry_bytes = len(entry_text.encode('utf-8'))
+    require(entry_bytes <= ENTRY_MAX_BYTES,
+            f'Agent_Entry.md: {entry_bytes} bytes over the {ENTRY_MAX_BYTES} budget')
+    require(entry_text.count('\n') + 1 <= ENTRY_MAX_LINES, 'Agent_Entry.md: over the line budget')
+
+    extended = {p.relative_to(ROOT).as_posix() for p, text in sources.items()
+                if 'status: specification' in text.split('---', 2)[1]}
+    for label in NAVIGATION:
+        page = ROOT / label
+        for line in prose(sources[page]).splitlines():
+            if not line.startswith('|') or '확장' in line:
+                continue
+            for target in re.findall(r'\]\(([^)]+)\)', line):
+                dest = (page.parent / unquote(target).split('#')[0]).resolve()
+                if dest.is_relative_to(ROOT) and dest.relative_to(ROOT).as_posix() in extended:
+                    require(False, f'{label}: table row links {target} without a 확장 사양 marker')
+
     readme = sources[ROOT / 'README.md']
     review = readme.split('## 관리자-검토-체크리스트\n', 1)[-1]
     items = re.findall(r'^- \[[ x]\] \*\*(C\d+) ', review, re.M)
@@ -107,7 +134,7 @@ def main():
         print('\n'.join(f'ERROR {e}' for e in ERRORS))
         return 1
     print(f'PASS: {len(docs)} documents; {link_count} internal links; {len(kinds)} record kinds; '
-          f'{len(clauses)} role clauses; C1-C10; release 1.0.0')
+          f'{len(clauses)} role clauses; C1-C10; entry {entry_bytes}B; release 1.1.0')
     print('Not checked: Obsidian UI, Mermaid rendering, Router runtime, HQ approval.')
     return 0
 

@@ -2,7 +2,7 @@
 type: pod-protocol
 layer: setup
 status: active
-version: 1.0.0
+version: 1.1.0
 updated: 2026-09-16
 ---
 
@@ -58,13 +58,15 @@ python tools/validate.py
 
 ## 검증
 
-저장소 루트에서 `python tools/validate.py`를 실행합니다. Python 표준 라이브러리만 사용하며 파일을 수정하지 않습니다.
+저장소 루트에서 `python tools/validate.py`를 실행합니다. Python 표준 라이브러리만 사용하며 파일을 수정하지 않습니다. 정본 섹션을 고친 뒤에는 `python tools/build_entry.py`로 [Agent 진입점](../AI/Agent_Entry.md)과 [컨텍스트 매니페스트](../AI/Context_Manifest.json)를 다시 생성합니다. 생성하지 않으면 `validate.py`가 실패합니다.
 
 | 검사 | 확인하는 것 | 확인하지 않는 것 |
 |---|---|---|
 | 문서 | 상대 링크·파일·제목 앵커·overview·버전·충돌 표시 | 실제 Obsidian UI와 Mermaid 렌더링 |
 | 스키마 | JSON 파싱·종류·필수 구획·판정 값의 표 일치 | Router 런타임 동작, 권한 강제 |
 | 승인 목록 | 마지막 섹션과 C1–C10 존재 | HQ가 내용을 이해하거나 승인했는지 |
+| 진입점 생성물 | [Agent 진입점](../AI/Agent_Entry.md)의 생성 블록·매니페스트가 정본 섹션과 일치, 진입 문서 크기 한도, 확장 사양 표시 | Agent가 실제로 그 순서로 읽는지 |
+| 진입점 시험 (`python tools/test_build_entry.py`) | 섹션 추출, 링크 재작성, 드리프트 검출, 매니페스트 적용 범위 | 문서 내용의 타당성 |
 | 생성기 시험 (`python tools/test_bootstrap.py`) | dry-run 무변경, 새 구조 생성·hash, 재실행·덮어쓰기·경로 이탈 거부, 승인 미상속 | 실제 회사 자료 분류·권한 판단 |
 | 회사 구조 (`python tools/check_workspace.py <workspace>`) | 필수 파일·회사 설정·프로젝트 정본·경로 범위 | 플러그인 UI, 실제 승인, 연구 내용 |
 

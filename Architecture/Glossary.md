@@ -2,7 +2,7 @@
 type: pod-protocol
 layer: architecture
 status: active
-version: 1.0.0
+version: 1.1.0
 updated: 2026-09-16
 ---
 

@@ -1,5 +1,5 @@
 ---
-type: jm-protocol
+type: pod-protocol
 layer: architecture
 status: active
 version: 1.0.0
@@ -78,4 +78,4 @@ updated: 2026-09-16
 - [조직 구조](Organization.md) — 원칙을 역할과 책임으로 나눈 모습
 - [위험도와 권한](Risk_and_Authority.md) — "안전은 장치로" 원칙의 구체적 경계
 - [HQ의 역할](../HQ/HQ_Role.md) — "사람은 결정만" 원칙의 운영자 매뉴얼
-- [JM_Protocol 안내](../README.md) — 전체 문서 지도
+- [POD_PROTOCOL 안내](../README.md) — 전체 문서 지도

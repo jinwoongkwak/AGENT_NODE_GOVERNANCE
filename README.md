@@ -1,12 +1,12 @@
 ---
-type: jm-protocol
+type: pod-protocol
 layer: root
 status: active
 version: 1.0.0
 updated: 2026-09-16
 ---
 
-# jm-protocol-운영-매뉴얼
+# pod-protocol-운영-매뉴얼
 
 ## overview
 

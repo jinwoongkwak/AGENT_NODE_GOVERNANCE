@@ -15,7 +15,7 @@ import check_workspace
 class BootstrapTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.root = Path(tempfile.mkdtemp(prefix='jm-protocol-test-')).resolve()
+        cls.root = Path(tempfile.mkdtemp(prefix='pod-protocol-test-')).resolve()
         cls.config = json.loads((bootstrap.PROTOCOL/'Setup/company.example.json').read_text())
         print('Retained test workspace:', cls.root)
 

@@ -1,5 +1,5 @@
 ---
-type: jm-protocol
+type: pod-protocol
 layer: ai
 status: specification
 version: 1.0.0

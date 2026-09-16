@@ -1,5 +1,5 @@
 ---
-type: jm-protocol
+type: pod-protocol
 layer: hq
 status: active
 version: 1.0.0
@@ -43,6 +43,6 @@ updated: 2026-09-16
 
 ## 관련-문서
 
-- [JM_Protocol 안내](../README.md) — 전체 문서 지도
+- [POD_PROTOCOL 안내](../README.md) — 전체 문서 지도
 - [Architecture 안내](../Architecture/README.md) — 회사 구조
 - [AI 안내](../AI/README.md) — AI가 HQ 지시를 받아 일하는 방식

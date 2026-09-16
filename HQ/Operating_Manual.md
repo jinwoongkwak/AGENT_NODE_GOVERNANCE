@@ -1,5 +1,5 @@
 ---
-type: jm-protocol
+type: pod-protocol
 layer: hq
 status: active
 version: 1.0.0

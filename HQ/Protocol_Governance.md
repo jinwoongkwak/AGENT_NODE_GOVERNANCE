@@ -1,5 +1,5 @@
 ---
-type: jm-protocol
+type: pod-protocol
 layer: hq
 status: active
 version: 1.0.0
@@ -10,12 +10,12 @@ updated: 2026-09-16
 
 ## overview
 
-JM_Protocol을 바꾸고, 정본으로 교체하고, 기여하고, 다른 기업에 옮기는 방법입니다. 대상은 [HQ](../Architecture/Operating_Model.md#hq와-ai의-뜻), 기여자, 도입하려는 기업입니다.
+POD_PROTOCOL을 바꾸고, 정본으로 교체하고, 기여하고, 다른 기업에 옮기는 방법입니다. 대상은 [HQ](../Architecture/Operating_Model.md#hq와-ai의-뜻), 기여자, 도입하려는 기업입니다.
 
 | 섹션 | 내용 | 적용 |
 |---|---|---|
 | [변경-절차](#변경-절차) | 규칙을 바꾸는 순서와 버전 | 운영 매뉴얼 |
-| [정본-교체-절차](#정본-교체-절차) | JM_Protocol을 현행 규칙의 원본으로 만드는 순서 | 운영 매뉴얼 |
+| [정본-교체-절차](#정본-교체-절차) | POD_PROTOCOL을 현행 규칙의 원본으로 만드는 순서 | 운영 매뉴얼 |
 | [문서-작성-규칙](#문서-작성-규칙) | 파일, frontmatter, 구성, 조항 번호 | 운영 매뉴얼 |
 | [제목과-앵커](#제목과-앵커) | GitHub·Obsidian 공용 제목 규칙 | 운영 매뉴얼 |
 | [링크와-연결](#링크와-연결) | 위키피디아 형식 연결과 인스턴스 값 링크 | 운영 매뉴얼 |
@@ -26,7 +26,7 @@ JM_Protocol을 바꾸고, 정본으로 교체하고, 기여하고, 다른 기업
 
 ## 변경-절차
 
-JM_Protocol의 운영 규칙 채택은 HQ 결정으로만 바뀝니다. 요청받은 초안 개선·검사·저장소 배포는 운영 채택과 별개이며, 새 규칙은 승인 전까지 초안으로 구분합니다. 확장 사양은 미승인이라는 뜻이 아니라 선택 기능의 적용 범위입니다. 변경은 일반 작업과 같은 [TaskNote](../Architecture/Document_System.md#작업-문서)에서 [결정표](Commands_and_Approval.md#결정표-작성)로 제안하고 승인받습니다.
+POD_PROTOCOL의 운영 규칙 채택은 HQ 결정으로만 바뀝니다. 요청받은 초안 개선·검사·저장소 배포는 운영 채택과 별개이며, 새 규칙은 승인 전까지 초안으로 구분합니다. 확장 사양은 미승인이라는 뜻이 아니라 선택 기능의 적용 범위입니다. 변경은 일반 작업과 같은 [TaskNote](../Architecture/Document_System.md#작업-문서)에서 [결정표](Commands_and_Approval.md#결정표-작성)로 제안하고 승인받습니다.
 
 | 순서 | 누가 | 할 일 |
 |---:|---|---|
@@ -45,14 +45,14 @@ JM_Protocol의 운영 규칙 채택은 HQ 결정으로만 바뀝니다. 요청�
 
 ## 정본-교체-절차
 
-정본 교체는 JM_Protocol을 현재 운영 규칙의 원본으로 만드는 일입니다. 교체할 때 기존 AI 제어 파일을 모두 새 규칙에 맞춰 갱신하고, 같은 규칙 본문을 두 곳에 남기지 않습니다.
+정본 교체는 POD_PROTOCOL을 현재 운영 규칙의 원본으로 만드는 일입니다. 교체할 때 기존 AI 제어 파일을 모두 새 규칙에 맞춰 갱신하고, 같은 규칙 본문을 두 곳에 남기지 않습니다.
 
 | 순서 | 할 일 | 완료 확인 |
 |---:|---|---|
 | 1 | 선행 조건 해소: 작업 공간의 충돌 표시 제거, [백업](../AI/Common_Rules.md#백업) 가능 상태 | [알려진 문제](../Architecture/Company_Profile.md#알려진-문제)에 막힘 없음 |
 | 2 | HQ가 승인 체크리스트를 모두 승인하고 실행 지시 | [승인과 실행 지시](Commands_and_Approval.md#승인과-실행-지시) 기록 |
 | 3 | [`{entry-files}`](../Architecture/Company_Profile.md#작업-공간-경로)의 읽기 순서를 [AI 안내](../AI/README.md)로 변경 | Agent가 새 순서로 읽음 |
-| 4 | [`{legacy-control-folder}`](../Architecture/Company_Profile.md#작업-공간-경로)의 규약을 JM_Protocol 해당 섹션으로 가는 안내 문서로 교체 | 규칙 문장 중복 0 |
+| 4 | [`{legacy-control-folder}`](../Architecture/Company_Profile.md#작업-공간-경로)의 규약을 POD_PROTOCOL 해당 섹션으로 가는 안내 문서로 교체 | 규칙 문장 중복 0 |
 | 5 | 템플릿, 영역 CONTEXT, Vault 규칙 문서를 새 [스키마](../AI/Task_and_Record_Schema.md#스키마란)와 경로로 갱신 | 옛 규칙 문장 0 |
 | 6 | 승인된 확장 사양 내용을 운영로 바꾸고 새 DEC 기록 | 상태 표시와 결정 기록 일치 |
 | 7 | [이전 절차](../Setup/Migration.md#실행과-복구)에 따라 단계별 검증·commit. 실패하면 이후 사용자 변경을 보존하면서 승인된 변경분만 복구 | 새 깨진 링크 0, 복구 시험 통과 |
@@ -62,7 +62,7 @@ JM_Protocol의 운영 규칙 채택은 HQ 결정으로만 바뀝니다. 요청�
 | 규칙 | 내용 |
 |---|---|
 | 파일 이름 | 공백 없는 영어 `Title_Case` + `.md`. 폴더 안내 문서는 `README.md` |
-| frontmatter | `type: jm-protocol`, `layer`, `status`, `version`, `updated` 다섯 개만 |
+| frontmatter | `type: pod-protocol`, `layer`, `status`, `version`, `updated` 다섯 개만 |
 | 첫 섹션 | `## overview` — 목적 1–3문장과 섹션 표 (섹션 링크 · 내용 · 적용 범위) |
 | 마지막 섹션 | 기본은 `## 관련-문서`. 최상위 README만 관리자 검토 체크리스트를 마지막에 둠 |
 | 길이 | 문서당 250줄 이하 목표 |
@@ -77,7 +77,7 @@ JM_Protocol의 운영 규칙 채택은 HQ 결정으로만 바뀝니다. 요청�
 
 ```markdown
 ---
-type: jm-protocol
+type: pod-protocol
 layer: architecture
 status: active
 version: 1.0.0
@@ -133,7 +133,7 @@ GitHub는 제목에서 앵커를 만들 때 영문을 소문자로 바꾸고, �
 | 인스턴스 값 | `{이름}`을 회사 프로필의 섹션에 링크 | [`{trash}`](../Architecture/Company_Profile.md#작업-공간-경로) |
 | 프로토콜 밖 파일 | 본문에서 링크하지 않고 [근거 자료](../Architecture/Company_Profile.md#근거-자료)에 경로로만 둠 | — |
 
-프로토콜 밖 파일을 본문에서 링크하지 않기 때문에, JM_Protocol 폴더를 떼어 다른 저장소로 옮겨도 본문 링크가 깨지지 않습니다.
+프로토콜 밖 파일을 본문에서 링크하지 않기 때문에, POD_PROTOCOL 폴더를 떼어 다른 저장소로 옮겨도 본문 링크가 깨지지 않습니다.
 
 ## 상태-표시-규칙
 

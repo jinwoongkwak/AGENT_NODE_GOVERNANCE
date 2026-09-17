@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: specification
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -125,7 +125,7 @@ Coordinator는 HQ 지시를 작업 계약으로 고정하고, 역할 호출 순�
 
 ## 상태-갱신
 
-- **CO-211 단독 갱신** — 대표 TaskNote의 `status`·`owner`·`hq`, `# 현재 상태`, `# 기록`은 Coordinator만 쓴다.
+- **CO-211 단독 갱신** — 대표 TaskNote의 `status`·`owner`·`hq_todo`, `# 현재 상태`, `# 기록`은 Coordinator만 쓴다.
 
 - **CO-212 허용 조합** — 상태 조합은 [작업 상태](../../Architecture/Command_and_Report_Flow_admin.md#작업-상태)의 6개만 쓴다. 세부 단계(계획 중, 평가 2/3회, 외부 대기 등)는 `# 현재 상태`의 단계 줄에 적는다.
 

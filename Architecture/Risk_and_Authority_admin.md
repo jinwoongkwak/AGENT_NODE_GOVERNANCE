@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -37,9 +37,9 @@ updated: 2026-09-16
 
 | 모드 | 실행 권한이 생기는 때 | 승인 후 상태 |
 |---|---|---|
-| `autonomous` | 작성된 task와 [쓰기 범위](../HQ/Control_Settings_admin.md#쓰기-범위)가 위험도 0–1 실행을 허락 | `owner: ai`, `hq: none` |
-| `after-approval` | HQ 승인이 실행 권한도 줌 | `owner: ai`, `hq: none` |
-| `manual` | 승인은 계획만 기록하고, HQ가 별도로 실행을 지시 | `owner: {hq-owner}`, `hq: dispatch` |
+| `autonomous` | 작성된 task와 [쓰기 범위](../HQ/Control_Settings_admin.md#쓰기-범위)가 위험도 0–1 실행을 허락 | `owner: ai`, `hq_todo: none` |
+| `after-approval` | HQ 승인이 실행 권한도 줌 | `owner: ai`, `hq_todo: none` |
+| `manual` | 승인은 계획만 기록하고, HQ가 별도로 실행을 지시 | `owner: {hq-owner}`, `hq_todo: dispatch` |
 
 - **기본값:** 위험도 0–1은 autonomous, 위험도 2는 manual입니다.
 

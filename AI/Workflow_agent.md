@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: active
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -167,7 +167,7 @@ Evaluator가 실제 산출물을 원래 완료 기준과 대조하고, 한 가�
 
 ## hq-판단과-재개
 
-결정이 필요하면 [결정표](../HQ/Commands_and_Approval_admin.md#결정표-작성)를 쓰고 `hq: decide`로 바꾼 뒤 멈춥니다. 응답이 없으면 기다리며 승인 없는 기본값으로 실행하지 않습니다. manual 작업은 승인 뒤에도 실행 지시를 기다립니다.
+결정이 필요하면 [결정표](../HQ/Commands_and_Approval_admin.md#결정표-작성)를 쓰고 `hq_todo: decide`로 바꾼 뒤 멈춥니다. 응답이 없으면 기다리며 승인 없는 기본값으로 실행하지 않습니다. manual 작업은 승인 뒤에도 실행 지시를 기다립니다.
 
 ### 재개-흐름-확장
 

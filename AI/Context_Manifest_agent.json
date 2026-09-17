@@ -1,21 +1,21 @@
 {
  "schema": 1,
- "protocol_version": "1.3.0",
+ "protocol_version": "1.3.1",
  "entry": "AI/Agent_Entry_agent.md",
  "note": "mode basic 문서만 기본 운영에 적용됩니다. extended와 reference는 Agent_Entry_agent.md의 작업 유형별 경로가 요구할 때만 엽니다.",
  "totals": {
   "documents": 38,
-  "bytes": 336138,
-  "basic": 235343,
-  "extended": 78788,
-  "reference": 22007
+  "bytes": 337397,
+  "basic": 236234,
+  "extended": 79146,
+  "reference": 22017
  },
  "documents": [
   {
    "path": "AI/Agent_Entry_agent.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 10980,
+   "bytes": 10997,
    "when_to_read": "Agent가 HQ 지시를 받고 다음 행동을 정할 때 읽는 단일 문서입니다."
   },
   {
@@ -43,7 +43,7 @@
    "path": "AI/Roles/Coordinator_agent.md",
    "status": "specification",
    "mode": "extended",
-   "bytes": 17497,
+   "bytes": 17502,
    "when_to_read": "**적용 범위:** 확장 모드 사양입니다."
   },
   {
@@ -85,28 +85,28 @@
    "path": "AI/Task_and_Record_Schema_agent.md",
    "status": "specification",
    "mode": "extended",
-   "bytes": 16783,
+   "bytes": 17136,
    "when_to_read": "**적용 범위:** 확장 모드 사양입니다."
   },
   {
    "path": "AI/Workflow_agent.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 13414,
+   "bytes": 13419,
    "when_to_read": "AI 작업이 접수부터 종료까지 어떤 순서로 진행되고, 각 단계를 어느 역할이 맡는지 설명합니다."
   },
   {
    "path": "AI_Agent_Company_Comparison_admin.md",
    "status": "draft",
    "mode": "reference",
-   "bytes": 22007,
+   "bytes": 22017,
    "when_to_read": "이 저장소의 프로토콜 전체를 읽고, 사람 여럿이 운영하는 IT 기업의 조직·프로세스와 비교한 분석입니다."
   },
   {
    "path": "Architecture/Command_and_Report_Flow_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 10343,
+   "bytes": 10348,
    "when_to_read": "HQ와 AI Agent 사이에서 지시·결정·실행 지시·보고가 오가는 길을 설명합니다."
   },
   {
@@ -134,7 +134,7 @@
    "path": "Architecture/Glossary_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 8818,
+   "bytes": 8823,
    "when_to_read": "AGENT_NODE_GOVERNANCE에 나오는 용어의 뜻과 그 용어를 정의한 섹션입니다."
   },
   {
@@ -162,7 +162,7 @@
    "path": "Architecture/Risk_and_Authority_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 6890,
+   "bytes": 6905,
    "when_to_read": "어떤 일을 AI가 스스로 하고 어떤 일에 HQ의 승인이 필요한지 정의합니다."
   },
   {
@@ -176,21 +176,21 @@
    "path": "Architecture/Workspace_and_Tools_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 9242,
+   "bytes": 9257,
    "when_to_read": "회사가 돌아가는 작업 공간을 도구 이름이 아닌 기능 계층으로 설명합니다."
   },
   {
    "path": "HQ/Commands_and_Approval_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 8325,
+   "bytes": 8330,
    "when_to_read": "HQ가 AI에게 지시하고, 제안서를 읽고, 결정·승인·실행 지시를 전하는 방법입니다."
   },
   {
    "path": "HQ/Control_Settings_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 9189,
+   "bytes": 9244,
    "when_to_read": "HQ가 작업마다 조절할 수 있는 값과 기본값입니다."
   },
   {
@@ -204,7 +204,7 @@
    "path": "HQ/Operating_Manual_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 6454,
+   "bytes": 6459,
    "when_to_read": "관리자는 연구 목적·우선순위·성공 기준과 위임 밖의 결정을 맡습니다."
   },
   {
@@ -225,14 +225,14 @@
    "path": "HQ/Review_and_Closure_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 5693,
+   "bytes": 5708,
    "when_to_read": "HQ가 작업의 현황을 보고, 끝난 결과를 검토하고, 작업을 닫거나 후속 작업으로 넘기는 방법입니다."
   },
   {
    "path": "README.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 12059,
+   "bytes": 12392,
    "when_to_read": "관리자가 1인 연구 회사를 이해하고 제어하며, AI가 같은 구조의 회사를 설립하고 자료를 배치할 수 있도록 정한 운영 매..."
   },
   {
@@ -260,7 +260,7 @@
    "path": "Setup/Migration_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 6314,
+   "bytes": 6319,
    "when_to_read": "기존 작업 공간을 승인된 프로토콜에 맞추는 절차입니다."
   },
   {
@@ -274,7 +274,7 @@
    "path": "Setup/Templates_agent.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 5771,
+   "bytes": 6182,
    "when_to_read": "새 회사의 시작에 필요한 틀입니다."
   }
  ]

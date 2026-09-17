@@ -45,7 +45,7 @@ updated: 2026-09-15
 | 2 | 위험 등급 | [위험도](Architecture/Risk_and_Authority_admin.md#위험도) 0·1·2로 문서 깊이와 승인 필요 여부를 결정. 애매하면 높은 쪽, 쪼개서 회피 금지 | adopted |
 | 3 | 승인과 실행의 분리 | [실행 모드](Architecture/Risk_and_Authority_admin.md#실행-모드) autonomous·after-approval·manual. manual은 승인해도 `실행해`가 따로 필요 | adopted |
 | 4 | 권한 경계 | `write_scope` 경로 제한, [기밀 영역](AI/Common_Rules_agent.md#기밀), [위임하지 않는 행위](Architecture/Risk_and_Authority_admin.md#위임하지-않는-행위) 7종 | adopted |
-| 5 | 상태 기계 | `status`·`owner`·`hq`의 [6개 조합](Architecture/Command_and_Report_Flow_admin.md#작업-상태)만 허용. `owner`는 항상 다음 행동 주체 | adopted |
+| 5 | 상태 기계 | `status`·`owner`·`hq_todo`의 [6개 조합](Architecture/Command_and_Report_Flow_admin.md#작업-상태)만 허용. `owner`는 항상 다음 행동 주체 | adopted |
 | 6 | 역할 분리 | [과정 역할](Architecture/Organization_admin.md#과정-역할) 4개. 계획자와 평가자를 다른 문맥으로 분리, Coordinator만 대표 노트에 기록 | proposed |
 | 7 | 불변 증거 | [교환 기록](Architecture/Document_System_admin.md#교환-기록) 8종, 발행 후 수정 금지, 입력 hash·commit·스키마 고정 ([불변식](AI/Task_and_Record_Schema_agent.md#불변식) I1–I10) | proposed |
 | 8 | 검증 게이트 | [필수 조건](AI/Roles/Evaluator_agent.md#필수-조건) G1–G6, [점수표](AI/Roles/Evaluator_agent.md#점수표) 5항목, [반복 한도](AI/Roles/Evaluator_agent.md#반복-한도) 3회·2회 | proposed |
@@ -97,7 +97,7 @@ updated: 2026-09-15
 |   # | 약점                        | 사람 조직이 이 문제를 푸는 방식                        | 프로토콜의 현재 대응                                                                  |
 | --: | ------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------- |
 |   1 | **처리량 상한이 HQ 한 명의 판단 속도** | 의사결정 위임 매트릭스(금액·영향 한도), 부서장 위임, 대리 결재     | [위임 범위](HQ/Control_Settings_admin.md#위임-범위)가 있으나 `proposed`. 금액·영향 기준 없음           |
-|   2 | HQ 부재 시 전면 정지             | 대행자 지정, 온콜 로테이션, 타임아웃 자동 승인               | 없음. `hq: decide`는 무한 대기                                                      |
+|   2 | HQ 부재 시 전면 정지             | 대행자 지정, 온콜 로테이션, 타임아웃 자동 승인               | 없음. `hq_todo: decide`는 무한 대기                                                      |
 |   3 | 독립 평가가 실제로는 독립이 아님        | 서로 다른 경력·이해관계를 가진 사람이 리뷰하므로 실패 모드가 다름     | [독립성](AI/Roles/Evaluator_agent.md#독립성)이 상관 오류를 인정하고 반례 1개를 요구. 완화 수단이 얇음           |
 |   4 | 평가 기준을 평가 대상이 스스로 채점      | 테스트 스위트·운영 지표·고객이 최종 심판. 프로세스 바깥에 있음      | 도구 증거 우선·독립 검사 1회 규정은 있으나 외부 심판이 문서 작업에는 부재                                  |
 |   5 | **통제가 코드가 아니라 산문**        | IAM·브랜치 보호·admission controller가 물리적으로 차단 | 유일한 기계 검사는 문서 형식 검사. Router는 미구현                                             |

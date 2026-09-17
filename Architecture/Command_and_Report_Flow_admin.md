@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -111,7 +111,7 @@ sequenceDiagram
 
 ## 작업-상태
 
-| 상태 | `status` | `owner` | `hq` | 뜻 |
+| 상태 | `status` | `owner` | `hq_todo` | 뜻 |
 |---|---|---|---|---|
 | 제안 검토 | `to-do` | [`{hq-owner}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#사람과-역할-배정) | `decide` | HQ가 선택하거나 승인해야 함 |
 | 실행 지시 대기 | `to-do` | `{hq-owner}` | `dispatch` | 승인된 manual 작업이 실행 지시를 기다림 |

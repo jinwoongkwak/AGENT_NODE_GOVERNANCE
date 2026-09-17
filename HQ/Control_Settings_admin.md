@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -34,7 +34,7 @@ HQ가 작업마다 조절할 수 있는 값과 기본값입니다. 값은 [TaskN
 | 보고 정책 | `report_policy` | decision-only, milestone, final | [보고 정책](#보고-정책) | 운영 |
 | 쓰기 범위 | `write_scope` | 경로 목록 | [쓰기 범위](#쓰기-범위) | 운영 |
 | 의존성 | `blockedBy` | 막고 있는 task 링크 | [대표 task 필드](../AI/Task_and_Record_Schema_agent.md#대표-task-필드) | 운영 |
-| 우선순위·마감 | `priority`, `due` | 작업 관리 도구의 값 | — | 운영 |
+| 일정 | `scheduled`, `due` | 작업 관리 도구의 값 | [tasknote 필드](../Architecture/Frontmatter_admin.md#tasknote-필드) | 운영 |
 | 예산과 반복 한도 | `# 지시`의 [작업 계약](../AI/Roles/Coordinator_agent.md#계약-정규화) | 시간, 호출 수, 반복 횟수 | [예산과 반복 한도](#예산과-반복-한도) | 확장 사양 |
 | 검토 깊이 | `# 현재 상태` | 경량, 표준, 엄격 | [검토 깊이](../Architecture/Risk_and_Authority_admin.md#검토-깊이) | 확장 사양 |
 | 위임 범위 | `# 지시`의 작업 계약 | AI가 고를 수 있는 선택 목록 | [위임 범위](#위임-범위) | 확장 사양 |

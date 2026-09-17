@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -79,7 +79,7 @@ HQ가 AI에게 지시하고, 제안서를 읽고, 결정·승인·실행 지시�
 |---|---|---|
 | autonomous | [위험도](../Architecture/Risk_and_Authority_admin.md#위험도) 0–1은 승인 없이도 작성된 task대로 실행 | 없음 |
 | after-approval | 승인이 곧 실행 권한 | 없음 |
-| manual | 계획만 기록되고 실행 지시 대기 (`hq: dispatch`) | `<제목> 실행해` |
+| manual | 계획만 기록되고 실행 지시 대기 (`hq_todo: dispatch`) | `<제목> 실행해` |
 
 - **명시 요청의 효력 (C2 승인):** 현재 대화에서 HQ가 대상·범위·행위를 구체적으로 실행하라고 지시했다면 그 원문과 시각을 기록하고 해당 범위에 대한 승인·실행 권한으로 사용합니다. 형식 명령을 다시 요구하지 않습니다. “검토 후 승인하면” 같은 조건부 요청은 그 조건이 충족되기 전까지 실행 권한이 아닙니다.
 

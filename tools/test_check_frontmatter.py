@@ -27,6 +27,7 @@ tags:
   - ai
 projects:
   - "[[Projects/P2601_DEMO/README|P2601]]"
+contexts: []
 owner: ai
 hq_todo: none
 risk: 1
@@ -39,6 +40,12 @@ report_policy: final
 write_scope:
   - Projects/P2601_DEMO/
 blockedBy: []
+scheduled:
+due:
+completedDate:
+timeEstimate:
+dateCreated: 2026-09-16
+dateModified:
 ---
 
 # 지시
@@ -91,8 +98,25 @@ class CheckerTests(unittest.TestCase):
 
     def test_human_task_only_needs_common_fields(self):
         text = ('---\ntitle: 사람 일\nstatus: delayed\ntags:\n  - task\n  - admin\n'
-                'contexts:\n  - Lab\nForToday: false\nwaiting: true\n---\n')
+                'contexts:\n  - Lab\nblockedBy: []\nscheduled:\ndue:\ncompletedDate:\ntimeEstimate:\n'
+                'ForToday: false\nwaiting: true\ndateCreated:\ndateModified:\n---\n')
         self.assertEqual(self.codes('Tasks/Research/사람 일.md', text), ('tasknote', []))
+
+    def test_missing_optional_keys_are_reported(self):
+        text = AI_TASK.replace('scheduled:\ndue:\n', '')
+        _, codes = self.codes('Tasks/AI/좋은 작업.md', text)
+        self.assertEqual(codes, ['missing-optional', 'missing-optional'])
+        human = ('---\ntitle: 사람 일\nstatus: to-do\ntags:\n  - task\n  - admin\n---\n')
+        _, codes = self.codes('Tasks/Research/사람 일.md', human)
+        self.assertEqual(codes.count('missing-optional'), 10)
+        self.assertNotIn('missing-required', codes)
+
+    def test_title_must_match_file_name(self):
+        self.assertEqual(self.codes('Tasks/AI/다른 이름.md', AI_TASK), ('tasknote', ['title-mismatch']))
+
+    def test_required_list_must_not_be_empty(self):
+        text = AI_TASK.replace('write_scope:\n  - Projects/P2601_DEMO/\n', 'write_scope: []\n')
+        self.assertEqual(self.codes('Tasks/AI/좋은 작업.md', text), ('tasknote', ['empty-required']))
 
     def test_human_task_without_admin_tag_and_dropped_fields(self):
         text = ('---\ntitle: 사람 일\nstatus: done\npriority: high\ntags:\n  - task\n'
@@ -128,7 +152,7 @@ class CheckerTests(unittest.TestCase):
     def test_repo_card_and_missing_frontmatter(self):
         self.assertEqual(self.codes('Tech/Repos/x.md', '# no frontmatter\n'), ('technical_wiki', ['no-frontmatter']))
         card = ('---\ntype: repo-card\nrepo: x\nremote: git@host:x.git\nlocal_path: Tech/Clones/x\n'
-                'branch: main\nlast_checked_commit: zzz\nstatus: active\nupdated: 2026-09-16\n---\n')
+                'branch: main\nlast_checked_commit: zzz\nstatus: active\nupdated: 2026-09-16\nllm_model:\n---\n')
         self.assertEqual(self.codes('Tech/Repos/x.md', card), ('repo_card', ['bad-format']))
 
     def test_run_skips_excluded_and_unmatched_files_and_never_writes(self):

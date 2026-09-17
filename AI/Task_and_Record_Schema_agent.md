@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: specification
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -90,24 +90,26 @@ T-260915-A7F2 evaluation 저장 거부
 | `tags` | `task`, `ai` | 작업 관리 도구가 AI 작업을 찾고 묶음 |
 | `status` | `to-do`, `in-progress`, `done` | 작업 관리 상태 |
 | `owner` | `ai`, [`{hq-owner}`](../Architecture/Company_Profile_admin.md#사람과-역할-배정), `none` | 다음 행동 주체. `none`은 종료 |
-| `hq` | `none`, `decide`, `dispatch`, `review` | HQ가 지금 할 일 |
+| `hq_todo` | `none`, `decide`, `dispatch`, `review` | HQ가 지금 할 일 |
 | `risk` | `0`, `1`, `2` | [위험도](../Architecture/Risk_and_Authority_admin.md#위험도) |
+| `llm_model` | 모델 이름 | 이 TaskNote를 쓴 모델 |
 | `proposal_version`, `approved_version` | 제안은 `V<major>.<minor>.<patch>`, 미승인 값은 `approved_version: ""` | 제안·승인 버전 ([버전](#버전)) |
+| `recommended_model` | 회사 모델 목록의 값 | 실행할 작업의 난이도에 맞는 추천 모델 |
 | `execution_mode` | `autonomous`, `after-approval`, `manual` | [실행 모드](../Architecture/Risk_and_Authority_admin.md#실행-모드) |
 | `report_policy` | `decision-only`, `milestone`, `final` | [보고 정책](../HQ/Control_Settings_admin.md#보고-정책) |
 | `blockedBy` | task 링크 목록 | 실행을 막는 task 의존성. 외부 조건은 현재 상태 본문 (선택) |
 | `projects` | [프로젝트 키](../Architecture/Company_Profile_admin.md#프로젝트-키)의 값 | 묶음 |
 | `write_scope` | 경로 목록 | [쓰기 범위](../HQ/Control_Settings_admin.md#쓰기-범위) |
-| `priority`, `due` | 작업 관리 도구의 값 | 선택 |
+| `scheduled`, `due` | 작업 관리 도구의 값 | 선택 |
 
-`status`·`owner`·`hq`는 [작업 상태](../Architecture/Command_and_Report_Flow_admin.md#작업-상태)의 여섯 조합만 허용합니다.
+`status`·`owner`·`hq_todo`는 [작업 상태](../Architecture/Command_and_Report_Flow_admin.md#작업-상태)의 여섯 조합만 허용합니다. 키 순서와 나머지 선택 필드는 [tasknote 필드](../Architecture/Frontmatter_admin.md#tasknote-필드)를 따릅니다.
 
 ### 대표-task-필드-변경-확장
 
 | 후보 | 판정 | 이유 |
 |---|---|---|
 | `task_id` | **추가** | 긴 제목 대신 기록 파일명 접두사로 씀. 제목이 바뀌어도 기록 이름 유지 |
-| `blocked_by` | legacy 읽기 호환, 새 작업은 `blockedBy` | 기존 외부 조건은 본문에 보존 |
+| `blocked_by` | 폐기 키, `blockedBy`로 바꿈 | 기존 외부 조건은 본문에 보존 |
 | `doc_kind` | 추가 안 함 | 필드가 없으면 대표 task |
 | `schema_version` | 개별 기록 필드 대신 run의 instruction 본문에 고정 | [스키마 변경](#스키마-변경) |
 | `project_key` | 추가 안 함 | 저장 폴더가 곧 프로젝트 키 |
@@ -125,7 +127,7 @@ frontmatter에는 기계가 분기·검사·필터에 쓰는 값만 두고, 다�
 | `responds_to` | 표에서 허용한 종류 | 같은 task 기록의 전체 경로 링크 |
 | `verdict` | `evaluation`, `verification` | evaluation: `pass`, `revise`, `hq-required` · verification: `pass`, `fail`, `inconclusive` |
 
-기록에는 `title`, `tags`, `status`, `owner`, `hq`를 두지 않으며, 작업 관리 도구의 작업으로 색인하지 않습니다. 입력 hash, 점수, 발견, 실행 명령은 본문에 둡니다.
+기록에는 `title`, `tags`, `status`, `owner`, `hq_todo`를 두지 않으며, 작업 관리 도구의 작업으로 색인하지 않습니다. 입력 hash, 점수, 발견, 실행 명령은 본문에 둡니다.
 
 ```yaml
 # 파일: <task-folder>/PRJ1/R/T-260915-A7F2_R01_003_evaluation.md (가상 예시)
@@ -173,7 +175,7 @@ verdict: revise
 | I5 | 확장 모드의 execution이 가리키는 plan에는 같은 run의 pass evaluation이 있고 plan·계약·입력 hash가 일치. 경량은 교환 기록 자체를 생성하지 않음 | Router |
 | I6 | 발행한 기록은 고치지 않음. 정정은 새 기록으로 하고 본문 첫 줄에 정정 대상을 적음 | 버전 관리 diff |
 | I7 | 계약의 minor·major가 바뀌면 새 run의 instruction이 먼저 있어야 다른 기록을 붙일 수 있음 | Router |
-| I8 | 대표 task의 `status`·`owner`·`hq`는 허용 조합 중 하나 | Router |
+| I8 | 대표 task의 `status`·`owner`·`hq_todo`는 허용 조합 중 하나 | Router |
 | I9 | 템플릿 폴더의 파일은 작업 검사·색인 대상이 아님 | Router, 작업 관리 도구 설정 |
 | I10 | 각 run의 instruction이 프로토콜 commit·스키마 번호·프로필 hash를 고정. 발행 기록은 과거 스키마로 읽고 수정하지 않음 | Router |
 
@@ -185,13 +187,13 @@ verdict: revise
 {
   "schema": 1,
   "task": {
-    "required": ["title", "status", "tags", "owner", "hq", "risk", "proposal_version", "approved_version", "execution_mode", "report_policy", "projects", "write_scope", "task_id"],
-    "optional": ["priority", "due", "blockedBy"],
+    "required": ["title", "status", "tags", "owner", "hq_todo", "risk", "llm_model", "proposal_version", "approved_version", "recommended_model", "execution_mode", "report_policy", "projects", "write_scope", "task_id"],
+    "optional": ["scheduled", "due", "blockedBy"],
     "legacy_exempt": ["task_id"],
     "enums": {
       "status": ["to-do", "in-progress", "done"],
       "owner": ["ai", "{hq-owner}", "none"],
-      "hq": ["none", "decide", "dispatch", "review"],
+      "hq_todo": ["none", "decide", "dispatch", "review"],
       "risk": [0, 1, 2],
       "execution_mode": ["autonomous", "after-approval", "manual"],
       "report_policy": ["decision-only", "milestone", "final"]

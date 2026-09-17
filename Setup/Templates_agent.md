@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: setup
 status: active
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -92,23 +92,34 @@ updated: 2026-09-16
 
 ## 작업-노트
 
-아래는 기본 모드의 위험도 1 작업 틀입니다. `title`은 실제 파일명과 맞추고 `owner`는 다음 행동 주체로 지정합니다. 위험도 2로 바꾸면 실행 모드와 승인 상태도 함께 조정합니다.
+아래는 기본 모드의 위험도 1 작업 틀입니다. `title`은 실제 파일명과 맞추고 `owner`는 다음 행동 주체로 지정합니다. 위험도 2로 바꾸면 실행 모드와 승인 상태도 함께 조정합니다. 키 순서와 허용 값은 [tasknote 필드](../Architecture/Frontmatter_admin.md#tasknote-필드)를 따르고, 값이 없는 선택 필드도 키는 남깁니다.
 
 ```markdown
 ---
 title: <할 일>
-tags: [task, ai]
 status: to-do
+tags:
+  - task
+  - ai
+projects: []
+contexts: []
 owner: ai
-hq: none
+hq_todo: none
 risk: 1
+llm_model: <이 TaskNote를 쓴 모델>
 proposal_version: V1.0.0
 approved_version: ""
+recommended_model: <작업 난이도에 맞는 모델>
 execution_mode: autonomous
 report_policy: final
-projects: []
 write_scope: []
 blockedBy: []
+scheduled:
+due:
+completedDate:
+timeEstimate:
+dateCreated:
+dateModified:
 ---
 
 # 지시
@@ -127,7 +138,7 @@ blockedBy: []
 결과·변경 파일·검증·미해결·다음 인계.
 ```
 
-의존성은 `blockedBy`에 task 링크 목록을 씁니다. 기존 `blocked_by`는 읽을 때 호환하되, 새 작업은 canonical 필드를 사용하고 외부 대기 조건은 본문에 보존합니다.
+의존성은 `blockedBy`에 task 링크 목록을 씁니다. 기존 `blocked_by`는 [폐기 키](../Architecture/Frontmatter_admin.md#tasknote-도구-관리-키와-폐기-키)이므로 `blockedBy`로 바꾸고, 외부 대기 조건은 본문에 보존합니다.
 
 ## 프로젝트-상태
 

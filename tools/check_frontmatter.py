@@ -199,6 +199,8 @@ class Checker:
                     value = [value]
                 elif style == 'empty':
                     value = []
+                if not value and self.required(spec, variant):
+                    out.append(('empty-required', key))
                 item_spec = dict(spec, type=spec['item_type'])
                 for item in value or []:
                     found = []
@@ -216,12 +218,18 @@ class Checker:
         for key, spec in specs.items():
             if key not in fields and self.required(spec, variant):
                 out.append(('missing-required', key))
+            elif key not in fields and not spec['required'] and not (
+                    name == 'tasknote' and spec.get('variant_only', variant) != variant):
+                out.append(('missing-optional', key))
             for member in spec.get('must_include', {}).get(variant, []):
                 if key in fields and member not in self.items(fields[key]):
                     out.append(('missing-tag', member))
         expected = [k for k in kind['order'] if k in fields]
         if [k for k in order if k in kind['order']] != expected:
             out.append(('key-order', ''))
+        title = self.scalar(fields.get('title'))
+        if name == 'tasknote' and title is not None and title != Path(rel).stem:
+            out.append(('title-mismatch', title))
         if name == 'tasknote' and variant in kind.get('state_combinations_apply_to', 'ai'):
             keys = kind.get('state_combination_fields', ('status', 'owner', 'hq_todo'))
             combo = [self.scalar(fields.get(k)) for k in keys]

@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: specification
-version: 1.3.1
+version: 1.4.0
 updated: 2026-09-16
 ---
 
@@ -200,7 +200,7 @@ Coordinator는 HQ 지시를 작업 계약으로 고정하고, 역할 호출 순�
 
 ## 종료
 
-- **CO-331 종료 조건** — 확장 모드 표준·엄격 경로는 verification `pass`, 경량·기본 모드는 TaskNote의 결과 확인이 완료 조건이다. 원래 완료 기준을 모두 대조한 뒤에만 완료 report를 발행한다. 중단·실패·취소 report는 사유와 미완료 기준을 명시하며 완료 판정이 아니다. 계약에 HQ 검토가 있으면 `done / {hq-owner} / review`, 없으면 `done / none / none`으로 바꾼다.
+- **CO-331 종료 조건** — 확장 모드 표준·엄격 경로는 verification `pass`, 경량·기본 모드는 TaskNote의 결과 확인이 완료 조건이다. 원래 완료 기준을 모두 대조한 뒤에만 완료 report를 발행한다. 중단·실패·취소 report는 사유와 미완료 기준을 명시하며 완료 판정이 아니다. 계약에 HQ 검토가 있으면 `in-progress / {hq-owner} / review`, 없으면 `done / none / none`으로 바꾼다. `completedDate`는 종료할 때만 적는다.
 
 - **CO-332 정본 승격** — 결과가 STATUS 본문·Decisions·Wiki에 속하면 승인된 쓰기 범위에 있는지 확인하고 Executor에게 반영을 맡겨 검증한 뒤 report에 링크한다. 범위 밖이면 후속 제안으로 남긴다 ([정본 승격 확인](../../HQ/Review_and_Closure_admin.md#정본-승격-확인)). STATUS frontmatter 변경은 위험도 2 제안으로만 한다.
 

@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.3.1
+version: 1.4.0
 updated: 2026-09-16
 ---
 
@@ -117,7 +117,7 @@ sequenceDiagram
 | 실행 지시 대기 | `to-do` | `{hq-owner}` | `dispatch` | 승인된 manual 작업이 실행 지시를 기다림 |
 | 준비 | `to-do` | `ai` | `none` | 선택된 실행 모드로 AI가 실행할 수 있음 |
 | 진행 중 | `in-progress` | `ai` | `none` | AI가 승인 범위를 실행 중 |
-| 검토 대기 | `done` | `{hq-owner}` | `review` | 산출물은 끝났고 HQ 검토가 남음 |
+| 검토 대기 | `in-progress` | `{hq-owner}` | `review` | 산출물은 끝났고 HQ 검토가 남음 |
 | 종료 | `done` | `none` | `none` | 이 작업에 남은 행동 없음 |
 
 이 여섯 조합만 씁니다. `owner`는 항상 다음에 행동할 주체입니다.

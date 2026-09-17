@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: specification
-version: 1.3.1
+version: 1.4.0
 updated: 2026-09-16
 ---
 
@@ -203,7 +203,7 @@ verdict: revise
       ["to-do", "{hq-owner}", "dispatch"],
       ["to-do", "ai", "none"],
       ["in-progress", "ai", "none"],
-      ["done", "{hq-owner}", "review"],
+      ["in-progress", "{hq-owner}", "review"],
       ["done", "none", "none"]
     ],
     "patterns": {

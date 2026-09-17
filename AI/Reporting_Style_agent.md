@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: active
-version: 1.3.1
+version: 1.4.0
 updated: 2026-09-16
 ---
 
@@ -25,7 +25,7 @@ AI가 [TaskNote](../Architecture/Document_System_admin.md#작업-문서)의 `# �
 ## 기록-구조
 
 ```markdown
-### YYYY-MM-DD · AI · <계획|실행|검증|완료> · Vx.y.z
+### YYYY-MM-DD · AI · <계획|실행|검증|검토 요청|완료> · Vx.y.z
 
 - **지시 버전:** Vx.y.z
 
@@ -108,7 +108,7 @@ AI가 [TaskNote](../Architecture/Document_System_admin.md#작업-문서)의 `# �
 
 ## 미해결과-인계
 
-`미해결`이나 `다음 인계`가 하나라도 있으면 [후속 제안 처리](../HQ/Review_and_Closure_admin.md#후속-제안-처리) 규칙으로 다음 버전 제안을 씁니다. 검토 요청은 다음과 같이 씁니다.
+HQ 확인이 남으면 기록 단계는 `검토 요청`, 채팅 보고 첫 줄은 `검토 대기 — HQ 할 일 N개`로 씁니다. `미해결`이나 `다음 인계`가 하나라도 있으면 [후속 제안 처리](../HQ/Review_and_Closure_admin.md#후속-제안-처리) 규칙으로 다음 버전 제안을 씁니다. 검토 요청은 다음과 같이 씁니다.
 
 ```markdown
 ## 검토 요청

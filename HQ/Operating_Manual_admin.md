@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -56,7 +56,7 @@ updated: 2026-09-16
 | 왜 이 결정을 했나 | Decisions | 선택지·근거·재검토 조건 확인 |
 | AI가 어디까지 할 수 있나 | 작업 계약·회사 프로필 | 경로·위험도·도구·예산·기밀 범위 확인 |
 
-`status: done`이어도 `hq: review`이면 관리자 확인이 남아 있습니다. 이를 숨기지 않는 HQ 행동 뷰를 사용합니다. 실제 경로는 회사의 로컬 프로필에 있습니다.
+`status: done`이어도 `hq_todo: review`이면 관리자 확인이 남아 있습니다. 이를 숨기지 않는 HQ 행동 뷰를 사용합니다. 실제 경로는 회사의 로컬 프로필에 있습니다.
 
 ## 통제와-중단
 

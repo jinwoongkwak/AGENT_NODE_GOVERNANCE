@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: setup
 status: active
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -41,7 +41,7 @@ Git 연결이나 파일 개수는 특정 기기의 과거 기록을 재사용하
 | 진입 파일·CONTEXT | 채택된 프로토콜과 로컬 프로필로 연결 | 같은 규칙을 여러 곳에 복사하지 않음 |
 | 기존 AI_Control 규약 | 이전 내용은 Git 이력·백업 보존, 본문은 정본으로 가는 안내로 전환 | 실제 정본 전환은 마지막 활성화 단계 |
 | TaskNote | 열린 작업부터 필드 대응, 제목·기존 경로 보존 우선 | legacy 이력 일괄 이동하지 않음 |
-| 템플릿·뷰 | 실제 생성 예제와 필터 검사 | `done + hq: review` 누락 방지, 템플릿·교환 기록 색인 제외 |
+| 템플릿·뷰 | 실제 생성 예제와 필터 검사 | `done + hq_todo: review` 누락 방지, 템플릿·교환 기록 색인 제외 |
 | 프로젝트·자료 | [배치 판단](../Architecture/Workspace_Layout_admin.md#배치-판단)으로 중복 후보만 제안 | 원본 보존·기밀 경계 유지 |
 | Git repo | 승인된 경우에만 git mv와 .gitmodules 갱신 | Explorer 이동 금지, 안쪽부터 push |
 

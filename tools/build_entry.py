@@ -21,8 +21,9 @@ MODES = {'active': 'basic', 'specification': 'extended', 'draft': 'reference'}
 
 
 def docs():
-    return sorted(p for p in ROOT.rglob('*.md')
-                  if not any(x.startswith('.') for x in p.relative_to(ROOT).parts))
+    return sorted((p for p in ROOT.rglob('*.md')
+                   if not any(x.startswith('.') for x in p.relative_to(ROOT).parts)),
+                  key=lambda p: p.relative_to(ROOT).as_posix())
 
 
 def outside_fences(lines):

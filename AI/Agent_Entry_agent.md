@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: active
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -84,9 +84,9 @@ Agent가 HQ 지시를 받고 다음 행동을 정할 때 읽는 단일 문서입
 
 | 모드 | 실행 권한이 생기는 때 | 승인 후 상태 |
 |---|---|---|
-| `autonomous` | 작성된 task와 [쓰기 범위](../HQ/Control_Settings_admin.md#쓰기-범위)가 위험도 0–1 실행을 허락 | `owner: ai`, `hq: none` |
-| `after-approval` | HQ 승인이 실행 권한도 줌 | `owner: ai`, `hq: none` |
-| `manual` | 승인은 계획만 기록하고, HQ가 별도로 실행을 지시 | `owner: {hq-owner}`, `hq: dispatch` |
+| `autonomous` | 작성된 task와 [쓰기 범위](../HQ/Control_Settings_admin.md#쓰기-범위)가 위험도 0–1 실행을 허락 | `owner: ai`, `hq_todo: none` |
+| `after-approval` | HQ 승인이 실행 권한도 줌 | `owner: ai`, `hq_todo: none` |
+| `manual` | 승인은 계획만 기록하고, HQ가 별도로 실행을 지시 | `owner: {hq-owner}`, `hq_todo: dispatch` |
 
 - **기본값:** 위험도 0–1은 autonomous, 위험도 2는 manual입니다.
 
@@ -102,7 +102,7 @@ Agent가 HQ 지시를 받고 다음 행동을 정할 때 읽는 단일 문서입
 
 정본: [작업-상태](../Architecture/Command_and_Report_Flow_admin.md#작업-상태)
 
-| 상태 | `status` | `owner` | `hq` | 뜻 |
+| 상태 | `status` | `owner` | `hq_todo` | 뜻 |
 |---|---|---|---|---|
 | 제안 검토 | `to-do` | [`{hq-owner}`](../Architecture/Company_Profile_admin.md#사람과-역할-배정) | `decide` | HQ가 선택하거나 승인해야 함 |
 | 실행 지시 대기 | `to-do` | `{hq-owner}` | `dispatch` | 승인된 manual 작업이 실행 지시를 기다림 |
@@ -175,7 +175,7 @@ Agent가 HQ 지시를 받고 다음 행동을 정할 때 읽는 단일 문서입
 
 - **여기에 없는 문서는** [작업 유형별 경로](#작업-유형별-경로)가 요구할 때만 엽니다. 링크를 계속 따라 읽는 것으로 판단 근거를 대신하지 않습니다.
 
-- **근거가 없으면 멈춥니다.** 위험도 2이거나 승인 범위·완료 기준이 불명확하면 [결정표](../HQ/Commands_and_Approval_admin.md#결정표-작성)를 쓰고 `hq`를 `decide`로 바꾼 뒤 기다립니다. 응답이 없다고 승인 없는 기본값으로 실행하지 않습니다.
+- **근거가 없으면 멈춥니다.** 위험도 2이거나 승인 범위·완료 기준이 불명확하면 [결정표](../HQ/Commands_and_Approval_admin.md#결정표-작성)를 쓰고 `hq_todo: decide`로 두고 기다립니다. 응답이 없다고 승인 없는 기본값으로 실행하지 않습니다.
 
 - **manual은 승인만으로 실행되지 않습니다.** HQ의 실행 지시를 따로 기다립니다.
 

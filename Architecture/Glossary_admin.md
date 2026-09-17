@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.3.0
+version: 1.3.1
 updated: 2026-09-16
 ---
 
@@ -45,7 +45,7 @@ AGENT_NODE_GOVERNANCE에 나오는 용어의 뜻과 그 용어를 정의한 섹�
 | 검토 깊이 | 작업에 들이는 검토량. 경량, 표준, 엄격 | [검토-깊이](Risk_and_Authority_admin.md#검토-깊이) | 확장 사양 |
 | 보고 정책 | HQ에게 언제 알릴지 정하는 값. decision-only, milestone, final | [보고-정책](../HQ/Control_Settings_admin.md#보고-정책) | 운영 |
 | 쓰기 범위 | AI가 수정할 수 있는 경로 목록 (`write_scope`) | [쓰기-범위](../HQ/Control_Settings_admin.md#쓰기-범위) | 운영 |
-| 작업 상태 | `status`·`owner`·`hq` 값의 허용 조합 6가지 | [작업-상태](Command_and_Report_Flow_admin.md#작업-상태) | 운영 |
+| 작업 상태 | `status`·`owner`·`hq_todo` 값의 허용 조합 6가지 | [작업-상태](Command_and_Report_Flow_admin.md#작업-상태) | 운영 |
 | 승인 | HQ가 제안 버전을 채택하는 행위 | [승인과-실행-지시](../HQ/Commands_and_Approval_admin.md#승인과-실행-지시) | 운영 |
 | 실행 지시 | manual 작업을 시작하게 하는 별도 명령 (`<제목> 실행해`), dispatch라고도 부름 | [승인과-실행-지시](../HQ/Commands_and_Approval_admin.md#승인과-실행-지시) | 운영 |
 | 버전 | 제안·승인 버전 `V<major>.<minor>.<patch>` | [버전-규칙](../HQ/Commands_and_Approval_admin.md#버전-규칙) | 운영 |

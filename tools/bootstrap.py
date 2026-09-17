@@ -13,7 +13,7 @@ import sys
 PROTOCOL = Path(__file__).resolve().parents[1]
 PROTOCOL_PATH = '00_HQ/90_SYSTEM/AGENT_NODE_GOVERNANCE'
 TASKS = '00_HQ/10_PLANNING/TaskNotes/Tasks/AI'
-VERSION = '1.3.0'
+VERSION = '1.3.1'
 
 
 def atom(value, label):
@@ -59,18 +59,29 @@ def project_path(p):
 def task_template():
     return '''---
 title: "<할 일>"
-tags: [task, ai]
 status: to-do
+tags:
+  - task
+  - ai
+projects: []
+contexts: []
 owner: ai
-hq: none
+hq_todo: none
 risk: 1
+llm_model: "<이 TaskNote를 쓴 모델>"
 proposal_version: V1.0.0
 approved_version: ""
+recommended_model: "<작업 난이도에 맞는 모델>"
 execution_mode: autonomous
 report_policy: final
-blockedBy: []
-projects: []
 write_scope: []
+blockedBy: []
+scheduled:
+due:
+completedDate:
+timeEstimate:
+dateCreated:
+dateModified:
 ---
 
 # 지시
@@ -183,19 +194,19 @@ def build(c, copy_protocol=True):
     - file.tags.contains("task")
     - file.tags.contains("ai")
     - '!file.path.contains("/Templates/")'
-    - 'hq == "decide" || hq == "dispatch" || hq == "review"'
+    - 'hq_todo == "decide" || hq_todo == "dispatch" || hq_todo == "review"'
 views:
   - type: table
     name: HQ Actions
     order:
       - file.name
-      - hq
+      - hq_todo
       - status
       - owner
       - projects
 ''')
     if copy_protocol:
-        for p in sorted(PROTOCOL.rglob('*')):
+        for p in sorted(PROTOCOL.rglob('*'), key=lambda p: p.relative_to(PROTOCOL).as_posix()):
             rel=p.relative_to(PROTOCOL)
             if p.is_file() and not any(x.startswith('.') or x in {'local','__pycache__'} for x in rel.parts[:-1]) and p.name != '.git':
                 if p.suffix in {'.md','.py','.json'} or p.name in {'.gitignore','.gitattributes'}:

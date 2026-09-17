@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: active
-version: 1.3.1
+version: 1.4.0
 updated: 2026-09-16
 ---
 
@@ -39,7 +39,7 @@ AI 작업이 접수부터 종료까지 어떤 순서로 진행되고, 각 단계
 | 5 | 기록 | `# 현재 상태`를 갱신하고 버전 붙은 기록을 추가 |
 | 6 | 정본 반영 | 결과가 속하면 STATUS·Decisions·Wiki를 갱신 |
 | 7 | 후속 | 미해결이나 인계가 남으면 중복 없는 다음 버전 제안을 바로 작성. 승인·검토 대기만 남았으면 만들지 않음 |
-| 8 | 종료 | 원래 완료 기준과 검증을 충족한 뒤에만 `done / none / none`. HQ 검토가 남으면 `done / {hq-owner} / review` |
+| 8 | 종료 | 원래 완료 기준과 검증을 충족한 뒤에만 `done / none / none`. HQ 검토가 남으면 `in-progress / {hq-owner} / review` |
 
 ### 역할-루프-확장
 

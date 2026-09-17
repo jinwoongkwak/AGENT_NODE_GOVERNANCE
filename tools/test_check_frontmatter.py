@@ -96,6 +96,22 @@ class CheckerTests(unittest.TestCase):
         self.assertNotIn('bad-state', self.codes('Tasks/AI/x.md', ok)[1])
         self.assertIn('bad-state', self.codes('Tasks/AI/x.md', bad)[1])
 
+    def test_review_pending_task_is_not_done(self):
+        review = AI_TASK.replace('status: to-do', 'status: in-progress').replace(
+            'owner: ai\nhq_todo: none', 'owner: boss\nhq_todo: review')
+        old = review.replace('status: in-progress', 'status: done')
+        self.assertNotIn('bad-state', self.codes('Tasks/AI/x.md', review)[1])
+        self.assertIn('bad-state', self.codes('Tasks/AI/x.md', old)[1])
+
+    def test_completed_date_only_when_closed(self):
+        dated = AI_TASK.replace('completedDate:\n', 'completedDate: 2026-09-16\n')
+        review = dated.replace('status: to-do', 'status: in-progress').replace(
+            'owner: ai\nhq_todo: none', 'owner: boss\nhq_todo: review')
+        closed = dated.replace('status: to-do', 'status: done').replace('owner: ai', 'owner: none')
+        self.assertIn('completed-date-open', self.codes('Tasks/AI/x.md', review)[1])
+        self.assertNotIn('completed-date-open', self.codes('Tasks/AI/x.md', closed)[1])
+        self.assertNotIn('completed-date-open', self.codes('Tasks/AI/x.md', AI_TASK)[1])
+
     def test_human_task_only_needs_common_fields(self):
         text = ('---\ntitle: 사람 일\nstatus: delayed\ntags:\n  - task\n  - admin\n'
                 'contexts:\n  - Lab\nblockedBy: []\nscheduled:\ndue:\ncompletedDate:\ntimeEstimate:\n'

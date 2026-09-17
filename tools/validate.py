@@ -47,7 +47,7 @@ def main():
         front = text.split('---', 2)[1] if text.startswith('---') else ''
         for field in ['type', 'layer', 'status', 'version', 'updated']:
             require(re.search(rf'^{field}: .+', front, re.M), f'{label}: missing {field}')
-        version = '0.2.0' if label == 'AI_Agent_Company_Comparison_admin.md' else '1.3.1'
+        version = '0.2.0' if label == 'AI_Agent_Company_Comparison_admin.md' else '1.4.0'
         require(f'version: {version}' in front, f'{label}: release version mismatch')
         h2 = re.findall(r'^## (.+)$', body, re.M)
         require(h2 and h2[0] == 'overview', f'{label}: overview must be first')
@@ -140,7 +140,7 @@ def main():
         print('\n'.join(f'ERROR {e}' for e in ERRORS))
         return 1
     print(f'PASS: {len(docs)} documents; {link_count} internal links; {len(kinds)} record kinds; '
-          f'{len(clauses)} role clauses; C1-C10; entry {entry_bytes}B; release 1.3.1')
+          f'{len(clauses)} role clauses; C1-C10; entry {entry_bytes}B; release 1.4.0')
     print('Not checked: Obsidian UI, Mermaid rendering, Router runtime, HQ approval.')
     return 0
 

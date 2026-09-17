@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.3.1
+version: 1.4.0
 updated: 2026-09-16
 ---
 
@@ -68,7 +68,7 @@ HQ는 필요할 때 현황을 보고, 매일 확인하는 대시보드는 두지
 
 ### hq-행동-뷰-확장
 
-기존 기본 뷰는 `done` 상태를 숨겨서 `done + hq_todo: review` 작업이 보이지 않습니다. 태그가 AI 작업이고 `hq_todo`가 `none`이 아닌 작업을 모두 보여 주는 HQ 행동 뷰와, [교환 기록](Document_System_admin.md#교환-기록) 전용 뷰를 추가합니다.
+검토 대기는 `in-progress`라서 `done`을 숨기는 기본 뷰에도 남습니다. 결정·실행 지시·검토를 한곳에서 보도록, 태그가 AI 작업이고 `hq_todo`가 `none`이 아닌 작업을 모두 보여 주는 HQ 행동 뷰와, [교환 기록](Document_System_admin.md#교환-기록) 전용 뷰를 추가합니다.
 
 ## 버전-관리와-백업
 

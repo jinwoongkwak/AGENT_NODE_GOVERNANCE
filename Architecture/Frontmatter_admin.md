@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.3.1
+version: 1.4.0
 updated: 2026-09-16
 ---
 
@@ -96,7 +96,7 @@ AGENT_NODE_GOVERNANCE 자체 문서의 frontmatter는 [문서 작성 규칙](../
 | 16 | `blockedBy` | 선택 | 막고 있는 task의 링크 목록 | Agent |
 | 17 | `scheduled` | 선택 | 날짜 또는 날짜와 시각 | HQ |
 | 18 | `due` | 선택 | 날짜 또는 날짜와 시각 | HQ |
-| 19 | `completedDate` | 선택 | 날짜 | 작업 관리 도구 |
+| 19 | `completedDate` | 선택 | 날짜. AI TaskNote는 종료일 때만 | 작업 관리 도구 |
 | 20 | `timeEstimate` | 선택 | 분 단위 정수 | HQ |
 | 21 | `ForToday` | 사람 선택 | `true`/`false` | HQ |
 | 22 | `waiting` | 사람 선택 | `true`/`false` | HQ |
@@ -110,7 +110,7 @@ AGENT_NODE_GOVERNANCE 자체 문서의 frontmatter는 [문서 작성 규칙](../
 | `status` | `to-do` | 시작 전 |
 | | `in-progress` | 진행 중 |
 | | `delayed` | 미루었거나 다시 볼 조건을 기다림 |
-| | `done` | 완료 |
+| | `done` | 완료. AI TaskNote는 종료에만 씀 |
 | | `archived` | 보관. 작업 관리 도구가 완료로 취급 |
 | `tags` | `task` | 필수. 작업 관리 도구가 task로 인식 |
 | | `ai` | AI TaskNote에 필수 |
@@ -127,7 +127,7 @@ AGENT_NODE_GOVERNANCE 자체 문서의 frontmatter는 [문서 작성 규칙](../
 | `execution_mode` | `autonomous` · `after-approval` · `manual` | [실행 모드](Risk_and_Authority_admin.md#실행-모드) |
 | `report_policy` | `decision-only` · `milestone` · `final` | [보고 정책](../HQ/Control_Settings_admin.md#보고-정책) |
 
-AI TaskNote의 `status`·`owner`·`hq_todo`는 [작업 상태](Command_and_Report_Flow_admin.md#작업-상태)의 여섯 조합만 씁니다. `recommended_model`은 제안서에서 실행할 작업의 난이도에 맞는 모델을 AI가 추천하는 값이고, 실제로 그 문서를 쓴 모델은 `llm_model`에 남깁니다.
+AI TaskNote의 `status`·`owner`·`hq_todo`는 [작업 상태](Command_and_Report_Flow_admin.md#작업-상태)의 여섯 조합만 씁니다. HQ 검토가 남은 작업은 `in-progress`라서 작업 관리 도구에서 완료로 보이지 않고, `completedDate`는 종료(`done / none / none`)할 때만 적습니다. `recommended_model`은 제안서에서 실행할 작업의 난이도에 맞는 모델을 AI가 추천하는 값이고, 실제로 그 문서를 쓴 모델은 `llm_model`에 남깁니다.
 
 ### tasknote-도구-관리-키와-폐기-키
 

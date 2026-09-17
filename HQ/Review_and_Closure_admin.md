@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.3.1
+version: 1.4.0
 updated: 2026-09-16
 ---
 
@@ -48,7 +48,7 @@ HQ가 작업의 현황을 보고, 끝난 결과를 검토하고, 작업을 닫�
 | 정본에 반영했나 | [정본 승격 확인](#정본-승격-확인) |
 | 사실, 추정, 권장이 구분되어 있나 | [사실·추정·권장](../AI/Reporting_Style_agent.md#사실-추정-권장) |
 
-- **통과:** HQ가 검토 완료를 알리면 AI가 작업을 `done / none / none`으로 닫습니다.
+- **통과:** HQ가 검토 완료를 알리면 AI가 작업을 `done / none / none`으로 닫고 `completedDate`를 적습니다.
 
 - **수정 요구:** `수정:`으로 고칠 점을 보내면 새 버전으로 결정 대기가 됩니다 ([수정과 중단](Commands_and_Approval_admin.md#수정과-중단)).
 
@@ -57,7 +57,7 @@ HQ가 작업의 현황을 보고, 끝난 결과를 검토하고, 작업을 닫�
 | 결말 | 조건 | 상태 |
 |---|---|---|
 | 완료 | 원래 완료 기준과 검증을 모두 충족 | `done / none / none` |
-| 검토 대기 | 산출물은 끝났고 HQ 검토가 남음 | `done / {hq-owner} / review` |
+| 검토 대기 | 산출물은 끝났고 HQ 검토가 남음 | `in-progress / {hq-owner} / review` |
 
 AI는 원래 완료 기준과 검증이 끝난 뒤에만 작업을 닫습니다. `{hq-owner}` 값은 [회사 프로필](../Architecture/Company_Profile_admin.md#사람과-역할-배정)에 있습니다.
 

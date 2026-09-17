@@ -236,6 +236,10 @@ class Checker:
             allowed = [[self.fill(x) for x in c] for c in kind['state_combinations']]
             if None not in combo and not any(None in c for c in allowed) and combo not in allowed:
                 out.append(('bad-state', '/'.join(combo)))
+            closed = kind.get('closed_state')
+            date_key = kind.get('completed_date_field')
+            if closed and date_key and self.scalar(fields.get(date_key)) and combo != closed:
+                out.append(('completed-date-open', '/'.join(str(x) for x in combo)))
         return name, out
 
     @staticmethod

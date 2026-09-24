@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.6.0
+version: 1.6.1
 updated: 2026-09-23
 ---
 
@@ -33,7 +33,7 @@ updated: 2026-09-23
 
 ## 사람과-역할-배정
 
-`{hq-person}`은 실제 관리자, `{hq-owner}`는 작업의 owner 값입니다. `ai`, `none`과 다른 값을 사용합니다. 기본 모드는 단일 Agent, 확장 모드는 시험된 역할별 호출을 사용합니다.
+`{hq-person}`은 실제 관리자, `{hq-owner}`는 작업의 owner 값입니다. `ai`, `none`과 다른 값을 사용합니다. 기본 모드는 작업 Agent 하나와 확인용 새 문맥 subagent, 확장 모드는 시험된 역할별 호출을 사용합니다.
 
 ## 작업-공간-경로
 

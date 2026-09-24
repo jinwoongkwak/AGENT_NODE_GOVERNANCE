@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: active
-version: 1.6.0
+version: 1.6.1
 updated: 2026-09-23
 ---
 
@@ -35,7 +35,7 @@ This is the loop currently in operation. A single AI agent performs every stage 
 |---:|---|---|
 | 1 | Intake | Create or update the [TaskNote](../Architecture/Document_System_admin.md#작업-문서) and organize the instruction |
 | 2 | Read | Read the TaskNote, nearest CONTEXT, canonical documents, HQ notes, and decisions ([reference order](Common_Rules_agent.md#reference-order)) |
-| 3 | Confirm | [Risk level](../Architecture/Risk_and_Authority_admin.md#위험도), execution mode, approved version, backup, write scope, dependencies. Never run tasks with overlapping write scopes concurrently. For risk level 2, get an [independent check](#independent-check) of the plan before execution |
+| 3 | Confirm | [Risk level](../Architecture/Risk_and_Authority_admin.md#위험도), execution mode, approved version, backup, write scope, dependencies. Never run tasks with overlapping write scopes concurrently. For risk level 2, get an [independent check](#independent-check) of the plan before requesting HQ approval |
 | 4 | Execute | Execute only the approved version. Manual risk-level-2 work runs only after a dispatch order |
 | 5 | Independent check | A fresh-context subagent checks the results against the completion criteria; risk level 0 only when HQ asks ([independent check](#independent-check)) |
 | 6 | Record | Update `# 현재 상태` and add a versioned record, including the check result |
@@ -148,7 +148,7 @@ After producing results, the agent has them checked by a subagent that starts in
 
 | Item | Rule |
 |---|---|
-| When | Risk level 1–2: check results before closure or HQ review. Risk level 2: also check the plan before execution. Risk level 0: only when HQ asks |
+| When | Risk level 1–2: check results before closure or HQ review. Risk level 2: also check the plan before it goes to HQ in a decision table, so HQ approves a checked plan; if approval came first, check the plan before execution. Risk level 0: only when HQ asks |
 | Input | The TaskNote path (instruction, completion criteria, write scope), deliverable paths, and evidence paths. A summary never replaces a source. Confidential paths only when the task names them |
 | Output | Returned as text; the checker writes no files. Verdict `pass`, `revise`, or `hq-required`; a findings table with columns Finding ID, Severity (blocking · major · minor), Grounds, Impact, Required action, Resolution evidence ([EV-121](Roles/Evaluator_agent.md#recording-findings)); and at least one counterexample it tried ([EV-104](Roles/Evaluator_agent.md#independence)) |
 | Loop | Fix and recheck up to three rounds. Pass the previous findings to the next round so a recurring defect keeps its Finding ID ([EV-123](Roles/Evaluator_agent.md#recording-findings)). The same blocking finding in two consecutive rounds, or a third failed round, gives `hq-required` ([iteration limit](Roles/Evaluator_agent.md#iteration-limit)) |

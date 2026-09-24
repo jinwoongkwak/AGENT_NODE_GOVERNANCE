@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "protocol_version": "1.6.0",
+ "protocol_version": "1.6.1",
  "entry": "AI/Agent_Entry_agent.md",
  "note": "Only mode basic documents apply to basic operation. Open extended and reference documents only when the paths by task type in Agent_Entry_agent.md require them.",
  "totals": {
   "documents": 39,
-  "bytes": 357421,
-  "basic": 255028,
+  "bytes": 358603,
+  "basic": 256210,
   "extended": 80351,
   "reference": 22042
  },
@@ -15,7 +15,7 @@
    "path": "AI/Agent_Entry_agent.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 11298,
+   "bytes": 11359,
    "when_to_read": "The one document an agent reads after an HQ instruction to decide i..."
   },
   {
@@ -99,7 +99,7 @@
    "path": "AI/Workflow_agent.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 16240,
+   "bytes": 16365,
    "when_to_read": "Describes the order AI work follows from intake to closure and whic..."
   },
   {
@@ -120,7 +120,7 @@
    "path": "Architecture/Company_Profile_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 5783,
+   "bytes": 5823,
    "when_to_read": "공통 규칙을 실제 회사에 연결하는 설정 계약입니다."
   },
   {
@@ -134,7 +134,7 @@
    "path": "Architecture/Frontmatter_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 15484,
+   "bytes": 15929,
    "when_to_read": "작업 문서와 지식 문서의 frontmatter를 문서 종류별로 한 가지 형식으로 맞추는 규칙입니다."
   },
   {
@@ -183,7 +183,7 @@
    "path": "Architecture/Workspace_and_Tools_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 9299,
+   "bytes": 9466,
    "when_to_read": "회사가 돌아가는 작업 공간을 도구 이름이 아닌 기능 계층으로 설명합니다."
   },
   {
@@ -239,7 +239,7 @@
    "path": "README.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 13659,
+   "bytes": 14003,
    "when_to_read": "관리자가 1인 연구 회사를 이해하고 제어하며, AI가 같은 구조의 회사를 설립하고 자료를 배치할 수 있도록 정한 운영 매..."
   },
   {

@@ -197,7 +197,7 @@ class ConnectReposTest(unittest.TestCase):
         shutil.copy(TOOL, tools / 'connect_repos.sh')
         (vault / 'Profile').mkdir()
         manifest = self.write_manifest(vault / 'Profile', [
-            ('Repos/app one', self.app_remote.as_posix(), 'feature/x', '')])
+            ('Repos/app one', self.app_remote.as_posix(), 'feature/x', 'core.longpaths=true;user.name=connect test')])
         result = subprocess.run([self.bash, str(tools / 'connect_repos.sh'), '--root', str(vault),
                                  '--manifest', str(manifest), '--apply', '--install-launchers'],
                                 capture_output=True, text=True, encoding='utf-8', stdin=subprocess.DEVNULL)
@@ -206,13 +206,31 @@ class ConnectReposTest(unittest.TestCase):
         self.assertTrue((repo / 'Connect_Repo.sh').is_file())
         self.assertEqual(git('status', '--porcelain', cwd=repo), '')
 
+        # The repository launcher must work alone: no root launcher, tool, or list.
+        (vault / 'Connect_Repos.sh').unlink()
+        force_rmtree(vault / 'PROTO')
+        force_rmtree(vault / 'Profile')
         self.strip_git(repo)
+        before_files = snapshot(repo)
         result = subprocess.run([self.bash, str(repo / 'Connect_Repo.sh')],
                                 capture_output=True, text=True, encoding='utf-8', stdin=subprocess.DEVNULL)
         out = result.stdout + result.stderr
         self.assertEqual(result.returncode, 0, out)
         self.assertIn('[CONNECTED]', out)
+        self.assertEqual(snapshot(repo), before_files)
         self.assertEqual(git('status', '--porcelain', cwd=repo), '')
+        self.assertEqual(git('remote', 'get-url', 'origin', cwd=repo), self.app_remote.as_posix())
+        self.assertEqual(git('rev-parse', '--abbrev-ref', '@{u}', cwd=repo), 'origin/feature/x')
+        self.assertEqual(git('config', 'core.longpaths', cwd=repo), 'true')
+        self.assertEqual(git('config', 'user.name', cwd=repo), 'connect test')
+        self.assertTrue(has_mark(repo / '.git'))
+        self.assertTrue(has_mark(repo / 'libs' / 'sub' / '.git'))
+
+        result = subprocess.run([self.bash, str(repo / 'Connect_Repo.sh')],
+                                capture_output=True, text=True, encoding='utf-8', stdin=subprocess.DEVNULL)
+        out = result.stdout + result.stderr
+        self.assertEqual(result.returncode, 0, out)
+        self.assertIn('[OK]', out)
 
 
 if __name__ == '__main__':

@@ -156,6 +156,15 @@ class CheckerTests(unittest.TestCase):
         self.assertEqual(name, 'project_readme')
         self.assertEqual(codes.count('deprecated-key'), 2)
 
+    def test_roadmap_kinds_and_depth_limit(self):
+        text = ('---\nproject_id: P2601_DEMO\ntype: project-roadmap\napproved_version: ""\n'
+                'updated: 2026-09-23\nllm_model: Claude Opus 5.5\n---\n')
+        self.assertEqual(self.codes('Projects/P2601_DEMO/ROADMAP.md', text), ('project_roadmap', []))
+        self.assertEqual(self.codes('Projects/COLLAB/P2601_DEMO/ROADMAP.md', text)[0], 'project_roadmap')
+        self.assertEqual(self.codes('Projects/P2601_DEMO/30_SOURCE/repo/ROADMAP.md', text), (None, []))
+        portfolio = '---\ntype: portfolio-roadmap\napproved_version: V1.0.0\nupdated: 2026-09-23\nllm_model:\n---\n'
+        self.assertEqual(self.codes('HQ/Portfolio_Roadmap.md', portfolio), ('portfolio_roadmap', []))
+
     def test_theory_wiki_requires_updated_and_drops_related(self):
         text = ('---\nauthor: 사람\naffiliation: 어딘가\ntags:\n  - theory\n'
                 'created: 2026-09-16\nlanguage: KR\nsources:\n  - 어떤 책\n'

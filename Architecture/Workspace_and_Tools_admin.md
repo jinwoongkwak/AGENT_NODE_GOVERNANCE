@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.6.0
+version: 1.6.1
 updated: 2026-09-23
 ---
 
@@ -113,7 +113,7 @@ HQ는 필요할 때 현황을 보고, 매일 확인하는 대시보드는 두지
 | 작업 관리 | 태그 색인, frontmatter 필터 뷰 | HQ가 결정 대기 작업을 찾기 어려움 | Router `check` 출력이나 수동 표 |
 | 버전 관리 | 브랜치, diff, 되돌리기, 중첩 저장소 | 위험도 0–1 자율 실행의 안전장치가 없음 | zip 백업 + 모든 수정을 위험도 2로 운영 |
 | 동기화 | 선택 사항 | 기기 한 대에서만 작업 | — |
-| AI 실행 환경 | 파일 읽기·쓰기, 셸, 새 문맥 호출 | 역할 분리 평가가 불가능 | 단일 Agent + 경량 작업만 ([호출 규칙](../AI/Roles/Coordinator_agent.md#invocation-rules)) |
+| AI 실행 환경 | 파일 읽기·쓰기, 셸, 새 문맥 호출 | 새 문맥 subagent의 독립 확인과 역할 분리 평가가 불가능 | 기본 모드는 `독립 확인 불성립`을 기록하고 결과를 HQ 검토로 넘김 ([독립 확인](../AI/Workflow_agent.md#independent-check)). 확장 모드는 [CO-206](../AI/Roles/Coordinator_agent.md#invocation-rules) |
 | 스크립트 런타임 | 확장 모드 Router 실행 | 확장 모드 기록 검사를 할 수 없음 | [기본 모드](../Setup/README.md#도입-모드)로 운영, Router를 사용한 것으로 표시하지 않음 |
 
 ## 관련-문서

@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.6.0
+version: 1.6.1
 updated: 2026-09-23
 ---
 
@@ -64,7 +64,7 @@ python AGENT_NODE_GOVERNANCE/tools/check_frontmatter.py --root . --local NODE_PR
 | TaskNote (사람) | `{task-folder}` | `tags`에 `task`, `admin` | 3 | 필드별 |
 | 프로젝트 STATUS | 프로젝트 폴더의 `STATUS.md` | 파일 이름 | 6 | `status`·`phase`·`next_deadline`은 HQ (위험도 2) |
 | 프로젝트 README | 프로젝트 폴더의 `README.md` | `project_id` 있음 | 3 | Agent |
-| 프로젝트 로드맵 | 프로젝트 폴더의 `ROADMAP.md` | 파일 이름 | 4 | Agent. `approved_version`은 HQ 승인 원문이 있을 때만 |
+| 프로젝트 로드맵 | 프로젝트 폴더의 `ROADMAP.md` | 파일 이름, vault 루트 기준 경로의 `/` 3개 이하. 프로젝트·공동 연구 폴더 바로 아래는 포함, `30_SOURCE/` 아래 코드 저장소는 제외 | 4 | Agent. `approved_version`은 HQ 승인 원문이 있을 때만 |
 | 포트폴리오 로드맵 | `Portfolio_Roadmap.md` | `type: portfolio-roadmap` | 3 | 같음 |
 | 결정 기록 | `Decisions.md` | 파일 이름 | 3 | Agent |
 | 색인 | 색인 문서 | `type` 값 | 2 | Agent |
@@ -173,7 +173,7 @@ AI TaskNote의 `status`·`owner`·`hq_todo`는 [작업 상태](Command_and_Repor
 
 ## 로드맵
 
-[로드맵](../AI/Roadmap_agent.md) 절차로 만든 HQ 승인 정본입니다. 프로젝트 로드맵은 파일 이름 `ROADMAP.md`로, 포트폴리오 로드맵은 `type` 값으로 식별합니다. 일정은 본문 Gantt와 STATUS `next_deadline`에 있으므로 frontmatter에 두지 않습니다.
+[로드맵](../AI/Roadmap_agent.md) 절차로 만든 HQ 승인 정본입니다. 프로젝트 로드맵은 프로젝트 폴더 바로 아래의 `ROADMAP.md`로, 포트폴리오 로드맵은 `type` 값으로 식별합니다. 깊이는 프로젝트 README 종류와 같이 `{projects-folder}`가 vault 바로 아래 한 단계라고 가정하고 vault 루트부터 셉니다. 코드 저장소는 `30_SOURCE/` 아래에 두므로 그 안의 `ROADMAP.md`는 로드맵으로 보지 않습니다. 일정은 본문 Gantt와 STATUS `next_deadline`에 있으므로 frontmatter에 두지 않습니다.
 
 | 순서 | 필드 | 필수 | 형식·허용 값 |
 |---:|---|---|---|

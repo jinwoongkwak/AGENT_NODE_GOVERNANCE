@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "status": "active",
- "protocol_version": "1.6.0",
+ "protocol_version": "1.6.1",
  "admin_doc": "Architecture/Frontmatter_admin.md",
  "notice": "Rules approved by HQ. Frontmatter_admin.md is the human-readable canonical source and this file is the machine-readable version of the same rules. To change a rule, edit and get approval for the admin document first, then align this file.",
  "conventions": {
@@ -108,7 +108,7 @@
    "deprecated": {"priority": "(removed)"}
   },
   "project_roadmap": {
-   "match": {"under": "{projects-folder}", "filename": "ROADMAP.md"},
+   "match": {"under": "{projects-folder}", "filename": "ROADMAP.md", "depth_max": 3},
    "order": ["project_id", "type", "approved_version", "updated", "llm_model"],
    "fields": {
     "project_id": {"required": ["all"], "type": "text", "pattern_from": "project-id-pattern", "set_by": "agent", "change_risk": 1},

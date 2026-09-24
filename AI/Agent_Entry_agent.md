@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: active
-version: 1.6.0
+version: 1.6.1
 updated: 2026-09-23
 ---
 
@@ -184,7 +184,7 @@ Canonical: [record-structure](Reporting_Style_agent.md#record-structure)
 
 - **Create the TaskNote before acting,** including for chat requests.
 
-- **Get an independent check** before closing risk-level 1–2 work and before executing risk-level-2 plans ([independent check](Workflow_agent.md#independent-check)).
+- **Get an independent check** before closing risk-level 1–2 work and before submitting risk-level-2 plans for HQ approval, or before execution if approval came first ([independent check](Workflow_agent.md#independent-check)).
 
 ## related-documents
 

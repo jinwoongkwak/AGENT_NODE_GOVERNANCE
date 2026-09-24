@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: specification
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -121,7 +121,7 @@ The flow diagrams are in [planning and evaluation](../Workflow_agent.md#planning
 
 - **CO-205 Record failures too** — For call failures, format errors, and empty responses, record the attempt number, inputs, error, and response received in `# 기록`. Do not discard them even if they cannot be parsed as a record kind.
 
-- **CO-206 Single-session operation** — Basic mode runs on a single agent's self-check plus HQ review where needed, and is never labeled an independent evaluation. If fresh-context evaluation is impossible on extended mode's standard or strict path, record `독립 평가 불성립` (independent evaluation not possible) and stop that path. Never work around it by lowering to light.
+- **CO-206 Basic-mode check** — Basic mode runs on one agent plus a fresh-context subagent [independent check](../Workflow_agent.md#independent-check), with HQ review where needed. If fresh-context evaluation is impossible on extended mode's standard or strict path, record `독립 평가 불성립` (independent evaluation not possible) and stop that path. Never work around it by lowering to light.
 
 ## state-updates
 
@@ -200,7 +200,7 @@ The flow diagrams are in [planning and evaluation](../Workflow_agent.md#planning
 
 ## closure
 
-- **CO-331 Closure conditions** — On extended mode's standard and strict paths, the completion condition is a verification `pass`; in light and basic mode it is confirming results in the TaskNote. Issue a completion report only after checking every original completion criterion. Stop, failure, and cancel reports state the reason and unmet criteria and are not completion verdicts. If the contract includes HQ review, set `in-progress / {hq-owner} / review`; otherwise `done / none / none`. Write `completedDate` only at closure.
+- **CO-331 Closure conditions** — On extended mode's standard and strict paths, the completion condition is a verification `pass`; in light and basic mode it is confirming results in the TaskNote and, where required, passing the [independent check](../Workflow_agent.md#independent-check). Issue a completion report only after checking every original completion criterion. Stop, failure, and cancel reports state the reason and unmet criteria and are not completion verdicts. If the contract includes HQ review, set `in-progress / {hq-owner} / review`; otherwise `done / none / none`. Write `completedDate` only at closure.
 
 - **CO-332 Canonical promotion** — If results belong in the STATUS body, Decisions, or Wiki, confirm they are within the approved write scope, have the Executor apply them, verify, and link them in the report. If outside scope, leave a follow-up proposal ([canonical promotion check](../../HQ/Review_and_Closure_admin.md#정본-승격-확인)). STATUS frontmatter changes are made only through a risk-level-2 proposal.
 

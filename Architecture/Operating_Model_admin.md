@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -57,7 +57,7 @@ updated: 2026-09-23
 | HQ | 회사를 운영하는 사람 한 명 ([`{hq-person}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#사람과-역할-배정)) | 연구 목적·성공 기준·우선순위·자원 배분, 위임 밖의 결정, 승인과 실행 지시 | 일상 실행, 단순 확인 |
 | AI Agent | HQ의 지시로 일하는 AI 실행 주체 | 조사·계획·실행·검증·기록, 결정이 필요한 것을 정리해 올림 | 승인 없는 위험 행위, HQ 결정 대리 |
 
-현재는 AI Agent 하나가 한 작업의 계획·실행·자체 확인을 모두 맡습니다. HQ가 하는 일의 목록은 [HQ의 책임](../HQ/HQ_Role_admin.md#hq의-책임)에 있습니다.
+현재는 AI Agent 하나가 한 작업의 계획·실행을 맡고, 결과는 새 문맥 subagent가 [독립 확인](../AI/Workflow_agent.md#independent-check)합니다. HQ가 하는 일의 목록은 [HQ의 책임](../HQ/HQ_Role_admin.md#hq의-책임)에 있습니다.
 
 ### ai-역할-분담-확장
 

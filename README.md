@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: root
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -47,7 +47,7 @@ HQ가 목적·기준·우선순위·위임 밖의 결정을 맡고, Agent가 승
 | [AI](AI/README.md) | Agent의 읽기 순서·실행·검증·기록 |
 | [Setup](Setup/README.md) | 새 회사 설립·기존 회사 이전·자료 배치 |
 
-기본 모드는 단일 Agent와 TaskNote로 운영합니다. 확장 모드는 역할 분리·교환 기록·Router를 추가하는 선택 기능이며, 구현·시험 후에만 활성화합니다.
+기본 모드는 작업 Agent 하나, 확인용 새 문맥 subagent, TaskNote로 운영합니다. 확장 모드는 역할 분리·교환 기록·Router를 추가하는 선택 기능이며, 구현·시험 후에만 활성화합니다.
 
 ## 문서-지도
 
@@ -92,6 +92,7 @@ Agent는 진입점 한 문서로 판단을 끝내고, 나머지 문서는 [작�
 
 | 버전 | 날짜 | 내용 |
 |---|---|---|
+| 1.6.0 | 2026-09-23 | 기본 모드에 새 문맥 subagent [독립 확인](AI/Workflow_agent.md#independent-check) 도입 (위험도 1–2 결과, 위험도 2 계획, 작업 루프 9단계). 프로젝트·포트폴리오 로드맵 정본(`ROADMAP.md`, `Portfolio_Roadmap.md`)과 [로드맵](AI/Roadmap_agent.md) 절차·점수표·템플릿·frontmatter 종류 추가. Entry 한도 20,000B |
 | 1.5.0 | 2026-09-23 | `_agent` 파일 17개 중 한국어가 있던 16개(Markdown 14·JSON 2)를 영어로 번역하고 제목·앵커를 영어로 바꿈. `_admin` 문서와 README는 한국어 유지, 링크만 새 앵커로 갱신. HQ에게 쓰는 기록·보고·결정표·채팅은 한국어라는 규칙을 [기록 구조](AI/Reporting_Style_agent.md#record-structure)에 추가. vault에 들어가는 템플릿·기록 토큰(`# 기록`, 기록 단계 등)은 한국어 유지. 검사기가 `_agent` 문서의 마지막 섹션 `related-documents`를 확인 |
 | 1.4.0 | 2026-09-16 | HQ 검토가 남은 AI TaskNote를 `done` 대신 `in-progress / {hq-owner} / review`로 둠. `completedDate`는 종료일 때만 쓰고 검사기가 어긋남을 보고. HQ에게 넘기는 기록 단계 `검토 요청` 추가 |
 | 1.3.1 | 2026-09-16 | 1.3.0 frontmatter 필드를 상태 표·HQ 매뉴얼·TaskNote 템플릿·bootstrap에 반영 (`hq` → `hq_todo`, `priority` 행 정리). 검사기가 값 없는 선택 키 누락·TaskNote 제목과 파일 이름 불일치·빈 필수 목록을 보고. 문서 정렬을 운영체제와 무관하게 고정 |

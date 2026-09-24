@@ -1,13 +1,13 @@
 {
  "schema": 1,
- "protocol_version": "1.5.0",
+ "protocol_version": "1.6.0",
  "entry": "AI/Agent_Entry_agent.md",
  "note": "Only mode basic documents apply to basic operation. Open extended and reference documents only when the paths by task type in Agent_Entry_agent.md require them.",
  "totals": {
-  "documents": 38,
-  "bytes": 340962,
-  "basic": 238860,
-  "extended": 80060,
+  "documents": 39,
+  "bytes": 357421,
+  "basic": 255028,
+  "extended": 80351,
   "reference": 22042
  },
  "documents": [
@@ -15,7 +15,7 @@
    "path": "AI/Agent_Entry_agent.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 10970,
+   "bytes": 11298,
    "when_to_read": "The one document an agent reads after an HQ instruction to decide i..."
   },
   {
@@ -29,7 +29,7 @@
    "path": "AI/README.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 6185,
+   "bytes": 6504,
    "when_to_read": "AI 폴더는 AI Agent의 매뉴얼입니다."
   },
   {
@@ -40,17 +40,24 @@
    "when_to_read": "The format AI uses for a TaskNote's # 기록, # 결정 및 승인, and # 근거 secti..."
   },
   {
+   "path": "AI/Roadmap_agent.md",
+   "status": "active",
+   "mode": "basic",
+   "bytes": 7085,
+   "when_to_read": "How an agent writes, checks, and submits project and portfolio road..."
+  },
+  {
    "path": "AI/Roles/Coordinator_agent.md",
    "status": "specification",
    "mode": "extended",
-   "bytes": 17815,
+   "bytes": 17925,
    "when_to_read": "**Scope:** Extended mode specification."
   },
   {
    "path": "AI/Roles/Evaluator_agent.md",
    "status": "specification",
    "mode": "extended",
-   "bytes": 13716,
+   "bytes": 13897,
    "when_to_read": "**Scope:** Extended mode specification."
   },
   {
@@ -92,7 +99,7 @@
    "path": "AI/Workflow_agent.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 13876,
+   "bytes": 16240,
    "when_to_read": "Describes the order AI work follows from intake to closure and whic..."
   },
   {
@@ -120,35 +127,35 @@
    "path": "Architecture/Document_System_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 7221,
+   "bytes": 7720,
    "when_to_read": "회사의 기억은 문서에 있습니다 (운영 원칙)."
   },
   {
    "path": "Architecture/Frontmatter_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 14228,
+   "bytes": 15484,
    "when_to_read": "작업 문서와 지식 문서의 frontmatter를 문서 종류별로 한 가지 형식으로 맞추는 규칙입니다."
   },
   {
    "path": "Architecture/Glossary_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 8846,
+   "bytes": 9216,
    "when_to_read": "AGENT_NODE_GOVERNANCE에 나오는 용어의 뜻과 그 용어를 정의한 섹션입니다."
   },
   {
    "path": "Architecture/Operating_Model_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 6465,
+   "bytes": 6539,
    "when_to_read": "이 회사가 왜 사람 한 명과 AI Agent로 운영되는지, 그 운영을 지탱하는 원칙이 무엇인지 설명합니다."
   },
   {
    "path": "Architecture/Organization_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 7141,
+   "bytes": 7337,
    "when_to_read": "회사를 구성하는 주체와 책임을 설명합니다."
   },
   {
@@ -162,14 +169,14 @@
    "path": "Architecture/Risk_and_Authority_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 6925,
+   "bytes": 7001,
    "when_to_read": "어떤 일을 AI가 스스로 하고 어떤 일에 HQ의 승인이 필요한지 정의합니다."
   },
   {
    "path": "Architecture/Workspace_Layout_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 4216,
+   "bytes": 4378,
    "when_to_read": "폴더보다 정보의 소유권을 먼저 정합니다."
   },
   {
@@ -225,14 +232,14 @@
    "path": "HQ/Review_and_Closure_admin.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 5754,
+   "bytes": 5971,
    "when_to_read": "HQ가 작업의 현황을 보고, 끝난 결과를 검토하고, 작업을 닫거나 후속 작업으로 넘기는 방법입니다."
   },
   {
    "path": "README.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 13230,
+   "bytes": 13659,
    "when_to_read": "관리자가 1인 연구 회사를 이해하고 제어하며, AI가 같은 구조의 회사를 설립하고 자료를 배치할 수 있도록 정한 운영 매..."
   },
   {
@@ -267,14 +274,14 @@
    "path": "Setup/README.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 7255,
+   "bytes": 7459,
    "when_to_read": "새 1인 연구 기업을 시작하거나 기존 작업 공간에 프로토콜을 도입하는 안내입니다."
   },
   {
    "path": "Setup/Templates_agent.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 6232,
+   "bytes": 8821,
    "when_to_read": "Forms needed to start a new company."
   }
  ]

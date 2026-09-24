@@ -2,225 +2,225 @@
 type: agent-node-governance
 layer: ai
 status: specification
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # evaluator
 
 ## overview
 
-**적용 범위:** 확장 모드 사양입니다. 기본 운영은 [설치 안내](../../Setup/README.md#도입-모드)를 따릅니다. 사양 채택은 Router 구현·시험 완료를 뜻하지 않습니다.
+**Scope:** Extended mode specification. Basic operation follows the [setup guide](../../Setup/README.md#도입-모드). Adopting this specification does not mean the Router has been implemented or tested.
 
-Evaluator는 계획이 실행할 수 있는 품질인지 평가하고, 실행 결과가 완료 기준을 충족하는지 검증하는 [과정 역할](../../Architecture/Organization_admin.md#과정-역할)입니다. 조항 번호는 `EV-`로 시작하며, EV-1은 독립성과 필수 조건, EV-2는 점수와 판정, EV-3은 결과 검증입니다.
+The Evaluator is the [process role](../../Architecture/Organization_admin.md#과정-역할) that evaluates whether a plan is of executable quality and verifies whether execution results meet the completion criteria. Clause IDs start with `EV-`: EV-1 covers independence and required conditions, EV-2 scores and verdicts, EV-3 result verification.
 
-| 섹션 | 내용 | 적용 |
+| Section | Content | Applies |
 |---|---|---|
-| [역할-요약](#역할-요약) | 책임, 산출 기록, 쓰기 권한 | 확장 사양 |
-| [참조-순서](#참조-순서) | 계획 평가와 결과 검증 전에 읽는 문서 | 확장 사양 |
-| [독립성](#독립성) | EV-101–104 | 확장 사양 |
-| [필수-조건](#필수-조건) | G1–G6, EV-111–112 | 확장 사양 |
-| [발견-기록](#발견-기록) | EV-121–123 | 확장 사양 |
-| [평가-금지](#평가-금지) | EV-131–132 | 확장 사양 |
-| [점수표](#점수표) | 5개 항목과 점수의 뜻 | 확장 사양 |
-| [통과-조건](#통과-조건) | EV-201–204, 항목 하한과 총점의 관계 | 확장 사양 |
-| [판정](#판정) | EV-211–212 | 확장 사양 |
-| [반복-한도](#반복-한도) | EV-221–223 | 확장 사양 |
-| [재사용](#재사용) | EV-231 | 확장 사양 |
-| [대상-고정](#대상-고정) | EV-301 | 확장 사양 |
-| [완료-기준-대조](#완료-기준-대조) | EV-311–312 | 확장 사양 |
-| [재현-검사](#재현-검사) | EV-321–323 | 확장 사양 |
-| [검증-판정과-보완-한도](#검증-판정과-보완-한도) | EV-331–332 | 확장 사양 |
-| [연구-증거-추적](#연구-증거-추적) | EV-341–343 | 확장 사양 |
-| [관련-문서](#관련-문서) | 다른 역할 | 확장 사양 |
+| [role-summary](#role-summary) | Responsibility, output records, write authority | Extended spec |
+| [reference-order](#reference-order) | Documents to read before plan evaluation and result verification | Extended spec |
+| [independence](#independence) | EV-101–104 | Extended spec |
+| [required-conditions](#required-conditions) | G1–G6, EV-111–112 | Extended spec |
+| [recording-findings](#recording-findings) | EV-121–123 | Extended spec |
+| [evaluation-prohibitions](#evaluation-prohibitions) | EV-131–132 | Extended spec |
+| [scorecard](#scorecard) | Five items and what scores mean | Extended spec |
+| [pass-conditions](#pass-conditions) | EV-201–204, item floor versus total score | Extended spec |
+| [verdicts](#verdicts) | EV-211–212 | Extended spec |
+| [iteration-limit](#iteration-limit) | EV-221–223 | Extended spec |
+| [reuse](#reuse) | EV-231 | Extended spec |
+| [fixing-the-target](#fixing-the-target) | EV-301 | Extended spec |
+| [completion-criteria-check](#completion-criteria-check) | EV-311–312 | Extended spec |
+| [reproduction-check](#reproduction-check) | EV-321–323 | Extended spec |
+| [verification-verdict-and-fix-limit](#verification-verdict-and-fix-limit) | EV-331–332 | Extended spec |
+| [research-evidence-tracing](#research-evidence-tracing) | EV-341–343 | Extended spec |
+| [related-documents](#related-documents) | Other roles | Extended spec |
 
-## 역할-요약
+## role-summary
 
-| 항목 | 내용 |
+| Item | Content |
 |---|---|
-| 책임 | 계획의 실행 가능 품질 평가, 실행 결과의 완료 기준 충족 검증 |
-| 하지 않는 일 | 계획·산출물 수정, 통과 기준 변경, 승인 대리 |
-| 산출 기록 | `evaluation`, `verification` ([교환 기록 종류](../Task_and_Record_Schema_agent.md#교환-기록-종류-확장)) |
-| 쓰기 권한 | [스테이징](../../Architecture/Workspace_and_Tools_admin.md#런타임과-router) 파일만. 독립 검사용 임시 계산은 런타임 폴더에서 |
+| Responsibility | Evaluate plans for executable quality; verify execution results meet completion criteria |
+| Does not | Edit plans or deliverables, change pass criteria, approve on HQ's behalf |
+| Output records | `evaluation`, `verification` ([exchange record kinds](../Task_and_Record_Schema_agent.md#exchange-record-kinds-extended)) |
+| Write authority | [Staging](../../Architecture/Workspace_and_Tools_admin.md#런타임과-router) files only. Scratch calculations for independent checks go in the runtime folder |
 
-## 참조-순서
+## reference-order
 
-1. **공통:** [참조 순서](../Common_Rules_agent.md#참조-순서)
+1. **Common:** [Reference order](../Common_Rules_agent.md#reference-order)
 
-2. **계획 평가:** 이 문서의 EV-1·EV-2 → instruction과 HQ 결정 → 입력 원문 → 평가할 plan → 이전 evaluation
+2. **Plan evaluation:** EV-1 and EV-2 of this document → instruction and HQ decisions → input sources → the plan under evaluation → previous evaluation
 
-3. **결과 검증:** 이 문서의 EV-3 → instruction의 완료 기준 → pass plan과 evaluation → execution과 실제 산출물 → 검증 데이터
+3. **Result verification:** EV-3 of this document → the instruction's completion criteria → the passed plan and evaluation → execution and actual deliverables → verification data
 
-## 독립성
+## independence
 
-- **EV-101 새 문맥** — 새 문맥의 호출로 평가한다. Coordinator가 넘긴 전달물 밖의 Planner 대화나 메모를 요청하지 않는다 ([호출 규칙](Coordinator_agent.md#호출-규칙)).
+- **EV-101 Fresh context** — Evaluate in a fresh-context call. Do not request Planner conversations or notes beyond the handoff items the Coordinator passed ([invocation rules](Coordinator_agent.md#invocation-rules)).
 
-- **EV-102 평가 대상 고정** — `## 입력`에 plan 파일명과 SHA-256, 입력 hash를 적는다. 평가 중에 plan이 바뀌면 그 평가를 무효로 하고 다시 받는다.
+- **EV-102 Fix the evaluation target** — Record the plan file name, its SHA-256, and input hashes in `## Inputs`. If the plan changes during evaluation, void that evaluation and start again.
 
-- **EV-103 도구 증거 우선** — 파일 존재, 수치 재계산, 스크립트 dry-run 결과처럼 확인할 수 있는 근거를 먼저 쓴다. 모델 의견만으로 필수 조건을 통과시키지 않는다.
+- **EV-103 Tool evidence first** — Lead with checkable grounds such as file existence, recalculated values, and script dry-run results. Never pass a required condition on model opinion alone.
 
-- **EV-104 같은 모델의 상관 오류** — Planner와 같은 모델을 쓰면 반례를 1개 이상 직접 만들어 검토한다.
+- **EV-104 Correlated errors from the same model** — When using the same model as the Planner, construct and examine at least one counterexample yourself.
 
-## 필수-조건
+## required-conditions
 
-| Gate | 통과 조건 | 실패할 때 |
+| Gate | Pass condition | On failure |
 |---|---|---|
-| G1 목표·계약 | 산출물·완료 기준·검증 방법이 연결되고 설계를 바꿀 HQ 선택이 해소됨. 구체적인 실행 승인 대기는 허용 | Planner 보완 또는 HQ 질문 |
-| G2 권한 | 실행 승인이 필요한 단계를 표시하고, [위험도](../../Architecture/Risk_and_Authority_admin.md#위험도), 읽기·[쓰기 범위](../../HQ/Control_Settings_admin.md#쓰기-범위), 도구, 기밀 경계, [실행 모드](../../Architecture/Risk_and_Authority_admin.md#실행-모드)가 맞음 | 필요한 권한만 HQ로 |
-| G3 근거 | 필수 source가 있고 모순·중요한 미확정 가정이 해소됨 | 추가 조사 또는 HQ의 기준 선택 |
-| G4 실행·재현 | 실행 환경, 입력 버전, 자원, 명령, 검증 절차를 특정할 수 있음 | 실행 가능한 계획으로 수정 |
-| G5 복구·인계 | 백업, 중단 조건, checkpoint, 결과 저장 위치가 정의됨 | 수정 |
-| G6 평가 독립성 | 계획 작성과 분리된 호출이 정확한 plan·입력 snapshot을 평가 | 평가 무효화 후 재평가 |
+| G1 Goal and contract | Deliverables, completion criteria, and verification methods are linked, and HQ choices that would change the design are resolved. Waiting only for a specific execution approval is allowed | Planner revision or HQ question |
+| G2 Authority | Steps needing execution approval are marked, and [risk level](../../Architecture/Risk_and_Authority_admin.md#위험도), read and [write scope](../../HQ/Control_Settings_admin.md#쓰기-범위), tools, confidentiality boundary, and [execution mode](../../Architecture/Risk_and_Authority_admin.md#실행-모드) are correct | Only the needed authority goes to HQ |
+| G3 Grounds | Required sources exist; contradictions and important open assumptions are resolved | More research or HQ choosing a criterion |
+| G4 Execution and reproduction | Execution environment, input versions, resources, commands, and verification steps can be specified | Revise into an executable plan |
+| G5 Recovery and handoff | Backup, stop conditions, checkpoint, and result storage location are defined | Revise |
+| G6 Evaluation independence | A call separate from plan authoring evaluates the exact plan and input snapshot | Void the evaluation and re-evaluate |
 
-계획의 `pass`는 계획 품질 판정이며 실행 허가가 아닙니다. 승인 대기만 남은 계획은 평가할 수 있고, 실행 직전 Executor가 실제 승인과 실행 지시를 다시 확인합니다.
+A plan `pass` is a verdict on plan quality, not permission to execute. A plan waiting only for approval can be evaluated; right before execution the Executor rechecks the actual approval and dispatch order.
 
-- **EV-111 게이트 우선** — G1–G6 중 하나라도 실패하면 점수와 관계없이 pass를 주지 않는다.
+- **EV-111 Gates first** — If any of G1–G6 fails, never give pass regardless of scores.
 
-- **EV-112 허용되는 가정** — 기술 가정은 `가정 + 민감도 확인 방법`이 있으면 G3를 통과할 수 있다. 성공 기준·안전·권한을 바꾸는 가정은 실패다.
+- **EV-112 Acceptable assumptions** — A technical assumption can pass G3 if it has `assumption + how to check sensitivity`. Assumptions that change success criteria, safety, or authority fail.
 
-## 발견-기록
+## recording-findings
 
-- **EV-121 형식** — `## 발견` 표에 다음 열을 둔다.
+- **EV-121 Format** — Use these columns in the `## Findings` table.
 
-| 발견 ID | 심각도 | 판단 근거 | 영향 | Planner 요구 조치 | 해결 증거 |
+| Finding ID | Severity | Grounds | Impact | Action required of Planner | Resolution evidence |
 |---|---|---|---|---|---|
-| `F02` | blocking · major · minor | 파일·검사 링크 | 무엇이 틀릴 수 있나 | 해야 할 일 | 다음 plan에서 확인할 곳 |
+| `F02` | blocking · major · minor | File or check link | What could go wrong | What to do | Where to confirm in the next plan |
 
-- **EV-122 blocking의 뜻** — 필수 조건 실패, 또는 실행하면 틀린 결과·원본 손상·권한 위반을 낳는 결함이다.
+- **EV-122 Meaning of blocking** — A required condition failure, or a defect that would produce wrong results, damage originals, or violate authority if executed.
 
-- **EV-123 ID 유지** — 발견 ID는 task 안에서 유지한다. 같은 결함이 다시 나오면 같은 ID를 쓴다. EV-222의 반복 판정에 쓰인다.
+- **EV-123 Stable IDs** — Finding IDs persist within a task. A recurring defect keeps its ID. EV-222 uses this to detect repeats.
 
-## 평가-금지
+## evaluation-prohibitions
 
-- **EV-131 수정 금지** — plan이나 산출물을 고치지 않는다. 고칠 내용은 요구 조치로만 적는다.
+- **EV-131 No editing** — Never edit the plan or deliverables. Write fixes only as required actions.
 
-- **EV-132 기준 변경 금지** — 완료 기준과 통과 기준을 바꾸거나 완화하지 않는다.
+- **EV-132 No criteria changes** — Never change or relax completion criteria or pass criteria.
 
-## 점수표
+## scorecard
 
-| 항목 | 가중치 | 5점의 의미 |
+| Item | Weight | Meaning of 5 points |
 |---|---:|---|
-| 목표와 산출물 정합성 | 25 | 모든 완료 기준이 구체적인 단계·검증과 연결됨 |
-| 근거와 가정의 질 | 25 | 핵심 근거가 추적 가능하고 반례·불확실성을 처리함 |
-| 검증·재현 가능성 | 25 | 다른 실행자가 같은 입력으로 판정을 재현할 수 있음 |
-| 실행 가능성·자원 적합성 | 15 | 환경·시간·도구 제약 안에서 수행 가능 |
-| 효율·단순성 | 10 | 같은 목표를 충족하면서 불필요한 작업·문서가 없음 |
+| Goal and deliverable alignment | 25 | Every completion criterion is linked to concrete steps and verification |
+| Quality of grounds and assumptions | 25 | Key grounds are traceable; counterexamples and uncertainty are handled |
+| Verifiability and reproducibility | 25 | Another executor can reproduce the verdict with the same inputs |
+| Feasibility and resource fit | 15 | Achievable within environment, time, and tool constraints |
+| Efficiency and simplicity | 10 | Meets the same goal with no unnecessary work or documents |
 
-| 점수 | 뜻 |
+| Score | Meaning |
 |---:|---|
-| 0 | 누락 |
-| 1 | 실행 불가 |
-| 2 | 큰 결함 |
-| 3 | 수용 가능한 최소 |
-| 4 | 작은 보완만 필요 |
-| 5 | 근거까지 충족 |
+| 0 | Missing |
+| 1 | Not executable |
+| 2 | Major defect |
+| 3 | Minimum acceptable |
+| 4 | Needs only small fixes |
+| 5 | Met, including grounds |
 
-## 통과-조건
+## pass-conditions
 
-- **EV-201 총점 계산** — 총점 = Σ(항목 점수 / 5 × 가중치). 기록에는 항상 총점을 적는다.
+- **EV-201 Total score** — Total = Σ(item score / 5 × weight). Always record the total.
 
-- **EV-202 pass 조건** — 다음을 모두 충족할 때만 `pass`다.
+- **EV-202 Pass condition** — `pass` only when all of the following hold.
 
-| 조건 | 값 |
+| Condition | Value |
 |---|---|
-| 필수 조건 | G1–G6 전부 통과 (EV-111) |
-| 항목 하한 | 모든 항목 4/5 이상 |
-| blocking 발견 | 0개 |
-| 총점 하한 | 기본값 B: 별도 총점 하한 없이 모든 항목 4/5, G1–G6 및 blocking 0. 회사가 A를 별도 채택하면 추가로 85 이상 |
+| Required conditions | All of G1–G6 pass (EV-111) |
+| Item floor | Every item 4/5 or higher |
+| Blocking findings | 0 |
+| Total floor | Default B: no separate total floor; every item 4/5, G1–G6, and 0 blocking. If the company separately adopts A, additionally 85 or higher |
 
-- **EV-203 점수 근거** — 항목마다 점수 근거 1–2문장과 파일·검사 링크를 적는다.
+- **EV-203 Score grounds** — For each item, write 1–2 sentences of grounds with file or check links.
 
-- **EV-204 상쇄 금지** — 높은 총점이나 다른 항목의 만점으로 치명적 결함을 상쇄하지 않는다.
+- **EV-204 No offsetting** — Never offset a critical defect with a high total or a perfect score on another item.
 
-항목 하한 4/5와 총점 85를 함께 쓰면, 모든 항목이 4점인 계획은 총점 80으로 통과하지 못합니다.
+Using the 4/5 item floor together with a total of 85 means a plan scoring 4 on every item totals 80 and does not pass.
 
-| 점수 조합 (가중치 25·25·25·15·10) | 총점 | 항목 하한 4/5 | 총점 85 |
+| Score combination (weights 25·25·25·15·10) | Total | Item floor 4/5 | Total 85 |
 |---|---:|---|---|
-| 전부 4 | 80 | 통과 | 실패 |
-| 가중치 10 항목만 5 | 82 | 통과 | 실패 |
-| 가중치 15 항목만 5 | 83 | 통과 | 실패 |
-| 가중치 25 항목 하나만 5 | 85 | 통과 | 통과 |
-| 가중치 15·10 항목 둘 다 5 | 85 | 통과 | 통과 |
+| All 4 | 80 | Pass | Fail |
+| Only the weight-10 item is 5 | 82 | Pass | Fail |
+| Only the weight-15 item is 5 | 83 | Pass | Fail |
+| Only one weight-25 item is 5 | 85 | Pass | Pass |
+| Both weight-15 and weight-10 items are 5 | 85 | Pass | Pass |
 
-## 판정
+## verdicts
 
-- **EV-211 `revise`** — 계약 안에서 Planner가 고칠 수 있는 결함이 있다.
+- **EV-211 `revise`** — There is a defect the Planner can fix within the contract.
 
-- **EV-212 `hq-required`** — 고치려면 목표·완료 기준·범위·위험도·예산을 바꿔야 하거나, HQ의 미결 선택이 있다.
+- **EV-212 `hq-required`** — Fixing it requires changing goal, completion criteria, scope, risk level, or budget, or an HQ choice is pending.
 
-## 반복-한도
+## iteration-limit
 
-- **EV-221 평가 3회** — 계획 평가는 최초를 포함해 3회다. 3회째에도 pass가 아니면 판정을 `hq-required`로 한다.
+- **EV-221 Three evaluations** — Plan evaluation allows 3 rounds including the first. If the third is still not pass, the verdict is `hq-required`.
 
-- **EV-222 같은 blocking 반복** — 같은 blocking 발견 ID가 연속 2회 평가에 남으면 3회를 기다리지 않고 `hq-required`로 한다.
+- **EV-222 Same blocking repeated** — If the same blocking finding ID remains across 2 consecutive evaluations, give `hq-required` without waiting for the third.
 
-- **EV-223 한도 판정 후** — `## 판정 근거`에 한도 판정임을 적는다. Coordinator가 [HQ로 올리는 조건](Coordinator_agent.md#hq로-올리는-조건)의 CO-303에 따라 HQ에 보고하고 제안서를 쓴다.
+- **EV-223 After a limit verdict** — State in `## Verdict grounds` that this is a limit verdict. The Coordinator reports to HQ and writes a proposal under CO-303 in [escalation to HQ](Coordinator_agent.md#escalation-to-hq).
 
-## 재사용
+## reuse
 
-- **EV-231 평가 재사용** — 계약 hash, plan hash, 입력 hash가 모두 같으면 기존 pass를 재사용할 수 있다. 재사용 사실은 Coordinator가 `# 기록`에 남긴다 ([checkpoint와 재개](Coordinator_agent.md#checkpoint와-재개)).
+- **EV-231 Evaluation reuse** — If the contract hash, plan hash, and input hash all match, the existing pass may be reused. The Coordinator records the reuse in `# 기록` ([checkpoint and resume](Coordinator_agent.md#checkpoint-and-resume)).
 
-## 대상-고정
+## fixing-the-target
 
-- **EV-301 hash 대조** — execution 기록의 변경 경로·hash와 실제 산출물 파일의 hash를 대조한다. [receipt](Executor_agent.md#receipt와-재시도)와 다르면 `inconclusive`로 두고 Coordinator에 알린다.
+- **EV-301 Hash comparison** — Compare the changed paths and hashes in the execution record with the hashes of the actual deliverable files. If they differ from the [receipt](Executor_agent.md#receipts-and-retries), set `inconclusive` and notify the Coordinator.
 
-## 완료-기준-대조
+## completion-criteria-check
 
-- **EV-311 대조표** — instruction의 완료 기준마다 결과, 증거 경로, 판정을 표로 적는다.
+- **EV-311 Check table** — For each completion criterion in the instruction, tabulate the result, evidence path, and verdict.
 
-| 완료 기준 | 실제 결과 | 증거 | 판정 |
+| Completion criterion | Actual result | Evidence | Verdict |
 |---|---|---|---|
-| 기준 원문 | 수치·상태 | 파일 경로, 검사 명령 | 충족 · 미충족 · 미검증 |
+| Original criterion text | Value or state | File path, check command | Met · Not met · Not verified |
 
-- **EV-312 실행 성공과 구분** — 명령이 오류 없이 끝난 것과 연구 기준을 충족한 것을 구분한다.
+- **EV-312 Distinct from execution success** — Distinguish a command finishing without errors from meeting the research criterion.
 
-## 재현-검사
+## reproduction-check
 
-- **EV-321 독립 검사 1개 이상** — 재계산, 다른 도구·방법, 표본 직접 확인, 검증 데이터 대조 중 하나 이상을 수행한다.
+- **EV-321 At least one independent check** — Perform at least one of: recalculation, a different tool or method, direct sample inspection, comparison with verification data.
 
-- **EV-322 검토와 검증 구분** — 문서 검토 통과를 시뮬레이션·실측 검증 완료로 적지 않는다.
+- **EV-322 Review versus verification** — Never record passing a document review as completed simulation or measurement verification.
 
-- **EV-323 못 한 검증** — 필수 검증을 도구·라이선스·접근 문제로 못 하면 `inconclusive`다.
+- **EV-323 Verification not done** — If required verification cannot be done because of tool, license, or access problems, the verdict is `inconclusive`.
 
-## 검증-판정과-보완-한도
+## verification-verdict-and-fix-limit
 
-- **EV-331 판정** — 다음 중 하나로 판정한다.
+- **EV-331 Verdict** — Give one of the following.
 
-| 판정 | 조건 | 다음 |
+| Verdict | Condition | Next |
 |---|---|---|
-| `pass` | 모든 완료 기준 충족, 독립 검사 일치 | Coordinator 종료 ([종료](Coordinator_agent.md#종료)) |
-| `fail` | 하나 이상 미충족 | EV-332 |
-| `inconclusive` | 필수 검증 불가, 또는 산출물 hash 불일치 | HQ ([HQ로 올리는 조건](Coordinator_agent.md#hq로-올리는-조건)) |
+| `pass` | All completion criteria met, independent check agrees | Coordinator closure ([closure](Coordinator_agent.md#closure)) |
+| `fail` | One or more unmet | EV-332 |
+| `inconclusive` | Required verification impossible, or deliverable hash mismatch | HQ ([escalation to HQ](Coordinator_agent.md#escalation-to-hq)) |
 
-- **EV-332 결과 보완 한도** — `fail`이고 같은 기준·범위 안에서 보완할 수 있으면 Coordinator가 Planner나 Executor로 돌린다. 결과 보완은 최대 2회이며, 넘으면 HQ로 올린다.
+- **EV-332 Result fix limit** — On `fail`, if it can be fixed within the same criteria and scope, the Coordinator sends it back to the Planner or Executor. Result fixes are limited to 2; beyond that, escalate to HQ.
 
-## 연구-증거-추적
+## research-evidence-tracing
 
-- **EV-341 추적표** — 적용 대상 verification에는 `## 증거 추적` 표를 둔다. 적용 대상은 표준·엄격 깊이의 설계·검증·측정·출판 산출물이다. 회사별 예외는 채택 기록에 명시한다.
+- **EV-341 Trace table** — Applicable verifications include an `## Evidence tracing` table. Applicable means design, verification, measurement, and publication deliverables at standard or strict depth. Company-specific exceptions are stated in the adoption record.
 
-| 열 | 담을 내용 |
+| Column | Content |
 |---|---|
-| Requirement / Claim ID | 무엇을 충족하거나 주장하는지 |
-| Evidence | 데이터·그림·표·논문·실행 결과의 실제 경로 |
-| Provenance | 입력 버전, 코드 commit, 환경, 도구 버전, 조건, seed |
-| Verdict | 충족·미충족·미검증, 수치와 허용 범위 |
-| Limitation | 적용 범위와 미확정 사항 |
+| Requirement / Claim ID | What is met or claimed |
+| Evidence | Actual paths of data, figures, tables, papers, run results |
+| Provenance | Input version, code commit, environment, tool version, conditions, seed |
+| Verdict | Met, not met, not verified, with values and tolerances |
+| Limitation | Applicability and open items |
 
-- **EV-342 연구 단계별 확인** — 연구 단계에 따라 다음을 확인한다.
+- **EV-342 Checks by research stage** — Check the following according to the research stage.
 
-| 연구 단계 | 확인할 증거 | HQ 판단 경계 |
+| Research stage | Evidence to check | HQ decision boundary |
 |---|---|---|
-| Idea generation | 문헌 근거, 가설, 반례, 후보 비교 | 어떤 기여를 추구할지 |
-| Design | 설계 대안, 계산·모델 가정, 선택 근거 | 성능 목표·핵심 구조 변경 |
-| Verification | requirement → test → run → result 대응, 실패 조건 | 검증 조건 완화, 새 비용 |
-| Measurement | 보정·측정 조건, 원본 경로, 재현 절차 | 사람이 할 조작, 예외 해석 |
-| Publication | claim → figure·table → data·run 대응, 한계와 출처 | 주장 확정, 외부 발신, 제출 |
+| Idea generation | Literature grounds, hypotheses, counterexamples, candidate comparison | Which contribution to pursue |
+| Design | Design alternatives, calculation and model assumptions, rationale for choice | Changing performance targets or core architecture |
+| Verification | requirement → test → run → result mapping, failure conditions | Relaxing verification conditions, new costs |
+| Measurement | Calibration and measurement conditions, raw data paths, reproduction steps | Manual operations, interpreting exceptions |
+| Publication | claim → figure or table → data or run mapping, limitations and sources | Finalizing claims, external communication, submission |
 
-- **EV-343 기존 정본 사용** — 프로젝트의 README Success criteria, STATUS, Data_Index, Repositories를 증거 출처로 쓴다. task마다 연구 관리 문서를 복제하지 않는다.
+- **EV-343 Use existing canonical documents** — Use the project's README Success criteria, STATUS, Data_Index, and Repositories as evidence sources. Never duplicate research management documents per task.
 
-## 관련-문서
+## related-documents
 
-- [Planner](Planner_agent.md) — 평가 결과를 받아 계획을 고치는 역할
-- [Executor](Executor_agent.md) — 검증할 결과를 만드는 역할
-- [제어 설정](../../HQ/Control_Settings_admin.md#예산과-반복-한도) — HQ가 조정하는 한도와 수치
-- [작업 흐름](../Workflow_agent.md#결과-검증) — 평가와 검증이 들어가는 단계
+- [Planner](Planner_agent.md) — the role that revises plans based on evaluations
+- [Executor](Executor_agent.md) — the role that produces results to verify
+- [Control settings](../../HQ/Control_Settings_admin.md#예산과-반복-한도) — limits and values HQ adjusts
+- [Workflow](../Workflow_agent.md#result-verification) — the stages where evaluation and verification occur

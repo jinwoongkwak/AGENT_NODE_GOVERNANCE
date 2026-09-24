@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 작업-공간과-도구
@@ -78,9 +78,9 @@ HQ는 필요할 때 현황을 보고, 매일 확인하는 대시보드는 두지
 | 작업 브랜치 | AI는 [`{ai-branch}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#버전-관리-설정)에서 작업하고, [`{main-branch}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#버전-관리-설정) merge는 HQ만 함 |
 | 상태 변경 권한 | commit, push, pull request는 위험도 2이며 TaskNote에서 명시적으로 승인된 경우에만 ([위험도](Risk_and_Authority_admin.md#위험도)) |
 | 백업 | 추적되는 텍스트는 commit이 백업. 추적 제외 파일은 수정 전에 zip 백업. 바이너리는 동기화로만 보관되므로 덮어쓰지 않고 휴지통으로 옮김 |
-| 중첩 저장소 | 작업 공간 안의 저장소는 submodule로 관리 ([중첩 저장소](../AI/Common_Rules_agent.md#중첩-저장소)) |
+| 중첩 저장소 | 작업 공간 안의 저장소는 submodule로 관리 ([중첩 저장소](../AI/Common_Rules_agent.md#nested-repositories)) |
 
-실제 명령과 순서는 [버전 관리](../AI/Common_Rules_agent.md#버전-관리)와 [백업](../AI/Common_Rules_agent.md#백업)에 있습니다.
+실제 명령과 순서는 [버전 관리](../AI/Common_Rules_agent.md#version-control)와 [백업](../AI/Common_Rules_agent.md#backup)에 있습니다.
 
 ## 동기화
 
@@ -98,10 +98,10 @@ HQ는 필요할 때 현황을 보고, 매일 확인하는 대시보드는 두지
 
 | 구성 | 위치 | 버전 관리 | 역할 |
 |---|---|---|---|
-| Router | [`{router}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#작업-공간-경로) | 추적 | TaskNote와 교환 기록 파일을 만들고 규칙을 검사 ([Router의 역할](../AI/Routing_agent.md#router의-역할)) |
+| Router | [`{router}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#작업-공간-경로) | 추적 | TaskNote와 교환 기록 파일을 만들고 규칙을 검사 ([Router의 역할](../AI/Routing_agent.md#router-role)) |
 | 스테이징 | [`{runtime-dir}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#작업-공간-경로)의 `staging/` | 제외, 동기화 밖 | 역할이 돌려준 본문을 저장 전에 보관 |
-| 잠금 | 같은 폴더의 `locks/` | 제외, 동기화 밖 | 같은 작업·경로를 두 세션이 동시에 쓰지 못하게 함 ([잠금과 예산](../AI/Roles/Coordinator_agent.md#잠금과-예산)) |
-| checkpoint | [`{checkpoint-dir}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#작업-공간-경로) | 추적 | 중단·대기 후 재개 정보 ([checkpoint와 재개](../AI/Roles/Coordinator_agent.md#checkpoint와-재개)) |
+| 잠금 | 같은 폴더의 `locks/` | 제외, 동기화 밖 | 같은 작업·경로를 두 세션이 동시에 쓰지 못하게 함 ([잠금과 예산](../AI/Roles/Coordinator_agent.md#locks-and-budget)) |
+| checkpoint | [`{checkpoint-dir}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#작업-공간-경로) | 추적 | 중단·대기 후 재개 정보 ([checkpoint와 재개](../AI/Roles/Coordinator_agent.md#checkpoint-and-resume)) |
 
 잠금과 쓰는 중인 본문을 동기화 밖에 두는 이유는, 잠금이 다른 기기로 복사되면 의미가 없어지고 쓰는 중인 파일이 충돌 사본을 만들기 때문입니다.
 
@@ -113,7 +113,7 @@ HQ는 필요할 때 현황을 보고, 매일 확인하는 대시보드는 두지
 | 작업 관리 | 태그 색인, frontmatter 필터 뷰 | HQ가 결정 대기 작업을 찾기 어려움 | Router `check` 출력이나 수동 표 |
 | 버전 관리 | 브랜치, diff, 되돌리기, 중첩 저장소 | 위험도 0–1 자율 실행의 안전장치가 없음 | zip 백업 + 모든 수정을 위험도 2로 운영 |
 | 동기화 | 선택 사항 | 기기 한 대에서만 작업 | — |
-| AI 실행 환경 | 파일 읽기·쓰기, 셸, 새 문맥 호출 | 역할 분리 평가가 불가능 | 단일 Agent + 경량 작업만 ([호출 규칙](../AI/Roles/Coordinator_agent.md#호출-규칙)) |
+| AI 실행 환경 | 파일 읽기·쓰기, 셸, 새 문맥 호출 | 역할 분리 평가가 불가능 | 단일 Agent + 경량 작업만 ([호출 규칙](../AI/Roles/Coordinator_agent.md#invocation-rules)) |
 | 스크립트 런타임 | 확장 모드 Router 실행 | 확장 모드 기록 검사를 할 수 없음 | [기본 모드](../Setup/README.md#도입-모드)로 운영, Router를 사용한 것으로 표시하지 않음 |
 
 ## 관련-문서

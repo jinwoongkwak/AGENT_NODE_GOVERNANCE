@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # hq의-역할
@@ -47,7 +47,7 @@ AI가 스스로 처리하는 판단과 HQ가 맡는 판단의 경계는 [판단 
 
 ### 결정-요청-증가-조건-확장
 
-[과정 역할](../Architecture/Organization_admin.md#과정-역할)을 도입하면 계획 평가 한도 초과, 결과 보완 한도 초과, 검증 불가(`inconclusive`)도 HQ 결정 요청이 됩니다 ([HQ로 올리는 조건](../AI/Roles/Coordinator_agent.md#hq로-올리는-조건)).
+[과정 역할](../Architecture/Organization_admin.md#과정-역할)을 도입하면 계획 평가 한도 초과, 결과 보완 한도 초과, 검증 불가(`inconclusive`)도 HQ 결정 요청이 됩니다 ([HQ로 올리는 조건](../AI/Roles/Coordinator_agent.md#escalation-to-hq)).
 
 ## 운영-주기
 

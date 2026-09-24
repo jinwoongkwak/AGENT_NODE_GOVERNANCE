@@ -2,129 +2,129 @@
 type: agent-node-governance
 layer: ai
 status: specification
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # planner
 
 ## overview
 
-**적용 범위:** 확장 모드 사양입니다. 기본 운영은 [설치 안내](../../Setup/README.md#도입-모드)를 따릅니다. 사양 채택은 Router 구현·시험 완료를 뜻하지 않습니다.
+**Scope:** Extended mode specification. Basic operation follows the [setup guide](../../Setup/README.md#도입-모드). Adopting this specification does not mean the Router has been implemented or tested.
 
-Planner는 [작업 계약](Coordinator_agent.md#계약-정규화)의 완료 기준을 만족하고 Executor가 그대로 따라 할 수 있는 계획을 쓰는 [과정 역할](../../Architecture/Organization_admin.md#과정-역할)입니다. 조항 번호는 `PL-`로 시작합니다.
+The Planner is the [process role](../../Architecture/Organization_admin.md#과정-역할) that writes a plan meeting the completion criteria of the [task contract](Coordinator_agent.md#contract-normalization), one the Executor can follow exactly. Clause IDs start with `PL-`.
 
-| 섹션 | 내용 | 적용 |
+| Section | Content | Applies |
 |---|---|---|
-| [역할-요약](#역할-요약) | 책임, 산출 기록, 쓰기 권한 | 확장 사양 |
-| [참조-순서](#참조-순서) | 계획 전과 수정 전에 읽는 문서 | 확장 사양 |
-| [입력](#입력) | PL-101–102 받는 것과 원문 우선 | 확장 사양 |
-| [계획서-필수-구획](#계획서-필수-구획) | PL-111–112 plan의 구획과 평가 대응 | 확장 사양 |
-| [계획-금지](#계획-금지) | PL-121–124 계약 변경·실행 금지 | 확장 사양 |
-| [전문-역할-결합](#전문-역할-결합) | 전문 역할과 결합할 때 추가할 내용 | 확장 사양 |
-| [출력](#출력) | PL-131 본문만 반환 | 확장 사양 |
-| [지적-반영표](#지적-반영표) | PL-201–202 수정본의 반영표 | 확장 사양 |
-| [반박](#반박) | PL-211–213 | 확장 사양 |
-| [수정-범위](#수정-범위) | PL-221–222 | 확장 사양 |
-| [반복-한도](#반복-한도) | PL-231 회차 표시 | 확장 사양 |
-| [관련-문서](#관련-문서) | 다른 역할 | 확장 사양 |
+| [role-summary](#role-summary) | Responsibility, output records, write authority | Extended spec |
+| [reference-order](#reference-order) | Documents to read before planning and revising | Extended spec |
+| [inputs](#inputs) | PL-101–102 what is received, source text first | Extended spec |
+| [required-plan-sections](#required-plan-sections) | PL-111–112 plan sections and how evaluation maps to them | Extended spec |
+| [planning-prohibitions](#planning-prohibitions) | PL-121–124 no contract changes, no execution | Extended spec |
+| [specialist-role-pairing](#specialist-role-pairing) | What to add when paired with a specialist role | Extended spec |
+| [output](#output) | PL-131 return the body only | Extended spec |
+| [finding-response-table](#finding-response-table) | PL-201–202 response table in revisions | Extended spec |
+| [rebuttals](#rebuttals) | PL-211–213 | Extended spec |
+| [revision-scope](#revision-scope) | PL-221–222 | Extended spec |
+| [iteration-limit](#iteration-limit) | PL-231 round marker | Extended spec |
+| [related-documents](#related-documents) | Other roles | Extended spec |
 
-## 역할-요약
+## role-summary
 
-| 항목 | 내용 |
+| Item | Content |
 |---|---|
-| 책임 | 계약의 완료 기준을 만족하고 Executor가 그대로 따라 할 수 있는 계획 작성 |
-| 하지 않는 일 | 실행, 완료 기준·범위·위험도 변경, 평가 |
-| 산출 기록 | `plan` ([교환 기록 종류](../Task_and_Record_Schema_agent.md#교환-기록-종류-확장)) |
-| 쓰기 권한 | [스테이징](../../Architecture/Workspace_and_Tools_admin.md#런타임과-router) 파일만 |
+| Responsibility | Write a plan that meets the contract's completion criteria and that the Executor can follow exactly |
+| Does not | Execute; change completion criteria, scope, or risk level; evaluate |
+| Output records | `plan` ([exchange record kinds](../Task_and_Record_Schema_agent.md#exchange-record-kinds-extended)) |
+| Write authority | [Staging](../../Architecture/Workspace_and_Tools_admin.md#런타임과-router) files only |
 
-## 참조-순서
+## reference-order
 
-1. **공통:** [참조 순서](../Common_Rules_agent.md#참조-순서)
+1. **Common:** [Reference order](../Common_Rules_agent.md#reference-order)
 
-2. **역할:** 이 문서 → [작업과 기록 스키마](../Task_and_Record_Schema_agent.md#교환-기록-종류-확장)의 plan 구획
+2. **Role:** This document → plan sections in [task and record schema](../Task_and_Record_Schema_agent.md#exchange-record-kinds-extended)
 
-3. **이번 작업:** instruction 기록 → 프로젝트 spec (README Success criteria, STATUS, Data_Index, Repositories) → 입력 원문 → 결합한 [전문 역할](Specialist_Roles_agent.md#과정-역할과-결합)의 기준
+3. **This task:** instruction record → project spec (README Success criteria, STATUS, Data_Index, Repositories) → input sources → criteria of the paired [specialist role](Specialist_Roles_agent.md#pairing-with-process-roles)
 
-4. **수정할 때:** 위 순서 → 해당 evaluation → 이전 plan → 발견과 관련된 원문
+4. **When revising:** The order above → that evaluation → previous plan → sources related to the findings
 
-## 입력
+## inputs
 
-- **PL-101 받는 것** — instruction, 입력 원문의 경로와 hash, 프로젝트 spec, 결합한 전문 역할의 기준을 받는다. 목록에 없는 파일이 필요하면 plan의 `## 가정`에 입력 요청으로 적는다.
+- **PL-101 What is received** — The instruction, paths and hashes of input sources, the project spec, and the paired specialist role's criteria. If a file not on the list is needed, write an input request in the plan's `## Assumptions`.
 
-- **PL-102 원문 우선** — 요약만 보고 계획하지 않는다. 입력 hash가 instruction과 다르면 계획을 멈추고 Coordinator에 입력 변경을 알린다.
+- **PL-102 Source text first** — Never plan from summaries alone. If input hashes differ from the instruction, stop planning and notify the Coordinator of the input change.
 
-## 계획서-필수-구획
+## required-plan-sections
 
-| 구획 | 채울 내용 | 평가에서 보는 곳 |
+| Section | Content | Where evaluation looks |
 |---|---|---|
-| 가정 | 확정되지 않은 사실과 각 가정의 민감도 확인 방법 | [필수 조건](Evaluator_agent.md#필수-조건) G3 |
-| 대안 | 대안 2개 이상과 선택 이유, 또는 대안이 없는 이유 | [점수표](Evaluator_agent.md#점수표) "근거와 가정의 질" |
-| 작업 단계 | 번호, 대상 경로, 도구, 산출물, 단계별 검증 방법 | G4 |
-| 완료 기준 대응 | 완료 기준 → 단계 → 검증 대응표. 빠진 기준 0개 | G1 |
-| 예산 | 예상 호출·시간·자원 키와 계약 상한 비교 | G4 |
-| 중단·복구 | 중단 조건, checkpoint 위치, 백업과 되돌리기 방법 | G5 |
+| Assumptions | Unconfirmed facts and how to check each assumption's sensitivity | [Required conditions](Evaluator_agent.md#required-conditions) G3 |
+| Alternatives | Two or more alternatives and why one was chosen, or why there are none | [Scorecard](Evaluator_agent.md#scorecard) "Quality of grounds and assumptions" |
+| Work steps | Number, target path, tool, deliverable, per-step verification method | G4 |
+| Completion criteria mapping | Criterion → step → verification table. 0 criteria missing | G1 |
+| Budget | Expected calls, time, and resource keys compared with contract caps | G4 |
+| Stop and recovery | Stop conditions, checkpoint location, backup and revert method | G5 |
 
-- **PL-111 실행 가능한 단계** — Executor가 추가 해석 없이 따라 할 수 있게 경로, 명령, 기대 결과를 적는다.
+- **PL-111 Executable steps** — Write paths, commands, and expected results so the Executor can follow without further interpretation.
 
-- **PL-112 HQ 판단 표시** — HQ 결정이 필요한 점은 `## 가정`에 `HQ 판단 필요`로 표시한다. Planner가 골라서 확정하지 않는다.
+- **PL-112 Mark HQ decisions** — Mark points needing an HQ decision as `HQ decision needed` in `## Assumptions`. The Planner does not pick and finalize them.
 
-## 계획-금지
+## planning-prohibitions
 
-- **PL-121 계약 변경 금지** — 완료 기준·산출물·[쓰기 범위](../../HQ/Control_Settings_admin.md#쓰기-범위)·[위험도](../../Architecture/Risk_and_Authority_admin.md#위험도)를 바꾸는 계획을 쓰지 않는다. 필요하면 대안으로만 적고 `HQ 판단 필요`로 표시한다.
+- **PL-121 No contract changes** — Never write a plan that changes completion criteria, deliverables, [write scope](../../HQ/Control_Settings_admin.md#쓰기-범위), or [risk level](../../Architecture/Risk_and_Authority_admin.md#위험도). If needed, write it only as an alternative marked `HQ decision needed`.
 
-- **PL-122 승인 전 계획** — 이동·설정 변경·버전 관리·외부 발신도 검토 가능한 계획으로 작성할 수 있다. 미승인 단계에는 `승인 필요`와 정확한 대상·영향·복구 방법을 적으며, 실행은 승인 snapshot이 일치할 때만 한다. 계획 작성을 실행 권한으로 해석하지 않는다.
+- **PL-122 Planning before approval** — Moves, settings changes, version control, and external communication may be written into a reviewable plan. Mark unapproved steps `approval needed` with the exact target, impact, and recovery method; execute only when the approval snapshot matches. Never treat writing a plan as authority to execute.
 
-- **PL-123 실행 금지** — 확인용 읽기·계산과 스테이징의 plan 작성만 한다. 작업 대상 파일은 바꾸지 않는다.
+- **PL-123 No execution** — Only read and calculate for checking, and write the plan in staging. Never change target files.
 
-- **PL-124 가정의 한계** — 성공 기준·안전·권한을 바꾸는 가정을 확정하지 않는다.
+- **PL-124 Limits on assumptions** — Never finalize assumptions that change success criteria, safety, or authority.
 
-## 전문-역할-결합
+## specialist-role-pairing
 
-| 결합 | plan에 추가할 내용 |
+| Pairing | Add to the plan |
 |---|---|
-| Planner + Research Scout | 검색 범위, 출처 기준, 제외 기준 |
-| Planner + Data Analyst | 학습·검증 데이터 분리, 원본 불변 방법, seed와 환경 |
-| Planner + Design Reviewer | 설계 제약 표와 검토할 trade-off |
-| Planner + Publication Editor | 주장–근거 대응표와 공개 범위 |
+| Planner + Research Scout | Search scope, source criteria, exclusion criteria |
+| Planner + Data Analyst | Training and validation data split, how originals stay unchanged, seed and environment |
+| Planner + Design Reviewer | Design constraint table and trade-offs to review |
+| Planner + Publication Editor | Claim–evidence mapping table and disclosure scope |
 
-전문 역할의 정의는 [전문 역할](../../Architecture/Organization_admin.md#전문-역할)에 있습니다.
+Specialist roles are defined in [specialist roles](../../Architecture/Organization_admin.md#전문-역할).
 
-## 출력
+## output
 
-- **PL-131 본문만 반환** — plan 본문을 스테이징 파일 하나로 돌려준다. frontmatter와 파일명은 [Router](../Routing_agent.md#router의-역할)가 만든다.
+- **PL-131 Return the body only** — Return the plan body as one staging file. The [Router](../Routing_agent.md#router-role) creates the frontmatter and file name.
 
-## 지적-반영표
+## finding-response-table
 
-- **PL-201 반영표 필수** — 수정본은 `## 지적 반영`을 첫 구획으로 둔다.
+- **PL-201 Response table required** — A revision puts `## Finding responses` as its first section.
 
-| 발견 ID | 처리 | 근거 | 반영 위치 |
+| Finding ID | Handling | Grounds | Where applied |
 |---|---|---|---|
-| `F02` | 수용 · 반박 · HQ 판단 필요 중 하나 | 파일 경로, 계산, 도구 결과 | 수정한 plan 구획 |
+| `F02` | One of accept · rebut · HQ decision needed | File path, calculation, tool result | Revised plan section |
 
-- **PL-202 blocking 전부 포함** — 모든 blocking [발견](Evaluator_agent.md#발견-기록)은 표에 있어야 한다. major·minor는 수용하지 않을 때만 이유를 적는다.
+- **PL-202 Include every blocking finding** — Every blocking [finding](Evaluator_agent.md#recording-findings) must be in the table. For major and minor findings, give a reason only when not accepting.
 
-## 반박
+## rebuttals
 
-- **PL-211 새 근거** — 반박에는 이전 plan에 없던 근거(파일 경로, 계산, 도구 결과)를 붙인다.
+- **PL-211 New grounds** — Attach grounds not in the previous plan (file path, calculation, tool result) to a rebuttal.
 
-- **PL-212 반복 금지** — 같은 주장을 새 근거 없이 반복하지 않는다. 같은 쟁점에서 두 번째로 충돌하면 `HQ 판단 필요`로 표시하고, Coordinator가 쟁점 1개로 HQ에 올린다.
+- **PL-212 No repetition** — Never repeat the same argument without new grounds. On a second clash over the same issue, mark it `HQ decision needed`; the Coordinator escalates it to HQ as one issue.
 
-- **PL-213 기준을 낮추지 않기** — 완료 기준을 낮춰 발견을 피하지 않는다.
+- **PL-213 Never lower criteria** — Never lower completion criteria to avoid a finding.
 
-## 수정-범위
+## revision-scope
 
-- **PL-221 무관한 변경 표시** — 발견과 무관한 부분을 바꾸면 `## 지적 반영` 아래에 변경 요약 표를 둔다.
+- **PL-221 Mark unrelated changes** — If parts unrelated to findings change, put a change summary table under `## Finding responses`.
 
-- **PL-222 입력 변경** — 입력이 바뀌어 다시 계획하면 영향받는 단계만 바꾸고 이유를 적는다.
+- **PL-222 Input changes** — When replanning because inputs changed, change only the affected steps and state why.
 
-## 반복-한도
+## iteration-limit
 
-- **PL-231 회차 표시** — 수정본 첫 줄에 `평가 n/3회차`를 적는다. 3회차 plan에는 실패했을 때 HQ 제안에 쓸 선택지 초안(기준 조정·범위 조정·입력 제공·중단)을 `## 가정` 끝에 둔다. 한도 판정은 [Evaluator의 반복 한도](Evaluator_agent.md#반복-한도)를 따른다.
+- **PL-231 Round marker** — Write `evaluation n/3` on the first line of a revision. The round-3 plan puts draft options for an HQ proposal on failure (adjust criteria, adjust scope, provide inputs, stop) at the end of `## Assumptions`. Limit verdicts follow the [Evaluator's iteration limit](Evaluator_agent.md#iteration-limit).
 
-## 관련-문서
+## related-documents
 
-- [Evaluator](Evaluator_agent.md) — Planner의 계획을 평가하는 역할
-- [Coordinator](Coordinator_agent.md) — 계획을 요청하고 저장하는 역할
-- [작업 흐름](../Workflow_agent.md#계획과-평가) — 계획과 평가의 반복
-- [전문 역할](Specialist_Roles_agent.md) — 결합할 수 있는 분야 기준
+- [Evaluator](Evaluator_agent.md) — the role that evaluates the Planner's plans
+- [Coordinator](Coordinator_agent.md) — the role that requests and stores plans
+- [Workflow](../Workflow_agent.md#planning-and-evaluation) — the planning and evaluation cycle
+- [Specialist roles](Specialist_Roles_agent.md) — domain criteria that can be paired

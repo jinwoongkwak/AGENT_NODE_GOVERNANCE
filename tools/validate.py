@@ -47,11 +47,14 @@ def main():
         front = text.split('---', 2)[1] if text.startswith('---') else ''
         for field in ['type', 'layer', 'status', 'version', 'updated']:
             require(re.search(rf'^{field}: .+', front, re.M), f'{label}: missing {field}')
-        version = '0.2.0' if label == 'AI_Agent_Company_Comparison_admin.md' else '1.4.0'
+        version = '0.2.0' if label == 'AI_Agent_Company_Comparison_admin.md' else '1.5.0'
         require(f'version: {version}' in front, f'{label}: release version mismatch')
         h2 = re.findall(r'^## (.+)$', body, re.M)
         require(h2 and h2[0] == 'overview', f'{label}: overview must be first')
-        last = '관리자-검토-체크리스트' if p == ROOT / 'README.md' else '관련-문서'
+        if p == ROOT / 'README.md':
+            last = '관리자-검토-체크리스트'
+        else:
+            last = 'related-documents' if p.stem.endswith('_agent') else '관련-문서'
         require(h2 and h2[-1] == last, f'{label}: unexpected final section')
         overview = body.split('## overview', 1)[-1].split('\n## ', 1)[0]
         for h in h2[1:]:
@@ -140,7 +143,7 @@ def main():
         print('\n'.join(f'ERROR {e}' for e in ERRORS))
         return 1
     print(f'PASS: {len(docs)} documents; {link_count} internal links; {len(kinds)} record kinds; '
-          f'{len(clauses)} role clauses; C1-C10; entry {entry_bytes}B; release 1.4.0')
+          f'{len(clauses)} role clauses; C1-C10; entry {entry_bytes}B; release 1.5.0')
     print('Not checked: Obsidian UI, Mermaid rendering, Router runtime, HQ approval.')
     return 0
 

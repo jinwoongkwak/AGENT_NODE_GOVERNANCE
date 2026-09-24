@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 회사-프로필
@@ -60,7 +60,7 @@ HQ·프로젝트·Technical Wiki·Theory Wiki·INBOX·Archive의 역할은 [작�
 
 ## 기밀-영역
 
-기밀·NDA·라이선스·개인 자료의 실제 경로, 허용된 읽기 환경, 외부 전송 제한을 로컬 프로필에 적습니다. 미확인은 “없음”이 아닙니다. [공통 규칙](../AI/Common_Rules_agent.md#기밀)을 따릅니다.
+기밀·NDA·라이선스·개인 자료의 실제 경로, 허용된 읽기 환경, 외부 전송 제한을 로컬 프로필에 적습니다. 미확인은 “없음”이 아닙니다. [공통 규칙](../AI/Common_Rules_agent.md#confidentiality)을 따릅니다.
 
 ## 도구-설정
 

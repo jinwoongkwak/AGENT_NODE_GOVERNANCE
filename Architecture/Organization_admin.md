@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 조직-구조
@@ -41,18 +41,18 @@ flowchart TD
 
 ## 과정-역할
 
-현재는 AI Agent 하나가 [작업 루프](../AI/Workflow_agent.md#루프-한눈에)의 모든 단계를 수행하고, 필요할 때 [전문 역할](#전문-역할)의 기준을 적용합니다.
+현재는 AI Agent 하나가 [작업 루프](../AI/Workflow_agent.md#loop-at-a-glance)의 모든 단계를 수행하고, 필요할 때 [전문 역할](#전문-역할)의 기준을 적용합니다.
 
 ### 과정-역할-확장
 
 | 역할 | 한 줄 책임 | 산출 기록 | 쓸 수 있는 곳 | 금지 | 상세 |
 |---|---|---|---|---|---|
-| Coordinator | [작업 계약](../AI/Roles/Coordinator_agent.md#계약-정규화) 고정, 호출 순서, 상태, 저장, HQ 인계 | instruction, decision-request, decision-response, report | 대표 TaskNote, Router를 통한 [교환 기록](Document_System_admin.md#교환-기록), 잠금, checkpoint | 계획·평가 내용 작성, HQ 결정 대리 | [Coordinator](../AI/Roles/Coordinator_agent.md) |
+| Coordinator | [작업 계약](../AI/Roles/Coordinator_agent.md#contract-normalization) 고정, 호출 순서, 상태, 저장, HQ 인계 | instruction, decision-request, decision-response, report | 대표 TaskNote, Router를 통한 [교환 기록](Document_System_admin.md#교환-기록), 잠금, checkpoint | 계획·평가 내용 작성, HQ 결정 대리 | [Coordinator](../AI/Roles/Coordinator_agent.md) |
 | Planner | 완료 기준을 만족하는 실행 가능한 계획 | plan | [스테이징](Workspace_and_Tools_admin.md#런타임과-router) 파일 | 실행, 완료 기준·범위·[위험도](Risk_and_Authority_admin.md#위험도) 변경 | [Planner](../AI/Roles/Planner_agent.md) |
 | Evaluator | 계획 평가와 실행 결과 검증 | evaluation, verification | 스테이징 파일 | 계획·산출물 수정, 통과 기준 완화 | [Evaluator](../AI/Roles/Evaluator_agent.md) |
 | Executor | 통과·승인된 계획의 실행과 증거 수집 | execution과 실제 산출물 | 잠긴 [쓰기 범위](../HQ/Control_Settings_admin.md#쓰기-범위), 스테이징 | 계획 밖 행동, 평가 수정, 원본 덮어쓰기 | [Executor](../AI/Roles/Executor_agent.md) |
 
-기록 종류의 정의는 [문서 종류](../AI/Task_and_Record_Schema_agent.md#문서-종류)에 있고, 역할이 일하는 순서는 [작업 흐름](../AI/Workflow_agent.md#루프-한눈에)에 있습니다.
+기록 종류의 정의는 [문서 종류](../AI/Task_and_Record_Schema_agent.md#document-kinds)에 있고, 역할이 일하는 순서는 [작업 흐름](../AI/Workflow_agent.md#loop-at-a-glance)에 있습니다.
 
 ## 전문-역할
 
@@ -65,7 +65,7 @@ flowchart TD
 | Data Analyst | 데이터 색인, 분석 요구 | 재현 가능한 분석 보고 | 원 데이터 변경 |
 | Publication Editor | 주장, 근거, 투고처 조건 | 수정안과 남은 공백 | 근거 없는 주장 과장 |
 
-과정 역할과 결합하는 방법은 [전문 역할 문서](../AI/Roles/Specialist_Roles_agent.md#과정-역할과-결합)에 있습니다.
+과정 역할과 결합하는 방법은 [전문 역할 문서](../AI/Roles/Specialist_Roles_agent.md#pairing-with-process-roles)에 있습니다.
 
 ## 책임-매트릭스
 
@@ -91,7 +91,7 @@ flowchart TD
 | 원칙 | 내용 |
 |---|---|
 | 역할은 책임 단위 | [기본 모드](../Setup/README.md#도입-모드)에서는 단일 Agent가 순서대로 수행. 확장 모드는 Coordinator 세션이 각 역할을 호출 |
-| 평가 독립성 | 평가는 계획을 쓴 문맥과 분리된 새 호출로 받음. 불가능하면 그 사실을 기록하고 경량 작업만 계속 ([호출 규칙](../AI/Roles/Coordinator_agent.md#호출-규칙)) |
+| 평가 독립성 | 평가는 계획을 쓴 문맥과 분리된 새 호출로 받음. 불가능하면 그 사실을 기록하고 경량 작업만 계속 ([호출 규칙](../AI/Roles/Coordinator_agent.md#invocation-rules)) |
 | 쓰기 경계 | HQ는 지시·결정을 편집할 수 있고, Agent 중에서는 Coordinator만 TaskNote를 씀. 다른 역할은 본문을 스테이징으로 돌려줌 ([런타임과 Router](Workspace_and_Tools_admin.md#런타임과-router)) |
 | 전달 경로 | 역할끼리 직접 주고받지 않고 모두 Coordinator를 거침 |
 

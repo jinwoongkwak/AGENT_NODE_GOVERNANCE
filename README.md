@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: root
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # agent-node-governance-운영-매뉴얼
@@ -82,7 +82,7 @@ HQ가 목적·기준·우선순위·위임 밖의 결정을 맡고, Agent가 승
 
 관리자는 [운영 매뉴얼](HQ/Operating_Manual_admin.md), 실행 Agent는 [Agent 진입점](AI/Agent_Entry_agent.md), 새 회사 설립 Agent는 [설립 지침](Setup/AI_Bootstrap_agent.md)부터 읽습니다. 용어는 [용어집](Architecture/Glossary_admin.md)에서 찾습니다.
 
-Agent는 진입점 한 문서로 판단을 끝내고, 나머지 문서는 [작업 유형별 경로](AI/Agent_Entry_agent.md#작업-유형별-경로)가 요구할 때만 엽니다. 사람이 구조를 배우는 순서는 [Architecture 안내](Architecture/README.md#읽는-순서)에 있습니다.
+Agent는 진입점 한 문서로 판단을 끝내고, 나머지 문서는 [작업 유형별 경로](AI/Agent_Entry_agent.md#paths-by-task-type)가 요구할 때만 엽니다. 사람이 구조를 배우는 순서는 [Architecture 안내](Architecture/README.md#읽는-순서)에 있습니다.
 
 ## 도입과-구조-개선
 
@@ -92,6 +92,7 @@ Agent는 진입점 한 문서로 판단을 끝내고, 나머지 문서는 [작�
 
 | 버전 | 날짜 | 내용 |
 |---|---|---|
+| 1.5.0 | 2026-09-23 | `_agent` 파일 17개 중 한국어가 있던 16개(Markdown 14·JSON 2)를 영어로 번역하고 제목·앵커를 영어로 바꿈. `_admin` 문서와 README는 한국어 유지, 링크만 새 앵커로 갱신. HQ에게 쓰는 기록·보고·결정표·채팅은 한국어라는 규칙을 [기록 구조](AI/Reporting_Style_agent.md#record-structure)에 추가. vault에 들어가는 템플릿·기록 토큰(`# 기록`, 기록 단계 등)은 한국어 유지. 검사기가 `_agent` 문서의 마지막 섹션 `related-documents`를 확인 |
 | 1.4.0 | 2026-09-16 | HQ 검토가 남은 AI TaskNote를 `done` 대신 `in-progress / {hq-owner} / review`로 둠. `completedDate`는 종료일 때만 쓰고 검사기가 어긋남을 보고. HQ에게 넘기는 기록 단계 `검토 요청` 추가 |
 | 1.3.1 | 2026-09-16 | 1.3.0 frontmatter 필드를 상태 표·HQ 매뉴얼·TaskNote 템플릿·bootstrap에 반영 (`hq` → `hq_todo`, `priority` 행 정리). 검사기가 값 없는 선택 키 누락·TaskNote 제목과 파일 이름 불일치·빈 필수 목록을 보고. 문서 정렬을 운영체제와 무관하게 고정 |
 | 1.3.0 | 2026-09-16 | frontmatter 형식 승인. TaskNote `hq` → `hq_todo`, `priority`·`urgency` 삭제, `status`에 `delayed` 추가, AI가 쓴 문서에 `llm_model`, 제안서에 `recommended_model` 도입, 프로젝트 README `partners` → `collaborators`와 `codename` 삭제, 이론 Wiki 필드 정리 |
@@ -115,19 +116,19 @@ Agent는 진입점 한 문서로 판단을 끝내고, 나머지 문서는 [작�
 
 - [x] **C1 구조·재사용 범위** — [작업 공간 구조](Architecture/Workspace_Layout_admin.md#최소-구조), [설치와 도입](Setup/README.md#새-기업-시작), [문서 작성 규칙](HQ/Protocol_Governance_admin.md#문서-작성-규칙)을 검토합니다. Architecture·HQ·AI·Setup 구성, 로컬 프로필 분리, 상대 링크와 제목 규칙을 채택할지 확인합니다.
 
-- [x] **C2 권한·승인 경계** — [위험도와 실행 모드](Architecture/Risk_and_Authority_admin.md#위험도), [승인과 실행 지시](HQ/Commands_and_Approval_admin.md#승인과-실행-지시), [실행 전 검사](AI/Roles/Executor_agent.md#실행-전-검사)를 검토합니다. 명시 실행 요청의 효력, 조건부 승인, autonomous의 권한 근거를 확인합니다.
+- [x] **C2 권한·승인 경계** — [위험도와 실행 모드](Architecture/Risk_and_Authority_admin.md#위험도), [승인과 실행 지시](HQ/Commands_and_Approval_admin.md#승인과-실행-지시), [실행 전 검사](AI/Roles/Executor_agent.md#pre-execution-check)를 검토합니다. 명시 실행 요청의 효력, 조건부 승인, autonomous의 권한 근거를 확인합니다.
 
-- [x] **C3 역할과 도입 모드** — [기본·확장 모드](Setup/README.md#도입-모드), [책임 매트릭스](Architecture/Organization_admin.md#책임-매트릭스), [호출 규칙](AI/Roles/Coordinator_agent.md#호출-규칙)을 검토합니다. AI 권장: 기본 모드로 시작하고, 확장 모드는 구현·파일럿 통과 뒤 활성화합니다.
+- [x] **C3 역할과 도입 모드** — [기본·확장 모드](Setup/README.md#도입-모드), [책임 매트릭스](Architecture/Organization_admin.md#책임-매트릭스), [호출 규칙](AI/Roles/Coordinator_agent.md#invocation-rules)을 검토합니다. AI 권장: 기본 모드로 시작하고, 확장 모드는 구현·파일럿 통과 뒤 활성화합니다.
 
-- [x] **C4 스키마·기록 보존** — [task 필드](AI/Task_and_Record_Schema_agent.md#대표-task-필드-변경-확장), [불변식](AI/Task_and_Record_Schema_agent.md#불변식), [스키마 변경](AI/Task_and_Record_Schema_agent.md#스키마-변경)을 검토합니다. task_id, blockedBy 전환, run별 스키마 고정, 과거 불변 기록 보존을 확인합니다.
+- [x] **C4 스키마·기록 보존** — [task 필드](AI/Task_and_Record_Schema_agent.md#primary-task-field-changes-extended), [불변식](AI/Task_and_Record_Schema_agent.md#invariants), [스키마 변경](AI/Task_and_Record_Schema_agent.md#schema-changes)을 검토합니다. task_id, blockedBy 전환, run별 스키마 고정, 과거 불변 기록 보존을 확인합니다.
 
-- [x] **C5 Router와 작업 뷰** — [처리 순서](AI/Routing_agent.md#처리-순서), [실패와 동시성](AI/Routing_agent.md#실패와-동시성), [HQ 행동 뷰](Architecture/Workspace_and_Tools_admin.md#hq-행동-뷰-확장)를 검토합니다. 구현 범위, 중복·부분 실패·경로 검증, 템플릿 제외와 done 상태의 검토 대기 표시를 확정합니다.
+- [x] **C5 Router와 작업 뷰** — [처리 순서](AI/Routing_agent.md#processing-order), [실패와 동시성](AI/Routing_agent.md#failures-and-concurrency), [HQ 행동 뷰](Architecture/Workspace_and_Tools_admin.md#hq-행동-뷰-확장)를 검토합니다. 구현 범위, 중복·부분 실패·경로 검증, 템플릿 제외와 done 상태의 검토 대기 표시를 확정합니다.
 
-- [x] **C6 평가 기준·예산·증거** — [통과 조건](AI/Roles/Evaluator_agent.md#통과-조건), [예산](HQ/Control_Settings_admin.md#예산과-반복-한도), [연구 증거 추적](AI/Roles/Evaluator_agent.md#연구-증거-추적)을 검토합니다. AI 권장 B: 모든 항목 4/5·필수 gate·blocking 0을 통과 기준으로 하고 총점은 기록만 합니다. A를 원하면 총점 85 하한도 추가합니다. 선택과 예외를 채택 기록에 적습니다.
+- [x] **C6 평가 기준·예산·증거** — [통과 조건](AI/Roles/Evaluator_agent.md#pass-conditions), [예산](HQ/Control_Settings_admin.md#예산과-반복-한도), [연구 증거 추적](AI/Roles/Evaluator_agent.md#research-evidence-tracing)을 검토합니다. AI 권장 B: 모든 항목 4/5·필수 gate·blocking 0을 통과 기준으로 하고 총점은 기록만 합니다. A를 원하면 총점 85 하한도 추가합니다. 선택과 예외를 채택 기록에 적습니다.
 
-- [x] **C7 상태·중단·재개** — [작업 상태](Architecture/Command_and_Report_Flow_admin.md#작업-상태), [checkpoint](AI/Roles/Coordinator_agent.md#checkpoint와-재개), [receipt](AI/Roles/Executor_agent.md#receipt와-재시도)를 검토합니다. 상태 6개, 단일 실행 기기, 성공 단계만 생략, 실행 중 job의 자원 예약을 확인합니다.
+- [x] **C7 상태·중단·재개** — [작업 상태](Architecture/Command_and_Report_Flow_admin.md#작업-상태), [checkpoint](AI/Roles/Coordinator_agent.md#checkpoint-and-resume), [receipt](AI/Roles/Executor_agent.md#receipts-and-retries)를 검토합니다. 상태 6개, 단일 실행 기기, 성공 단계만 생략, 실행 중 job의 자원 예약을 확인합니다.
 
-- [x] **C8 이전 전 환경·복구** — [알려진 문제](Architecture/Company_Profile_admin.md#알려진-문제), [선행 조건](Setup/Migration_admin.md#선행-조건), [백업](AI/Common_Rules_agent.md#백업)을 검토합니다. 기존 충돌 복구와 tracked·untracked·ignored 자료 백업, 실제 복원 시험을 이전의 선행 조건으로 확정합니다.
+- [x] **C8 이전 전 환경·복구** — [알려진 문제](Architecture/Company_Profile_admin.md#알려진-문제), [선행 조건](Setup/Migration_admin.md#선행-조건), [백업](AI/Common_Rules_agent.md#backup)을 검토합니다. 기존 충돌 복구와 tracked·untracked·ignored 자료 백업, 실제 복원 시험을 이전의 선행 조건으로 확정합니다.
 
 - [x] **C9 전체 재구조화 범위** — [이전 대응표](Setup/Migration_admin.md#이전-대응표), [실행과 복구](Setup/Migration_admin.md#실행과-복구), [정본 교체](HQ/Protocol_Governance_admin.md#정본-교체-절차)를 검토합니다. 기존 최상위 영역 유지, 진입 파일·규약·CONTEXT·템플릿 갱신, 실제 파일별 이동표를 바탕으로 실행 범위를 승인합니다.
 

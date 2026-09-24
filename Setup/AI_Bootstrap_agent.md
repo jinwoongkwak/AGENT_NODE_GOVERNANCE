@@ -2,39 +2,41 @@
 type: agent-node-governance
 layer: setup
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
-# ai-회사-설립-지침
+# ai-company-bootstrap-guide
 
 ## overview
 
-이 문서를 AI에게 시작 컨텍스트로 주면 같은 운영 구조의 회사를 설립할 수 있습니다. 기존 회사의 승인·기밀 정책·프로젝트 내용을 복사하지 않고, 새 회사의 목표와 실제 자료를 바탕으로 프로필을 만듭니다.
+Given to an AI as starting context, this document lets it found a company with the same operating structure. It never copies an existing company's approvals, confidentiality policy, or project content; it builds the profile from the new company's goals and actual materials.
 
-| 섹션 | 내용 | 적용 |
+| Section | Content | Applies |
 |---|---|---|
-| [입력-계약](#입력-계약) | 설립에 필요한 입력 | 운영 매뉴얼 |
-| [ai에게-줄-요청](#ai에게-줄-요청) | 복사해서 쓰는 지시 | 운영 매뉴얼 |
-| [설립-순서](#설립-순서) | 읽기·생성·자료 배치·검증 | 운영 매뉴얼 |
-| [생성-도구](#생성-도구) | dry-run과 실제 생성 | 운영 매뉴얼 |
-| [검수와-인계](#검수와-인계) | 운영 시작 조건 | 운영 매뉴얼 |
-| [관련-문서](#관련-문서) | 상세 기준 | 운영 매뉴얼 |
+| [input-contract](#input-contract) | Inputs needed for founding | Operating manual |
+| [request-to-the-ai](#request-to-the-ai) | Instruction HQ copies and fills in | Operating manual |
+| [bootstrap-order](#bootstrap-order) | Read, generate, place materials, verify | Operating manual |
+| [generation-tools](#generation-tools) | Dry-run and actual generation | Operating manual |
+| [acceptance-and-handoff](#acceptance-and-handoff) | Conditions for starting operation | Operating manual |
+| [related-documents](#related-documents) | Detailed criteria | Operating manual |
 
-## 입력-계약
+## input-contract
 
-| 입력 | 필수 내용 | 없을 때 |
+| Input | Required content | If missing |
 |---|---|---|
-| 회사 | 이름·연구 질문·HQ·owner 값 | 파일 구조 초안만 준비 |
-| 목적지 | 새 빈 폴더 또는 기존 작업 공간 | 기존 폴더를 새 설치로 덮어쓰지 않음 |
-| 프로젝트 | ID·제목·자체 연구/외부 협업 | 프로젝트를 지어내지 않고 비워 둠 |
-| 자료 | 허용된 읽기 경로·소유자·출처·기밀 등급 | 미확인 원문을 열거나 외부 전송하지 않음 |
-| 환경 | 편집기·Git·백업·실행 기기·도구 | 실제 설치 환경에서 확인 |
-| 실행 범위 | 생성·수정·복사·이동·원격 배포 중 허용한 행위 | 허용된 준비만 진행 |
+| Company | Name, research question, HQ and owner values | Prepare only a draft file structure |
+| Destination | A new empty folder or an existing workspace | Never overwrite an existing folder with a new install |
+| Projects | ID, title, internal research or external collaboration | Leave empty; never invent projects |
+| Materials | Allowed read paths, owner, source, confidentiality grade | Never open unconfirmed sources or send them externally |
+| Environment | Editor, Git, backup, execution devices, tools | Confirm in the actual installed environment |
+| Execution scope | Which of create, edit, copy, move, remote deploy are allowed | Do only the allowed preparation |
 
-사람이 아직 정하지 않은 연구 성공 기준이나 권한은 AI가 추정해 승인으로 기록하지 않습니다. 일반적인 폴더·파일 이름은 이 매뉴얼의 기본값으로 정할 수 있습니다.
+AI never guesses research success criteria or authority a person has not yet decided and records them as approved. Ordinary folder and file names may use this manual's defaults.
 
-## ai에게-줄-요청
+## request-to-the-ai
+
+HQ copies the block below (in Korean), fills in the placeholders, and gives it to the AI.
 
 ```text
 이 AGENT_NODE_GOVERNANCE을 읽고 새 1인 연구 회사를 설립해줘.
@@ -55,18 +57,18 @@ Setup/AI_Bootstrap → Setup/Material_Placement를 읽어.
 설립 뒤 관리자가 어디서 상태를 보고 지시·승인·중단하는지 안내해.
 ```
 
-## 설립-순서
+## bootstrap-order
 
-1. 입력 계약과 프로토콜 버전을 고정합니다. 회사 TaskNote에 생성 범위·자료 접근 범위·완료 기준을 씁니다.
-2. [작업 공간 구조](../Architecture/Workspace_Layout_admin.md#최소-구조)에 맞춘 파일 생성 목록을 만듭니다. 기존 작업 공간이면 [이전 절차](Migration_admin.md)를 사용합니다.
-3. 새 빈 작업 공간을 만들고 프로필·진입 파일·CONTEXT·프로젝트 정본·작업 템플릿·HQ 행동 뷰를 생성합니다.
-4. [자료 배치 기준](Material_Placement_agent.md)에 따라 각 입력을 파일별 대응표에 분류합니다. 원본·Git repo·기밀 자료를 일반 문서와 같은 방식으로 이동하지 않습니다.
-5. 허용된 범위의 파일 배치만 실행합니다. 모르는 자료는 원위치 또는 INBOX에 두고 질문·사유를 남깁니다.
-6. 프로토콜 검사·구조 검사·합성 작업·복구 검증을 통과시킨 뒤 HQ의 실제 승인으로 채택 기록을 활성화합니다.
+1. Fix the input contract and protocol version. Write the generation scope, material access scope, and completion criteria in the company TaskNote.
+2. Build a file generation list matching the [workspace layout](../Architecture/Workspace_Layout_admin.md#최소-구조). For an existing workspace, use the [migration procedure](Migration_admin.md).
+3. Create a new empty workspace and generate the profile, entry files, CONTEXT, project canonical documents, task templates, and HQ action views.
+4. Classify each input into a per-file mapping table following the [material placement criteria](Material_Placement_agent.md). Never move originals, Git repos, or confidential material the same way as ordinary documents.
+5. Execute only file placements within the allowed scope. Leave unknown material in place or in INBOX, with the question and reason recorded.
+6. Pass the protocol check, structure check, synthetic task run, and recovery verification, then activate the adoption record on HQ's actual approval.
 
-## 생성-도구
+## generation-tools
 
-[예제 설정](company.example_agent.json)을 새 회사 값으로 바꾼 뒤 다음 명령을 사용합니다. 회사 이름·사람·프로젝트만 받으며, 승인이나 기밀 정책을 예제에서 상속하지 않습니다.
+Replace the values in the [example config](company.example_agent.json) with the new company's, then use the commands below. They take only company name, people, and projects; approvals and confidentiality policy are never inherited from the example.
 
 ```sh
 python tools/bootstrap.py --config my-company.json --dest /absolute/new-workspace
@@ -74,26 +76,26 @@ python tools/bootstrap.py --config my-company.json --dest /absolute/new-workspac
 python tools/check_workspace.py /absolute/new-workspace
 ```
 
-첫 명령은 생성 목록만 출력합니다. `--apply`는 새 폴더 또는 빈 폴더에만 쓰며 기존 파일이 있으면 거부합니다. 대상에는 프로토콜 문서·도구 사본도 들어가므로 원래 저장소에 접근하지 못해도 읽을 수 있습니다.
+The first command only prints the generation list. `--apply` writes only to a new or empty folder and refuses if files exist. The target also receives copies of the protocol documents and tools, so it stays readable without access to the original repository.
 
-생성기는 기존 자료 이동·Git 초기화·플러그인 설치·네트워크 전송을 하지 않습니다. Git을 쓸 경우 대상 구조와 공개 범위를 검토한 후 회사별 저장소를 초기화하고, 프로토콜 사본을 고정 commit의 submodule로 전환할 수 있습니다. 이때 원본 사본을 보존하고 동일 버전임을 확인합니다.
+The generator never moves existing material, initializes Git, installs plugins, or sends anything over the network. If using Git, review the target structure and visibility, then initialize a company repository; the protocol copy can be converted to a submodule pinned to a fixed commit. When doing so, keep the original copy and confirm the versions are identical.
 
-기밀 경로 미확인·미승인 상태는 생성 후에도 그대로 남습니다. 생성 도구를 실행했다고 운영 권한이 생기지 않습니다.
+Unconfirmed or unapproved confidential paths remain so after generation. Running the generator grants no operating authority.
 
-## 검수와-인계
+## acceptance-and-handoff
 
-| 기준 | 확인 방법 |
+| Criterion | How to confirm |
 |---|---|
-| 회사 값이 서로 맞음 | company.json·프로필·진입 파일·채택 기록 비교 |
-| 자료가 하나의 정본을 가짐 | 대응표·전후 hash·색인 대조 |
-| 작업이 끝까지 흐름 | 합성 TaskNote를 요청→권한→실행→검증→종료 |
-| 승인 없는 행위가 실행되지 않음 | 미승인 위험도 2 작업은 계획 상태로 남음 |
-| 관리자가 제어 가능 | 운영 홈·HQ 행동 뷰·STATUS·Decisions 경로 안내 |
-| 복구 가능 | 백업에서 표본 파일 복원 및 hash 비교 |
+| Company values agree | Compare company.json, profile, entry files, adoption record |
+| Each material has one canonical location | Check mapping table, before/after hashes, indexes |
+| Work flows end to end | Run a synthetic TaskNote through request → authority → execution → verification → closure |
+| Unapproved actions do not run | Unapproved risk-level-2 work stays in planning state |
+| The admin can control it | Point to the operating home, HQ action view, STATUS, Decisions paths |
+| Recoverable | Restore sample files from backup and compare hashes |
 
-## 관련-문서
+## related-documents
 
-- [자료 배치 기준](Material_Placement_agent.md) — 입력을 어디에 둘지 결정
-- [초기 템플릿](Templates_agent.md) — 수동 생성 대안
-- [관리자 운영 매뉴얼](../HQ/Operating_Manual_admin.md) — 설립 뒤 운영
-- [회사 프로필](../Architecture/Company_Profile_admin.md) — 로컬 설정 계약
+- [Material placement criteria](Material_Placement_agent.md) — deciding where inputs go
+- [Initial templates](Templates_agent.md) — manual generation alternative
+- [Admin operating manual](../HQ/Operating_Manual_admin.md) — operation after founding
+- [Company profile](../Architecture/Company_Profile_admin.md) — local settings contract

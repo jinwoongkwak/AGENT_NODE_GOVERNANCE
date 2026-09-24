@@ -35,9 +35,9 @@ class RewriteTests(unittest.TestCase):
         return build_entry.rewrite_links(body, self.src, self.dest)
 
     def test_sibling_and_parent_links_resolve_from_the_destination(self):
-        out = self.rewrite('[a](Company_Profile_admin.md#기밀-영역) [b](../AI/Common_Rules_agent.md#백업)')
+        out = self.rewrite('[a](Company_Profile_admin.md#기밀-영역) [b](../AI/Common_Rules_agent.md#backup)')
         self.assertIn('](../Architecture/Company_Profile_admin.md#기밀-영역)', out)
-        self.assertIn('](Common_Rules_agent.md#백업)', out)
+        self.assertIn('](Common_Rules_agent.md#backup)', out)
 
     def test_vault_path_links_resolve_from_the_package_root(self):
         name = build_entry.ROOT.name

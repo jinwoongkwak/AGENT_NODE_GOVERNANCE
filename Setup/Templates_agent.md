@@ -2,27 +2,27 @@
 type: agent-node-governance
 layer: setup
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
-# 초기-템플릿
+# initial-templates
 
 ## overview
 
-새 회사의 시작에 필요한 틀입니다. 코드 블록의 내용을 회사 저장소에 복사하고 자리표시자를 채웁니다. 이 문서 자체에는 `task` 태그가 없으며 작업으로 색인하지 않습니다.
+Forms needed to start a new company. Copy the code block contents into the company repository and fill in the placeholders. The templates stay in Korean to match the headings existing workspace documents use and because HQ reads the results; translating workspace documents is a separate decision. This document itself has no `task` tag and is not indexed as a task.
 
-| 섹션 | 내용 | 적용 |
+| Section | Content | Applies |
 |---|---|---|
-| [회사-프로필](#회사-프로필) | 회사별 값 | 운영 매뉴얼 |
-| [진입-파일](#진입-파일) | Agent 읽기 순서 | 운영 매뉴얼 |
-| [영역-context](#영역-context) | 영역별 권한과 정본 | 운영 매뉴얼 |
-| [작업-노트](#작업-노트) | 기본 모드 TaskNote | 운영 매뉴얼 |
-| [프로젝트-상태](#프로젝트-상태) | STATUS 본문 | 운영 매뉴얼 |
-| [결정-기록](#결정-기록) | 실제 HQ 결정 | 운영 매뉴얼 |
-| [관련-문서](#관련-문서) | 설치와 스키마 | 운영 매뉴얼 |
+| [company-profile](#company-profile) | Company-specific values | Operating manual |
+| [entry-file](#entry-file) | Agent reading order | Operating manual |
+| [area-context](#area-context) | Per-area authority and canonical documents | Operating manual |
+| [task-note](#task-note) | Basic mode TaskNote | Operating manual |
+| [project-status](#project-status) | STATUS body | Operating manual |
+| [decision-record](#decision-record) | Actual HQ decisions | Operating manual |
+| [related-documents](#related-documents) | Setup and schema | Operating manual |
 
-## 회사-프로필
+## company-profile
 
 ```markdown
 # 회사 프로필
@@ -56,9 +56,9 @@ updated: 2026-09-16
 <프로젝트 ID·결정 ID·자료 이름 규칙과 HQ 승인 예외>
 ```
 
-확장 모드를 도입할 때에는 [출처 프로필](../Architecture/Company_Profile_admin.md)의 모든 `{이름}` 항목에 대응되는 로컬 값을 추가하고, Router가 그 로컬 프로필을 읽는지 시험합니다.
+When adopting extended mode, add a local value for every `{name}` item in the [source profile](../Architecture/Company_Profile_admin.md) and test that the Router reads that local profile.
 
-## 진입-파일
+## entry-file
 
 ```markdown
 # Agent 진입점
@@ -70,7 +70,7 @@ updated: 2026-09-16
 5. 확장 사양 조항이나 저장소 업데이트를 운영 승인으로 간주하지 않는다.
 ```
 
-## 영역-context
+## area-context
 
 ```markdown
 # 영역 AI Context
@@ -90,9 +90,9 @@ updated: 2026-09-16
 <결과를 확인할 명령·증거·수동 확인 조건>
 ```
 
-## 작업-노트
+## task-note
 
-아래는 기본 모드의 위험도 1 작업 틀입니다. `title`은 실제 파일명과 맞추고 `owner`는 다음 행동 주체로 지정합니다. 위험도 2로 바꾸면 실행 모드와 승인 상태도 함께 조정합니다. 키 순서와 허용 값은 [tasknote 필드](../Architecture/Frontmatter_admin.md#tasknote-필드)를 따르고, 값이 없는 선택 필드도 키는 남깁니다.
+Below is the basic mode template for risk-level-1 work. Match `title` to the actual file name and set `owner` to the next actor. When changing to risk level 2, adjust the execution mode and approval state too. Key order and allowed values follow [TaskNote fields](../Architecture/Frontmatter_admin.md#tasknote-필드); keep the keys of optional fields even when they have no value.
 
 ```markdown
 ---
@@ -138,9 +138,9 @@ dateModified:
 결과·변경 파일·검증·미해결·다음 인계.
 ```
 
-의존성은 `blockedBy`에 task 링크 목록을 씁니다. 기존 `blocked_by`는 [폐기 키](../Architecture/Frontmatter_admin.md#tasknote-도구-관리-키와-폐기-키)이므로 `blockedBy`로 바꾸고, 외부 대기 조건은 본문에 보존합니다.
+Write dependencies in `blockedBy` as a list of task links. The old `blocked_by` is a [retired key](../Architecture/Frontmatter_admin.md#tasknote-도구-관리-키와-폐기-키); replace it with `blockedBy` and keep external wait conditions in the body.
 
-## 프로젝트-상태
+## project-status
 
 ```markdown
 # 프로젝트 상태
@@ -158,9 +158,9 @@ dateModified:
 <산출물·검증·목표 시점>
 ```
 
-STATUS frontmatter의 상태·단계·우선순위·마감 값은 로컬 회사가 채택한 필드 규칙과 HQ 결정으로 설정합니다. 이 템플릿은 값을 임의로 확정하지 않습니다.
+STATUS frontmatter values for status, stage, priority, and deadline are set by the local company's adopted field rules and HQ decisions. This template never fixes those values on its own.
 
-## 결정-기록
+## decision-record
 
 ```markdown
 # Decisions
@@ -174,10 +174,10 @@ STATUS frontmatter의 상태·단계·우선순위·마감 값은 로컬 회사�
 - Revisit trigger: 다시 판단할 조건
 ```
 
-초안 선택지는 TaskNote에 두고, 실제 HQ 결정만 Decisions로 승격합니다.
+Keep draft options in the TaskNote; promote only actual HQ decisions to Decisions.
 
-## 관련-문서
+## related-documents
 
-- [설치와 도입](README.md) — 템플릿 사용 순서
-- [회사 채택 기록](Adoption_admin.md#승인-기록) — 버전·승인 양식
-- [작업과 기록 스키마](../AI/Task_and_Record_Schema_agent.md) — 확장 모드 형식
+- [Setup and adoption](README.md) — order for using the templates
+- [Company adoption record](Adoption_admin.md#승인-기록) — version and approval form
+- [Task and record schema](../AI/Task_and_Record_Schema_agent.md) — extended mode format

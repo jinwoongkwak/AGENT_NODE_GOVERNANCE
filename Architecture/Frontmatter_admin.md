@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # frontmatter
@@ -236,6 +236,6 @@ frontmatter가 없는 기술 Wiki 노트에는 이 표의 필드를 모두 넣�
 
 - [Frontmatter_agent.json](Frontmatter_agent.json) — 같은 규칙의 기계 판독판
 - [check_frontmatter.py](../tools/check_frontmatter.py) — 보고 전용 검사기
-- [작업과 기록 스키마](../AI/Task_and_Record_Schema_agent.md#대표-task-필드) — 확장 모드의 대표 task 필드
+- [작업과 기록 스키마](../AI/Task_and_Record_Schema_agent.md#primary-task-fields) — 확장 모드의 대표 task 필드
 - [문서 체계](Document_System_admin.md) — 문서마다의 역할
 - [위험도와 권한](Risk_and_Authority_admin.md) — 필드를 바꿀 권한

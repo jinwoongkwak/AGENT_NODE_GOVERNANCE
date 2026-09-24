@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # architecture
@@ -31,7 +31,7 @@ Architecture 폴더는 회사가 어떻게 생겼는지 설명합니다. 누가 
 
 [회사 프로필](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md)과 [용어집](Glossary_admin.md)은 처음부터 읽기보다 링크를 따라 필요할 때 엽니다.
 
-이 순서는 사람이 구조를 배우는 경로입니다. 지시를 처리하는 Agent는 [Agent 진입점](../AI/Agent_Entry_agent.md)만 읽고, 나머지는 [작업 유형별 경로](../AI/Agent_Entry_agent.md#작업-유형별-경로)가 요구할 때만 엽니다.
+이 순서는 사람이 구조를 배우는 경로입니다. 지시를 처리하는 Agent는 [Agent 진입점](../AI/Agent_Entry_agent.md)만 읽고, 나머지는 [작업 유형별 경로](../AI/Agent_Entry_agent.md#paths-by-task-type)가 요구할 때만 엽니다.
 
 ## 문서-목록
 

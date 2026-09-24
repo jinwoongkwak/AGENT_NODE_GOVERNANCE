@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 검토와-종료
@@ -46,7 +46,7 @@ HQ가 작업의 현황을 보고, 끝난 결과를 검토하고, 작업을 닫�
 | 바뀐 파일이 쓰기 범위 안인가 | `# 기록`의 변경 파일 |
 | 미해결이나 다음 인계가 남았나 | `# 기록`의 미해결·다음 인계 |
 | 정본에 반영했나 | [정본 승격 확인](#정본-승격-확인) |
-| 사실, 추정, 권장이 구분되어 있나 | [사실·추정·권장](../AI/Reporting_Style_agent.md#사실-추정-권장) |
+| 사실, 추정, 권장이 구분되어 있나 | [사실·추정·권장](../AI/Reporting_Style_agent.md#fact-estimate-recommendation) |
 
 - **통과:** HQ가 검토 완료를 알리면 AI가 작업을 `done / none / none`으로 닫고 `completedDate`를 적습니다.
 
@@ -99,5 +99,5 @@ AI 분석만으로 프로젝트 상태를 바꾸지 않으며, 원 증거를 확
 
 - [명령과 승인](Commands_and_Approval_admin.md) — 검토 결과를 수정·승인으로 전하는 법
 - [기록 형식](../AI/Reporting_Style_agent.md) — 검토할 기록의 구조
-- [작업 흐름](../AI/Workflow_agent.md#보고와-종료) — AI 쪽의 보고와 종료 절차
+- [작업 흐름](../AI/Workflow_agent.md#reporting-and-closure) — AI 쪽의 보고와 종료 절차
 - [HQ 안내](README.md) — HQ 문서 목록

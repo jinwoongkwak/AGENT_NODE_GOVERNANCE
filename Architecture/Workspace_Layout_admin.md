@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.4.0
+version: 1.5.0
 updated: 2026-09-16
 ---
 

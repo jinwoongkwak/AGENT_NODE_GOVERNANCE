@@ -2,57 +2,57 @@
 type: agent-node-governance
 layer: ai
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
-# 전문-역할
+# specialist-roles
 
 ## overview
 
-전문 역할은 분야별 기준을 가진 역할입니다. 제품이나 모델 이름이 아니라 책임으로 정의하며, 역할의 기본 정의는 [조직 구조의 전문 역할](../../Architecture/Organization_admin.md#전문-역할)에 있습니다. 이 문서는 각 역할이 적용하는 기준과 [과정 역할](../../Architecture/Organization_admin.md#과정-역할)과 결합하는 방법을 설명합니다.
+Specialist roles carry domain-specific criteria. They are defined by responsibility, not by product or model name; the base definition is in [specialist roles in the organization](../../Architecture/Organization_admin.md#전문-역할). This document describes the criteria each role applies and how it pairs with [process roles](../../Architecture/Organization_admin.md#과정-역할).
 
-| 섹션 | 내용 | 적용 |
+| Section | Content | Applies |
 |---|---|---|
-| [전문-역할-목록](#전문-역할-목록) | 역할마다 적용하는 기준 | 운영 매뉴얼 |
-| [과정-역할과-결합](#과정-역할과-결합) | 과정 역할과 짝지을 때 맡는 일 | 운영 매뉴얼 |
-| [금지-행위](#금지-행위) | 전문 역할이 좁힐 수는 있어도 약하게 할 수 없는 규칙 | 운영 매뉴얼 |
-| [관련-문서](#관련-문서) | 조직 구조와 과정 역할 | 운영 매뉴얼 |
+| [specialist-role-list](#specialist-role-list) | Criteria each role applies | Operating manual |
+| [pairing-with-process-roles](#pairing-with-process-roles) | What each takes on when paired with a process role | Operating manual |
+| [prohibited-actions](#prohibited-actions) | Rules specialist roles may narrow but never weaken | Operating manual |
+| [related-documents](#related-documents) | Organization and process roles | Operating manual |
 
-## 전문-역할-목록
+## specialist-role-list
 
-| 역할 | 적용하는 기준 | 기대 산출 |
+| Role | Criteria applied | Expected output |
 |---|---|---|
-| Research Scout | 출처의 신뢰도, 검색 범위와 제외 기준, 인용의 추적 가능성 | 인용이 달린 근거 요약 |
-| Design Reviewer | 설계 체크리스트, 위험 순위, spec과의 일치 | 위험 순으로 정렬한 발견 |
-| Data Analyst | 재현성, 원 데이터 불변, 학습·검증 데이터 분리 | 재현 가능한 분석 보고 |
-| Publication Editor | 주장과 근거의 대응, 투고처 조건, 과장 여부 | 수정안과 남은 공백 |
+| Research Scout | Source reliability, search scope and exclusion criteria, traceable citations | Evidence summary with citations |
+| Design Reviewer | Design checklist, risk ranking, consistency with spec | Findings sorted by risk |
+| Data Analyst | Reproducibility, raw data unchanged, training and validation data separated | Reproducible analysis report |
+| Publication Editor | Claim–evidence correspondence, venue requirements, overstatement | Proposed edits and remaining gaps |
 
-작업마다 이 기본값을 좁힐 수 있습니다. 예를 들어 특정 저널의 투고 규정만 보도록 Publication Editor의 범위를 줄일 수 있습니다.
+These defaults can be narrowed per task. For example, a Publication Editor's scope can be limited to one journal's submission rules.
 
-## 과정-역할과-결합
+## pairing-with-process-roles
 
-과정 역할은 "언제 무엇을 넘기나"를, 전문 역할은 "어떤 전문 기준으로 보나"를 정합니다. Coordinator가 호출할 때 결합할 전문 역할을 정해 전달물에 적습니다 ([호출 순서](Coordinator_agent.md#호출-순서)).
+Process roles decide "what is handed over, and when"; specialist roles decide "which expert criteria to apply." The Coordinator picks the specialist role to pair when calling and writes it in the handoff items ([invocation order](Coordinator_agent.md#invocation-order)).
 
-| 전문 역할 | [Planner](Planner_agent.md#전문-역할-결합)와 결합 | [Evaluator](Evaluator_agent.md#필수-조건)와 결합 | [Executor](Executor_agent.md#실행)와 결합 |
+| Specialist role | Paired with [Planner](Planner_agent.md#specialist-role-pairing) | Paired with [Evaluator](Evaluator_agent.md#required-conditions) | Paired with [Executor](Executor_agent.md#execution) |
 |---|---|---|---|
-| Research Scout | 검색 범위·출처 기준 계획 | 인용·출처 검증 | 검색·요약 실행 |
-| Design Reviewer | 설계 제약 표 | 설계 결함을 위험 순으로 제시 | — |
-| Data Analyst | 데이터 분리·재현 계획 | 재현성·데이터 누수 검사 | 승인된 분석 실행 |
-| Publication Editor | 주장–근거 대응 계획 | 근거를 넘는 주장 검사 | 승인된 문장 수정 |
+| Research Scout | Plan search scope and source criteria | Verify citations and sources | Run searches and summaries |
+| Design Reviewer | Design constraint table | Present design defects by risk | — |
+| Data Analyst | Plan data split and reproduction | Check reproducibility and data leakage | Run approved analyses |
+| Publication Editor | Plan claim–evidence mapping | Check claims exceeding evidence | Make approved text edits |
 
-## 금지-행위
+## prohibited-actions
 
-| 역할 | 금지 |
+| Role | Prohibited |
 |---|---|
-| Research Scout | 출처를 지어내거나 숨김 |
-| Design Reviewer | 범위 없이 설계 데이터베이스 수정 |
-| Data Analyst | 원 데이터 변경 |
-| Publication Editor | 근거 없는 주장을 과장 |
-| 모든 전문 역할 | NDA·기밀·안전 규칙을 약하게 만드는 일 ([기밀](../Common_Rules_agent.md#기밀), [파일 작업](../Common_Rules_agent.md#파일-작업)) |
+| Research Scout | Fabricating or hiding sources |
+| Design Reviewer | Editing design databases without a scope |
+| Data Analyst | Changing raw data |
+| Publication Editor | Overstating unsupported claims |
+| All specialist roles | Weakening NDA, confidentiality, or safety rules ([confidentiality](../Common_Rules_agent.md#confidentiality), [file operations](../Common_Rules_agent.md#file-operations)) |
 
-## 관련-문서
+## related-documents
 
-- [조직 구조](../../Architecture/Organization_admin.md) — 전문 역할의 정의와 조직 속 위치
-- [Planner](Planner_agent.md), [Evaluator](Evaluator_agent.md), [Executor](Executor_agent.md) — 결합하는 과정 역할
-- [AI 안내](../README.md) — AI 문서 목록
+- [Organization](../../Architecture/Organization_admin.md) — definition of specialist roles and their place in the organization
+- [Planner](Planner_agent.md), [Evaluator](Evaluator_agent.md), [Executor](Executor_agent.md) — process roles they pair with
+- [AI guide](../README.md) — list of AI documents

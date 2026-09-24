@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 위험도와-권한
@@ -26,8 +26,8 @@ updated: 2026-09-16
 | 위험도 | 예 | 필요한 TaskNote 구조 | 기본 실행 |
 |---|---|---|---|
 | 0 | 검색, 분석, 목록 작성 | `# 지시`, `# 현재 상태`, `# 기록` | autonomous, 최종 보고 1회 |
-| 1 | 범위 안의 되돌릴 수 있는 텍스트 수정: 링크 수정, 노트 편집, STATUS 본문 갱신, DEC 기록, TaskNote 생성 | 위험도 0 구조 + 짧은 `# 실행 계획`. 먼저 [백업](../AI/Common_Rules_agent.md#백업) | autonomous (HQ가 더 엄격한 모드를 고를 수 있음) |
-| 2 | 파일 이동·삭제, [버전 관리](../AI/Common_Rules_agent.md#버전-관리) 상태 변경, STATUS frontmatter 필드, [기밀 영역](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#기밀-영역), 외부 전송, 작업 공간 설정, 20개 넘는 파일의 일괄 수정 | 버전 붙은 전체 구조, [결정표](../HQ/Commands_and_Approval_admin.md#결정표-작성), 계획, 검증, 복구 방법 | manual: 먼저 승인, 실행 지시를 기다림 |
+| 1 | 범위 안의 되돌릴 수 있는 텍스트 수정: 링크 수정, 노트 편집, STATUS 본문 갱신, DEC 기록, TaskNote 생성 | 위험도 0 구조 + 짧은 `# 실행 계획`. 먼저 [백업](../AI/Common_Rules_agent.md#backup) | autonomous (HQ가 더 엄격한 모드를 고를 수 있음) |
+| 2 | 파일 이동·삭제, [버전 관리](../AI/Common_Rules_agent.md#version-control) 상태 변경, STATUS frontmatter 필드, [기밀 영역](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#기밀-영역), 외부 전송, 작업 공간 설정, 20개 넘는 파일의 일괄 수정 | 버전 붙은 전체 구조, [결정표](../HQ/Commands_and_Approval_admin.md#결정표-작성), 계획, 검증, 복구 방법 | manual: 먼저 승인, 실행 지시를 기다림 |
 
 - **애매하면 높은 쪽:** 두 등급 사이에서 판단이 갈리면 높은 등급을 씁니다.
 
@@ -57,7 +57,7 @@ updated: 2026-09-16
 | 표준 | 연구 판단, 여러 단계, 재작업 가능성이 큼 | 계획과 평가 반복 → 실행 → 독립 결과 검증 |
 | 엄격 | 위험도 2, 핵심 설계, 공개 산출물, 오류 비용이 큼 | 표준 + HQ 권한 확인 + 작업별 검증 강화 |
 
-접수할 때 정하고, 진행 중에는 올리기만 할 수 있습니다 ([검토 깊이와 위험도](../AI/Roles/Coordinator_agent.md#검토-깊이와-위험도)).
+접수할 때 정하고, 진행 중에는 올리기만 할 수 있습니다 ([검토 깊이와 위험도](../AI/Roles/Coordinator_agent.md#review-depth-and-risk-level)).
 
 ## 판단-권한-경계
 
@@ -75,7 +75,7 @@ updated: 2026-09-16
 | tape-out, 제출, 외부 발신, 원본 대체 | HQ의 명시적 권한과 검토 | 제출용 수치·주장 확정과 실제 제출은 별도 행동 |
 | Agent가 할 수 없는 장비 조작·외부 확인 | HQ 또는 지정 담당 | 필요한 조작, 기대 결과, 재개 조건을 짧게 요청 |
 
-HQ가 미리 위임한 선택은 [작업 계약](../AI/Roles/Coordinator_agent.md#계약-정규화)에 적고 반복해서 승인받지 않습니다. 위임 범위가 없는 결정은 평가 점수로 대신하지 않습니다.
+HQ가 미리 위임한 선택은 [작업 계약](../AI/Roles/Coordinator_agent.md#contract-normalization)에 적고 반복해서 승인받지 않습니다. 위임 범위가 없는 결정은 평가 점수로 대신하지 않습니다.
 
 ## 위임하지-않는-행위
 
@@ -84,9 +84,9 @@ HQ가 미리 위임한 선택은 [작업 계약](../AI/Roles/Coordinator_agent.m
 | 주 브랜치([`{main-branch}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#버전-관리-설정))에 merge, commit, push | HQ | 정본 이력의 최종 관문 |
 | 버전 관리 이력 재작성, 변경 폐기 | HQ | 되돌릴 수 없음 |
 | 버전 관리에서 제외했던 파일을 추적 대상으로 변경 | HQ 결정 | 기밀·라이선스 자료 유출 위험 |
-| 파일 영구 삭제 ([휴지통](../AI/Common_Rules_agent.md#파일-작업) 비우기) | HQ | 복구 불가 |
+| 파일 영구 삭제 ([휴지통](../AI/Common_Rules_agent.md#file-operations) 비우기) | HQ | 복구 불가 |
 | 외부 발신, 제출, tape-out | HQ의 명시적 권한 | 외부에 되돌릴 수 없는 영향 |
-| 기밀 원문을 외부 AI 서비스로 전송 | 누구도 하지 않음 | 기밀 유지 의무 ([기밀](../AI/Common_Rules_agent.md#기밀)) |
+| 기밀 원문을 외부 AI 서비스로 전송 | 누구도 하지 않음 | 기밀 유지 의무 ([기밀](../AI/Common_Rules_agent.md#confidentiality)) |
 | 원 데이터·원 보고서·EDA DB·제출 논문 덮어쓰기 | 누구도 하지 않음 | 증거 손실 |
 
 ## 관련-문서

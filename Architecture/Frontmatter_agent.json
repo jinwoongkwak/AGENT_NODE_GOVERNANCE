@@ -1,86 +1,86 @@
 {
  "schema": 1,
  "status": "active",
- "protocol_version": "1.4.0",
+ "protocol_version": "1.5.0",
  "admin_doc": "Architecture/Frontmatter_admin.md",
- "notice": "HQ가 승인한 규칙입니다. Frontmatter_admin.md가 사람이 읽는 정본이고 이 파일이 같은 규칙의 기계 판독판입니다. 규칙을 바꾸려면 admin 문서를 먼저 고치고 승인받은 뒤 이 파일을 맞춥니다.",
+ "notice": "Rules approved by HQ. Frontmatter_admin.md is the human-readable canonical source and this file is the machine-readable version of the same rules. To change a rule, edit and get approval for the admin document first, then align this file.",
  "conventions": {
   "list_style": "block",
   "empty_list": "[]",
-  "empty_required_value": "키를 두고 값을 비움. 본문에 '확인 필요'를 적음",
-  "empty_optional_value": "키를 두고 값을 비움. 키를 지우지 않음",
+  "empty_required_value": "Keep the key with an empty value. Write '확인 필요' in the body",
+  "empty_optional_value": "Keep the key with an empty value. Never remove the key",
   "date": "YYYY-MM-DD",
-  "datetime": "작업 관리 도구가 쓰는 ISO 8601 (YYYY-MM-DDTHH:MM:SS.sss±HH:MM)",
-  "link": "\"[[vault 기준 전체 경로|표시 이름]]\" 형태로 큰따옴표를 붙임. 연결할 문서가 있으면 항상 링크로 쓰고, 링크를 만들 수 없을 때만 한 줄 문자열",
-  "key_case": "snake_case. 작업 관리 도구가 정한 키(blockedBy, dateCreated 등)는 plugin_keys의 이름을 그대로 씀",
-  "key_order": "각 kind의 order를 따름. order에 없는 도구 관리 키는 맨 뒤",
-  "one_line": "text 값은 한 줄. 문장·링크·마크다운 강조를 넣지 않음",
-  "ai_authored": "AI가 초안을 쓰거나 고친 문서는 llm_model에 그 모델 이름을 적음. 사람이 쓴 문서는 키를 두고 값을 비움"
+  "datetime": "ISO 8601 as written by the task management tool (YYYY-MM-DDTHH:MM:SS.sss±HH:MM)",
+  "link": "Quoted as \"[[full vault path|display name]]\". Always use a link when a target document exists; a one-line string only when a link cannot be made",
+  "key_case": "snake_case. Keys defined by the task management tool (blockedBy, dateCreated, etc.) keep their plugin_keys names",
+  "key_order": "Follow each kind's order. Tool-managed keys not in order go last",
+  "one_line": "text values are one line. No sentences, links, or Markdown emphasis",
+  "ai_authored": "Documents drafted or edited by AI record the model name in llm_model. Documents written by a person keep the key with an empty value"
  },
  "types": {
-  "text": {"meaning": "한 줄 문자열"},
-  "int": {"meaning": "정수", "pattern": "^-?[0-9]+$"},
-  "bool": {"meaning": "true 또는 false", "pattern": "^(true|false)$"},
-  "date": {"meaning": "날짜", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
-  "date_or_datetime": {"meaning": "날짜 또는 날짜와 시각", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9:.]+(Z|[+-][0-9]{2}:[0-9]{2})?)?$"},
-  "link": {"meaning": "Obsidian 링크", "pattern": "^\\[\\[[^\\]]+\\]\\]$"},
-  "link_or_text": {"meaning": "Obsidian 링크. 링크를 만들 수 없을 때만 한 줄 문자열", "pattern": "^(\\[\\[[^\\]]+\\]\\]|[^\\[\\]]+)$"},
+  "text": {"meaning": "One-line string"},
+  "int": {"meaning": "Integer", "pattern": "^-?[0-9]+$"},
+  "bool": {"meaning": "true or false", "pattern": "^(true|false)$"},
+  "date": {"meaning": "Date", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+  "date_or_datetime": {"meaning": "Date, or date and time", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9:.]+(Z|[+-][0-9]{2}:[0-9]{2})?)?$"},
+  "link": {"meaning": "Obsidian link", "pattern": "^\\[\\[[^\\]]+\\]\\]$"},
+  "link_or_text": {"meaning": "Obsidian link. A one-line string only when a link cannot be made", "pattern": "^(\\[\\[[^\\]]+\\]\\]|[^\\[\\]]+)$"},
   "version": {"meaning": "V<major>.<minor>.<patch>", "pattern": "^V[0-9]+\\.[0-9]+\\.[0-9]+$"},
-  "commit": {"meaning": "git commit 해시 7–40자", "pattern": "^[0-9a-f]{7,40}$"},
-  "enum": {"meaning": "values의 키 중 하나"},
-  "list": {"meaning": "블록 목록. item_type이 각 항목의 형식"}
+  "commit": {"meaning": "git commit hash, 7–40 characters", "pattern": "^[0-9a-f]{7,40}$"},
+  "enum": {"meaning": "One of the keys in values"},
+  "list": {"meaning": "Block list. item_type is the format of each item"}
  },
  "placeholders": {
-  "hq-owner": {"meaning": "HQ 사람의 owner 값", "default": null},
-  "task-folder": {"meaning": "TaskNote 최상위 폴더", "default": null},
-  "projects-folder": {"meaning": "프로젝트 폴더", "default": null},
-  "technical-wiki": {"meaning": "기술 Wiki 폴더", "default": null},
-  "theory-wiki": {"meaning": "이론 Wiki 폴더", "default": null},
-  "contexts": {"meaning": "TaskNote contexts 허용 값", "default": null},
-  "recommended-models": {"meaning": "recommended_model 허용 값. 작업 난이도에 맞는 모델", "default": {"Claude Haiku 4.5": "난이도 낮음: 정해진 절차, 단순 수집·편집", "GPT-5 mini": "난이도 낮음: 정해진 절차, 단순 수집·편집", "Claude Sonnet 5": "난이도 보통: 일반 실행, 문서 작성, 코드 수정", "GPT-5": "난이도 보통: 일반 실행, 문서 작성, 코드 수정", "Claude Opus 5": "난이도 높음: 설계·다단계 추론, 위험도 2 작업", "GPT-5 Pro": "난이도 높음: 설계·다단계 추론, 위험도 2 작업"}},
-  "project-status": {"meaning": "STATUS status 허용 값", "default": {"idea": "착수 전 구상", "active": "진행 중", "paused": "일시 중단", "closing": "마무리 중", "archived": "종료·보관"}},
-  "project-phases": {"meaning": "STATUS phase 허용 값", "default": {"research": "조사", "design": "설계", "verification": "검증", "publication": "발표·출판"}},
-  "project-id-pattern": {"meaning": "프로젝트 ID 정규식", "default": "^.+$"},
-  "readme-tracks": {"meaning": "README track 허용 값", "default": null},
-  "languages": {"meaning": "Wiki language 허용 값", "default": {"KR": "한국어", "EN": "영어"}}
+  "hq-owner": {"meaning": "owner value of the HQ person", "default": null},
+  "task-folder": {"meaning": "Top-level TaskNote folder", "default": null},
+  "projects-folder": {"meaning": "Projects folder", "default": null},
+  "technical-wiki": {"meaning": "Technical Wiki folder", "default": null},
+  "theory-wiki": {"meaning": "Theory Wiki folder", "default": null},
+  "contexts": {"meaning": "Allowed values for TaskNote contexts", "default": null},
+  "recommended-models": {"meaning": "Allowed values for recommended_model. A model matching task difficulty", "default": {"Claude Haiku 4.5": "Low difficulty: fixed procedures, simple collection and editing", "GPT-5 mini": "Low difficulty: fixed procedures, simple collection and editing", "Claude Sonnet 5": "Medium difficulty: ordinary execution, writing documents, editing code", "GPT-5": "Medium difficulty: ordinary execution, writing documents, editing code", "Claude Opus 5": "High difficulty: design, multi-step reasoning, risk-level-2 work", "GPT-5 Pro": "High difficulty: design, multi-step reasoning, risk-level-2 work"}},
+  "project-status": {"meaning": "Allowed values for STATUS status", "default": {"idea": "Idea before start", "active": "In progress", "paused": "Paused", "closing": "Closing out", "archived": "Closed and archived"}},
+  "project-phases": {"meaning": "Allowed values for STATUS phase", "default": {"research": "Research", "design": "Design", "verification": "Verification", "publication": "Presentation and publication"}},
+  "project-id-pattern": {"meaning": "Project ID regular expression", "default": "^.+$"},
+  "readme-tracks": {"meaning": "Allowed values for README track", "default": null},
+  "languages": {"meaning": "Allowed values for Wiki language", "default": {"KR": "Korean", "EN": "English"}}
  },
  "kinds": {
   "tasknote": {
    "match": {"under": "{task-folder}", "tag": "task", "exclude_under": ["{task-folder}/Views"]},
-   "variants": {"ai": "tags에 ai가 있음", "human": "tags에 admin이 있는 그 밖의 task"},
+   "variants": {"ai": "tags include ai", "human": "Other tasks whose tags include admin"},
    "order": ["title", "status", "tags", "projects", "contexts", "owner", "hq_todo", "risk", "llm_model", "proposal_version", "approved_version", "recommended_model", "execution_mode", "report_policy", "write_scope", "blockedBy", "scheduled", "due", "completedDate", "timeEstimate", "ForToday", "waiting", "dateCreated", "dateModified"],
    "fields": {
-    "title": {"required": ["ai", "human"], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "파일 이름과 같은 제목"},
+    "title": {"required": ["ai", "human"], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "Title equal to the file name"},
     "status": {"required": ["ai", "human"], "type": "enum", "set_by": "agent", "change_risk": 1,
-     "values": {"to-do": "시작 전", "in-progress": "진행 중", "delayed": "미루었거나 다시 볼 조건을 기다림", "done": "완료", "archived": "보관 (작업 관리 도구가 완료로 취급)"},
-     "legacy_values": {"completed": "done으로 읽음", "shelved": "delayed로 바꿈"}},
+     "values": {"to-do": "Not started", "in-progress": "In progress", "delayed": "Postponed or waiting for a condition to revisit", "done": "Done", "archived": "Archived (the task management tool treats it as done)"},
+     "legacy_values": {"completed": "Read as done", "shelved": "Change to delayed"}},
     "tags": {"required": ["ai", "human"], "type": "list", "item_type": "text", "set_by": "agent", "change_risk": 1,
      "must_include": {"ai": ["task", "ai"], "human": ["task", "admin"]},
-     "reserved": {"task": "작업 관리 도구가 task로 인식", "ai": "AI TaskNote", "admin": "사람 TaskNote", "archived": "보관한 task"}},
-    "projects": {"required": ["ai"], "type": "list", "item_type": "link_or_text", "set_by": "agent", "change_risk": 1, "meaning": "프로젝트 README 또는 색인 링크. 링크를 만들 수 없을 때만 텍스트"},
-    "contexts": {"required": [], "type": "list", "item_type": "enum", "values_from": "contexts", "set_by": "agent", "change_risk": 1, "meaning": "AI가 쓰고 HQ가 확인"},
+     "reserved": {"task": "Recognized as a task by the task management tool", "ai": "AI TaskNote", "admin": "Human TaskNote", "archived": "Archived task"}},
+    "projects": {"required": ["ai"], "type": "list", "item_type": "link_or_text", "set_by": "agent", "change_risk": 1, "meaning": "Link to the project README or index. Text only when a link cannot be made"},
+    "contexts": {"required": [], "type": "list", "item_type": "enum", "values_from": "contexts", "set_by": "agent", "change_risk": 1, "meaning": "Written by AI, confirmed by HQ"},
     "owner": {"required": ["ai"], "type": "enum", "set_by": "agent", "change_risk": 1,
-     "values": {"ai": "AI가 다음 행동", "{hq-owner}": "HQ가 다음 행동", "none": "종료"}},
+     "values": {"ai": "AI acts next", "{hq-owner}": "HQ acts next", "none": "Closed"}},
     "hq_todo": {"required": ["ai"], "type": "enum", "set_by": "agent", "change_risk": 1,
-     "values": {"none": "HQ 할 일 없음", "decide": "선택·승인", "dispatch": "실행 지시", "review": "결과 검토"}},
+     "values": {"none": "Nothing for HQ", "decide": "Choose or approve", "dispatch": "Dispatch", "review": "Review results"}},
     "risk": {"required": ["ai"], "type": "enum", "set_by": "agent", "change_risk": 1,
-     "values": {"0": "읽기·분석", "1": "범위 안의 되돌릴 수 있는 수정", "2": "이동·삭제·설정·외부 전송·대량 수정"}},
-    "llm_model": {"required": ["ai"], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "이 문서를 쓴 모델 이름 (예: Claude Sonnet 5, GPT-5)"},
+     "values": {"0": "Read and analyze", "1": "Reversible edits within scope", "2": "Move, delete, settings, external transfer, bulk edits"}},
+    "llm_model": {"required": ["ai"], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "Name of the model that wrote this document (e.g., Claude Sonnet 5, GPT-5)"},
     "proposal_version": {"required": ["ai"], "type": "version", "set_by": "agent", "change_risk": 1},
-    "approved_version": {"required": ["ai"], "type": "version", "allow_empty": true, "set_by": "agent", "change_risk": 1, "meaning": "HQ 승인 원문이 있을 때만 채움. 미승인은 \"\""},
-    "recommended_model": {"required": ["ai"], "type": "enum", "values_from": "recommended-models", "set_by": "agent", "change_risk": 1, "meaning": "실행할 작업의 난이도에 맞는 모델 추천. HQ가 바꿀 수 있음"},
+    "approved_version": {"required": ["ai"], "type": "version", "allow_empty": true, "set_by": "agent", "change_risk": 1, "meaning": "Filled only when HQ's original approval text exists. Unapproved is \"\""},
+    "recommended_model": {"required": ["ai"], "type": "enum", "values_from": "recommended-models", "set_by": "agent", "change_risk": 1, "meaning": "Recommended model for the difficulty of the work. HQ may change it"},
     "execution_mode": {"required": ["ai"], "type": "enum", "set_by": "hq", "change_risk": 1,
-     "values": {"autonomous": "승인 없이 실행", "after-approval": "승인하면 바로 실행", "manual": "승인 뒤 실행 지시를 기다림"}},
+     "values": {"autonomous": "Execute without approval", "after-approval": "Execute immediately on approval", "manual": "Wait for a dispatch order after approval"}},
     "report_policy": {"required": ["ai"], "type": "enum", "set_by": "hq", "change_risk": 1,
-     "values": {"decision-only": "결정이 필요할 때만", "milestone": "단계마다", "final": "끝에 한 번"}},
-    "write_scope": {"required": ["ai"], "type": "list", "item_type": "text", "set_by": "hq", "change_risk": 1, "meaning": "vault 기준 경로"},
-    "blockedBy": {"required": [], "type": "list", "item_type": "link", "set_by": "agent", "change_risk": 1, "plugin_key": true, "meaning": "먼저 끝나야 하는 task 링크. 외부 조건은 본문"},
+     "values": {"decision-only": "Only when a decision is needed", "milestone": "At each milestone", "final": "Once at the end"}},
+    "write_scope": {"required": ["ai"], "type": "list", "item_type": "text", "set_by": "hq", "change_risk": 1, "meaning": "Paths relative to the vault"},
+    "blockedBy": {"required": [], "type": "list", "item_type": "link", "set_by": "agent", "change_risk": 1, "plugin_key": true, "meaning": "Links to tasks that must finish first. External conditions go in the body"},
     "scheduled": {"required": [], "type": "date_or_datetime", "set_by": "hq", "change_risk": 1, "plugin_key": true},
     "due": {"required": [], "type": "date_or_datetime", "set_by": "hq", "change_risk": 1, "plugin_key": true},
-    "completedDate": {"required": [], "type": "date", "set_by": "plugin", "change_risk": 1, "plugin_key": true, "meaning": "AI TaskNote는 종료 상태일 때만 값"},
-    "timeEstimate": {"required": [], "type": "int", "set_by": "hq", "change_risk": 1, "plugin_key": true, "meaning": "분"},
-    "ForToday": {"required": [], "type": "bool", "set_by": "hq", "change_risk": 1, "variant_only": "human", "meaning": "오늘 할 일 표시"},
-    "waiting": {"required": [], "type": "bool", "set_by": "hq", "change_risk": 1, "variant_only": "human", "meaning": "외부 대기"},
+    "completedDate": {"required": [], "type": "date", "set_by": "plugin", "change_risk": 1, "plugin_key": true, "meaning": "For AI TaskNotes, a value only in the closed state"},
+    "timeEstimate": {"required": [], "type": "int", "set_by": "hq", "change_risk": 1, "plugin_key": true, "meaning": "Minutes"},
+    "ForToday": {"required": [], "type": "bool", "set_by": "hq", "change_risk": 1, "variant_only": "human", "meaning": "Marks a task for today"},
+    "waiting": {"required": [], "type": "bool", "set_by": "hq", "change_risk": 1, "variant_only": "human", "meaning": "Waiting on an external party"},
     "dateCreated": {"required": [], "type": "date_or_datetime", "set_by": "plugin", "change_risk": 1, "plugin_key": true},
     "dateModified": {"required": [], "type": "date_or_datetime", "set_by": "plugin", "change_risk": 1, "plugin_key": true}
    },
@@ -90,7 +90,7 @@
    "completed_date_field": "completedDate",
    "closed_state": ["done", "none", "none"],
    "plugin_managed": ["timeEntries", "recurrence", "recurrence_anchor", "recurrence_parent", "complete_instances", "skipped_instances", "reminders", "pomodoros", "tasknotes_manual_order", "icsEventId", "googleCalendarEventId"],
-   "deprecated": {"blocked_by": "blockedBy", "project": "projects", "hq": "hq_todo", "priority": "(삭제)", "urgency": "(삭제)"}
+   "deprecated": {"blocked_by": "blockedBy", "project": "projects", "hq": "hq_todo", "priority": "(removed)", "urgency": "(removed)"}
   },
   "project_status": {
    "match": {"under": "{projects-folder}", "filename": "STATUS.md"},
@@ -99,60 +99,60 @@
     "project_id": {"required": ["all"], "type": "text", "pattern_from": "project-id-pattern", "set_by": "agent", "change_risk": 1},
     "status": {"required": ["all"], "type": "enum", "values_from": "project-status", "set_by": "hq", "change_risk": 2},
     "phase": {"required": ["all"], "type": "enum", "values_from": "project-phases", "set_by": "hq", "change_risk": 2},
-    "next_action": {"required": ["all"], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "구체적 행동 하나"},
+    "next_action": {"required": ["all"], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "One concrete action"},
     "next_deadline": {"required": ["all"], "type": "date", "allow_empty": true, "set_by": "hq", "change_risk": 2},
     "updated": {"required": ["all"], "type": "date", "set_by": "agent", "change_risk": 1},
-    "draft_by": {"required": [], "type": "link_or_text", "set_by": "agent", "change_risk": 1, "meaning": "AI가 쓴 초안의 TaskNote 링크 또는 legacy ID"},
-    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "draft_by가 있으면 그 초안을 만든 모델 이름"}
+    "draft_by": {"required": [], "type": "link_or_text", "set_by": "agent", "change_risk": 1, "meaning": "TaskNote link or legacy ID for an AI-written draft"},
+    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "If draft_by is set, the name of the model that made that draft"}
    },
-   "deprecated": {"priority": "(삭제)"}
+   "deprecated": {"priority": "(removed)"}
   },
   "project_readme": {
    "match": {"under": "{projects-folder}", "filename": "README.md", "depth_max": 3, "has_key": "project_id"},
    "order": ["project_id", "type", "collaborators", "track", "created", "draft_by", "llm_model"],
    "fields": {
     "project_id": {"required": ["all"], "type": "text", "pattern_from": "project-id-pattern", "set_by": "agent", "change_risk": 1},
-    "type": {"required": ["all"], "type": "enum", "set_by": "hq", "change_risk": 1, "values": {"project-brief": "일반 프로젝트", "collaboration": "공동 연구 프로젝트"}},
-    "collaborators": {"required": [], "type": "list", "item_type": "link_or_text", "set_by": "hq", "change_risk": 1, "meaning": "사람·기관 문서가 있으면 링크"},
+    "type": {"required": ["all"], "type": "enum", "set_by": "hq", "change_risk": 1, "values": {"project-brief": "Ordinary project", "collaboration": "Joint research project"}},
+    "collaborators": {"required": [], "type": "list", "item_type": "link_or_text", "set_by": "hq", "change_risk": 1, "meaning": "Link when a person or institution document exists"},
     "track": {"required": [], "type": "enum", "values_from": "readme-tracks", "set_by": "hq", "change_risk": 1},
     "created": {"required": ["all"], "type": "date", "set_by": "agent", "change_risk": 1},
     "draft_by": {"required": [], "type": "link_or_text", "set_by": "agent", "change_risk": 1},
-    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "draft_by가 있으면 그 초안을 만든 모델 이름"}
+    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "If draft_by is set, the name of the model that made that draft"}
    },
-   "deprecated": {"codename": "(삭제)", "partners": "collaborators"}
+   "deprecated": {"codename": "(removed)", "partners": "collaborators"}
   },
   "decision_log": {
    "match": {"filename": "Decisions.md"},
    "order": ["project_id", "type", "updated", "llm_model"],
    "fields": {
-    "project_id": {"required": ["all"], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "프로젝트 ID 또는 HQ"},
-    "type": {"required": ["all"], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"decision-log": "결정 기록"}},
+    "project_id": {"required": ["all"], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "Project ID or HQ"},
+    "type": {"required": ["all"], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"decision-log": "Decision log"}},
     "updated": {"required": ["all"], "type": "date", "set_by": "agent", "change_risk": 1},
-    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "AI가 썼으면 그 모델 이름"}
+    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "If written by AI, the model name"}
    }
   },
   "index": {
    "match": {"type_value": ["project-index", "technical-index", "theory-index", "repository-catalog"]},
    "order": ["type", "updated", "llm_model"],
    "fields": {
-    "type": {"required": ["all"], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"project-index": "프로젝트 현황 표", "technical-index": "기술 Wiki 색인", "theory-index": "이론 Wiki 색인", "repository-catalog": "저장소 목록"}},
+    "type": {"required": ["all"], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"project-index": "Project status table", "technical-index": "Technical Wiki index", "theory-index": "Theory Wiki index", "repository-catalog": "Repository list"}},
     "updated": {"required": ["all"], "type": "date", "set_by": "agent", "change_risk": 1},
-    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "AI가 썼으면 그 모델 이름"}
+    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "If written by AI, the model name"}
    }
   },
   "repo_card": {
    "match": {"under": "{technical-wiki}", "type_value": ["repo-card"]},
    "order": ["type", "repo", "remote", "local_path", "branch", "last_checked_commit", "status", "updated", "llm_model"],
    "fields": {
-    "type": {"required": ["all"], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"repo-card": "저장소 카드"}},
+    "type": {"required": ["all"], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"repo-card": "Repository card"}},
     "repo": {"required": ["all"], "type": "text", "set_by": "agent", "change_risk": 1},
     "remote": {"required": ["all"], "type": "text", "set_by": "agent", "change_risk": 1},
     "local_path": {"required": ["all"], "type": "text", "set_by": "agent", "change_risk": 1},
     "branch": {"required": ["all"], "type": "text", "set_by": "agent", "change_risk": 1},
     "last_checked_commit": {"required": ["all"], "type": "commit", "set_by": "agent", "change_risk": 1},
-    "status": {"required": ["all"], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"active": "사용 중", "archived": "보관"}},
+    "status": {"required": ["all"], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"active": "In use", "archived": "Archived"}},
     "updated": {"required": ["all"], "type": "date", "set_by": "agent", "change_risk": 1},
-    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "AI가 썼으면 그 모델 이름"}
+    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "If written by AI, the model name"}
    }
   },
   "technical_wiki": {
@@ -160,16 +160,16 @@
    "order": ["title", "type", "tags", "source_project", "status", "created", "updated", "related", "llm_model"],
    "fields": {
     "title": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1},
-    "type": {"required": [], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"note": "일반 기술 노트", "external-media": "외부 자료 요약"}},
+    "type": {"required": [], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"note": "Ordinary technical note", "external-media": "External material summary"}},
     "tags": {"required": ["all"], "type": "list", "item_type": "text", "set_by": "agent", "change_risk": 1},
-    "source_project": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "처음 나온 프로젝트 ID"},
-    "status": {"required": [], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"active": "유지 중", "done": "완결"}},
+    "source_project": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "ID of the project where it first appeared"},
+    "status": {"required": [], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"active": "Maintained", "done": "Complete"}},
     "created": {"required": [], "type": "date", "set_by": "agent", "change_risk": 1},
     "updated": {"required": ["all"], "type": "date", "set_by": "agent", "change_risk": 1},
     "related": {"required": [], "type": "list", "item_type": "link", "set_by": "agent", "change_risk": 1},
-    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "AI가 썼으면 그 모델 이름"}
+    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "If written by AI, the model name"}
    },
-   "missing_frontmatter": "frontmatter가 없는 노트에는 order의 필드를 모두 넣고, 값을 모르면 키만 두고 비움"
+   "missing_frontmatter": "For notes without frontmatter, add every field in order; if a value is unknown, keep only the key and leave it empty"
   },
   "theory_wiki": {
    "match": {"under": "{theory-wiki}"},
@@ -182,19 +182,19 @@
     "updated": {"required": ["all"], "type": "date", "set_by": "agent", "change_risk": 1},
     "language": {"required": ["all"], "type": "enum", "values_from": "languages", "set_by": "agent", "change_risk": 1},
     "sources": {"required": ["all"], "type": "list", "item_type": "text", "set_by": "agent", "change_risk": 1},
-    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "AI가 썼으면 그 모델 이름"}
+    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "If written by AI, the model name"}
    },
-   "deprecated": {"aliases": "(삭제)", "translation": "(삭제)", "related": "(삭제)"}
+   "deprecated": {"aliases": "(removed)", "translation": "(removed)", "related": "(removed)"}
   }
  },
  "no_frontmatter": ["_AI/CONTEXT.md"],
  "hq_decided": [
-  {"id": "Q1", "kind": "tasknote", "field": "status", "decision": "legacy 값 shelved는 delayed로 바꾸고 delayed를 허용 값에 추가"},
-  {"id": "Q2", "kind": "tasknote", "field": "urgency, ForToday, waiting, blockedBy", "decision": "urgency만 삭제. ForToday·waiting은 true/false로 유지하고 blockedBy는 별도 링크 필드로 둠"},
-  {"id": "Q3", "kind": "tasknote", "field": "projects", "decision": "연결할 문서가 있으면 링크로 쓰고, 링크를 만들 수 없을 때만 텍스트 (link_or_text)"},
-  {"id": "Q4", "kind": "(전체)", "field": "priority", "decision": "모든 kind에서 삭제"},
-  {"id": "Q5", "kind": "project_readme", "field": "type", "decision": "공동 연구 README는 collaboration"},
-  {"id": "Q6", "kind": "technical_wiki", "field": "(전체)", "decision": "frontmatter가 없는 노트에 order의 필드를 모두 넣고, status에는 설명 문장을 쓰지 않음"},
-  {"id": "Q7", "kind": "(전체)", "field": "빈 선택 값", "decision": "값이 없는 선택 필드도 키는 두고 값만 비움"}
+  {"id": "Q1", "kind": "tasknote", "field": "status", "decision": "Change the legacy value shelved to delayed and add delayed to the allowed values"},
+  {"id": "Q2", "kind": "tasknote", "field": "urgency, ForToday, waiting, blockedBy", "decision": "Remove only urgency. Keep ForToday and waiting as true/false and keep blockedBy as a separate link field"},
+  {"id": "Q3", "kind": "tasknote", "field": "projects", "decision": "Use a link when a target document exists; text only when a link cannot be made (link_or_text)"},
+  {"id": "Q4", "kind": "(all)", "field": "priority", "decision": "Removed from every kind"},
+  {"id": "Q5", "kind": "project_readme", "field": "type", "decision": "A joint research README is collaboration"},
+  {"id": "Q6", "kind": "technical_wiki", "field": "(all)", "decision": "Add every field in order to notes without frontmatter; never write explanatory sentences in status"},
+  {"id": "Q7", "kind": "(all)", "field": "Empty optional values", "decision": "Keep the key of an optional field even without a value; leave only the value empty"}
  ]
 }

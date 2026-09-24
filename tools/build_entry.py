@@ -106,7 +106,7 @@ def block(spec):
     body = rewrite_links(drop_mermaid(body), src, ENTRY)
     heading = '#' * (level + 1) + ' ' + anchor
     origin = posixpath.relpath(rel, ENTRY.parent.relative_to(ROOT).as_posix())
-    return f'{heading}\n\n정본: [{anchor}]({origin}#{anchor})\n\n{body}'
+    return f'{heading}\n\nCanonical: [{anchor}]({origin}#{anchor})\n\n{body}'
 
 
 def build_entry(text):
@@ -127,7 +127,7 @@ def overview_summary(text):
     paragraph = re.sub(r'\[([^\]]*)\]\([^)]*\)', r'\1', paragraph).replace('`', '')
     if paragraph.startswith('|'):
         return ''
-    head = re.split(r'(?<=다\.)\s', paragraph, maxsplit=1)[0]
+    head = re.split(r'(?<=다\.)\s|(?<=[a-z)]\.)\s', paragraph, maxsplit=1)[0]
     return head if len(head) <= 70 else head[:67] + '...'
 
 
@@ -152,8 +152,8 @@ def build_manifest(entry_text):
         'schema': 1,
         'protocol_version': version,
         'entry': ENTRY.relative_to(ROOT).as_posix(),
-        'note': 'mode basic 문서만 기본 운영에 적용됩니다. extended와 reference는 '
-                'Agent_Entry_agent.md의 작업 유형별 경로가 요구할 때만 엽니다.',
+        'note': 'Only mode basic documents apply to basic operation. Open extended and reference '
+                'documents only when the paths by task type in Agent_Entry_agent.md require them.',
         'totals': totals,
         'documents': entries,
     }

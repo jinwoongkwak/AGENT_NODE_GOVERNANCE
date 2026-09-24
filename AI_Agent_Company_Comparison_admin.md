@@ -3,7 +3,7 @@ type: agent-node-governance-analysis
 layer: analysis
 status: draft
 version: 0.2.0
-updated: 2026-09-15
+updated: 2026-09-23
 ---
 
 # ai-agent-1인기업과-it-기업-구조-비교
@@ -44,11 +44,11 @@ updated: 2026-09-15
 | 1 | 단일 작업 단위 | [TaskNote](Architecture/Document_System_admin.md#작업-문서) 하나 = 결과 하나 = 승인 경계 하나. 별도 지시서·보고서 금지 | adopted |
 | 2 | 위험 등급 | [위험도](Architecture/Risk_and_Authority_admin.md#위험도) 0·1·2로 문서 깊이와 승인 필요 여부를 결정. 애매하면 높은 쪽, 쪼개서 회피 금지 | adopted |
 | 3 | 승인과 실행의 분리 | [실행 모드](Architecture/Risk_and_Authority_admin.md#실행-모드) autonomous·after-approval·manual. manual은 승인해도 `실행해`가 따로 필요 | adopted |
-| 4 | 권한 경계 | `write_scope` 경로 제한, [기밀 영역](AI/Common_Rules_agent.md#기밀), [위임하지 않는 행위](Architecture/Risk_and_Authority_admin.md#위임하지-않는-행위) 7종 | adopted |
+| 4 | 권한 경계 | `write_scope` 경로 제한, [기밀 영역](AI/Common_Rules_agent.md#confidentiality), [위임하지 않는 행위](Architecture/Risk_and_Authority_admin.md#위임하지-않는-행위) 7종 | adopted |
 | 5 | 상태 기계 | `status`·`owner`·`hq_todo`의 [6개 조합](Architecture/Command_and_Report_Flow_admin.md#작업-상태)만 허용. `owner`는 항상 다음 행동 주체 | adopted |
 | 6 | 역할 분리 | [과정 역할](Architecture/Organization_admin.md#과정-역할) 4개. 계획자와 평가자를 다른 문맥으로 분리, Coordinator만 대표 노트에 기록 | proposed |
-| 7 | 불변 증거 | [교환 기록](Architecture/Document_System_admin.md#교환-기록) 8종, 발행 후 수정 금지, 입력 hash·commit·스키마 고정 ([불변식](AI/Task_and_Record_Schema_agent.md#불변식) I1–I10) | proposed |
-| 8 | 검증 게이트 | [필수 조건](AI/Roles/Evaluator_agent.md#필수-조건) G1–G6, [점수표](AI/Roles/Evaluator_agent.md#점수표) 5항목, [반복 한도](AI/Roles/Evaluator_agent.md#반복-한도) 3회·2회 | proposed |
+| 7 | 불변 증거 | [교환 기록](Architecture/Document_System_admin.md#교환-기록) 8종, 발행 후 수정 금지, 입력 hash·commit·스키마 고정 ([불변식](AI/Task_and_Record_Schema_agent.md#invariants) I1–I10) | proposed |
+| 8 | 검증 게이트 | [필수 조건](AI/Roles/Evaluator_agent.md#required-conditions) G1–G6, [점수표](AI/Roles/Evaluator_agent.md#scorecard) 5항목, [반복 한도](AI/Roles/Evaluator_agent.md#iteration-limit) 3회·2회 | proposed |
 
 원칙은 네 줄입니다 — 기억은 문서에, 안전은 장치로, 통제는 명시적으로, 사람은 결정만 ([운영 원칙](Architecture/Operating_Model_admin.md#운영-원칙)).
 
@@ -67,17 +67,17 @@ updated: 2026-09-15
 | G1–G6 게이트 | 설계 리뷰 체크리스트, 출시 준비 리뷰, 아키텍처 리뷰 보드 | 개념 동일 |
 | 교환 기록 불변 + hash | 감사 로그, 빌드 provenance(SLSA), ADR | JM이 더 세밀함. 업계는 보통 코드에만 적용 |
 | instruction이 commit·스키마·프로필 hash 고정 | lockfile, 재현 가능 빌드, policy-as-code 버전 고정 | 개념 동일 |
-| [receipt와 재시도](AI/Roles/Executor_agent.md#receipt와-재시도), request-id 중복 방지 | 멱등 키, at-least-once 처리, outbox 패턴 | 분산 시스템 설계를 그대로 차용 |
-| 잠금·lease, [checkpoint](AI/Roles/Coordinator_agent.md#checkpoint와-재개) | 분산 잠금, Temporal·Airflow의 durable execution | 구현체 없이 규칙만 존재 |
-| [Router](AI/Routing_agent.md#router의-역할)가 위반 시 저장 거부 | admission controller(OPA), pre-commit hook, CI 린터 | 미구현. 가장 큰 격차 |
-| [예외 중심 보고](AI/Roles/Coordinator_agent.md#hq-보고-시점) | management by exception, 알림 정책, 온콜 에스컬레이션 | 동일 |
+| [receipt와 재시도](AI/Roles/Executor_agent.md#receipts-and-retries), request-id 중복 방지 | 멱등 키, at-least-once 처리, outbox 패턴 | 분산 시스템 설계를 그대로 차용 |
+| 잠금·lease, [checkpoint](AI/Roles/Coordinator_agent.md#checkpoint-and-resume) | 분산 잠금, Temporal·Airflow의 durable execution | 구현체 없이 규칙만 존재 |
+| [Router](AI/Routing_agent.md#router-role)가 위반 시 저장 거부 | admission controller(OPA), pre-commit hook, CI 린터 | 미구현. 가장 큰 격차 |
+| [예외 중심 보고](AI/Roles/Coordinator_agent.md#hq-reporting-points) | management by exception, 알림 정책, 온콜 에스컬레이션 | 동일 |
 | [주의력 예산](HQ/HQ_Role_admin.md#주의력-예산) 10개 | 인지 부하 기반 팀 설계, 작은 PR 문화, 회의 예산 | JM이 수치로 명문화한 점이 더 앞섬 |
 | [예산 30분·10회](HQ/Control_Settings_admin.md#예산과-반복-한도) | 타임박스, 스파이크 예산, 에러 버짓 | 동일 |
 | `.trash`, 원본 덮어쓰기 금지 | soft delete, 보존 정책, 백업·복구(RPO/RTO) | 동일 |
 | `ai/work` 브랜치, main은 HQ만 merge | 보호된 main + PR 병합, 릴리스 매니저 | 동일하되 서버 강제 없음 |
 | [도입 모드](Setup/README.md#도입-모드) 기본·확장 | 점진적 도입, 성숙도 모델(crawl-walk-run) | 동일 |
 | [파일럿·대응표·복구](Setup/Migration_admin.md#파일럿) | 마이그레이션 런북, dry-run, 롤백 계획 | 동일 |
-| [지시의 출처](AI/Common_Rules_agent.md#지시의-출처) | 신뢰 경계, 프롬프트 인젝션 방어 | **대부분의 기업보다 앞섬** |
+| [지시의 출처](AI/Common_Rules_agent.md#instruction-sources) | 신뢰 경계, 프롬프트 인젝션 방어 | **대부분의 기업보다 앞섬** |
 
 ## 강한-점
 
@@ -98,7 +98,7 @@ updated: 2026-09-15
 | --: | ------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------- |
 |   1 | **처리량 상한이 HQ 한 명의 판단 속도** | 의사결정 위임 매트릭스(금액·영향 한도), 부서장 위임, 대리 결재     | [위임 범위](HQ/Control_Settings_admin.md#위임-범위)가 있으나 `proposed`. 금액·영향 기준 없음           |
 |   2 | HQ 부재 시 전면 정지             | 대행자 지정, 온콜 로테이션, 타임아웃 자동 승인               | 없음. `hq_todo: decide`는 무한 대기                                                      |
-|   3 | 독립 평가가 실제로는 독립이 아님        | 서로 다른 경력·이해관계를 가진 사람이 리뷰하므로 실패 모드가 다름     | [독립성](AI/Roles/Evaluator_agent.md#독립성)이 상관 오류를 인정하고 반례 1개를 요구. 완화 수단이 얇음           |
+|   3 | 독립 평가가 실제로는 독립이 아님        | 서로 다른 경력·이해관계를 가진 사람이 리뷰하므로 실패 모드가 다름     | [독립성](AI/Roles/Evaluator_agent.md#independence)이 상관 오류를 인정하고 반례 1개를 요구. 완화 수단이 얇음           |
 |   4 | 평가 기준을 평가 대상이 스스로 채점      | 테스트 스위트·운영 지표·고객이 최종 심판. 프로세스 바깥에 있음      | 도구 증거 우선·독립 검사 1회 규정은 있으나 외부 심판이 문서 작업에는 부재                                  |
 |   5 | **통제가 코드가 아니라 산문**        | IAM·브랜치 보호·admission controller가 물리적으로 차단 | 유일한 기계 검사는 문서 형식 검사. Router는 미구현                                             |
 |   6 | Agent 준수는 균일하지 않음         | 사람은 체크리스트를 건너뛰고, CI는 절대 안 건너뜀             | Agent는 확률적으로 단계를 조용히 생략할 수 있는데 이를 잡을 게이트가 없음                                 |
@@ -162,7 +162,7 @@ flowchart LR
 
 | 관찰                                                                                           | 관련 항목       |
 | -------------------------------------------------------------------------------------------- | ----------- |
-| 기계 강제가 없는 동안에는 "확장 모드 활성화"보다 [실행 전 검사](AI/Roles/Executor_agent.md#실행-전-검사) 몇 개를 스크립트로 옮기는 편이 효과가 큼 | C3, C5      |
+| 기계 강제가 없는 동안에는 "확장 모드 활성화"보다 [실행 전 검사](AI/Roles/Executor_agent.md#pre-execution-check) 몇 개를 스크립트로 옮기는 편이 효과가 큼 | C3, C5      |
 | HQ 부재·응답 지연을 다루는 경로가 비어 있음. 보류 유지가 유일한 결말                                                    | C2, C7      |
 | 평가 수치(3회·2회·4/5)는 재조정 근거를 모으는 방법이 정해져야 의미가 생김                                                | C6          |
 | 되돌릴 수 있는 git 행위와 되돌릴 수 없는 행위(force push·이력 재작성·외부 발신)를 같은 위험도 2로 묶은 점                        | C2          |

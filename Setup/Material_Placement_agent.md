@@ -2,54 +2,54 @@
 type: agent-node-governance
 layer: setup
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
-# 자료-배치-기준
+# material-placement-criteria
 
 ## overview
 
-파일 확장자보다 소유권·용도·수명·접근 제한을 먼저 확인합니다. 같은 PDF라도 참고 문헌, 제출본, 심사 원고는 위치와 권한이 다릅니다.
+Check ownership, purpose, lifespan, and access restrictions before file extension. The same PDF goes to a different location with different permissions depending on whether it is a reference, a submitted version, or a manuscript under review.
 
-| 섹션 | 내용 | 적용 |
+| Section | Content | Applies |
 |---|---|---|
-| [판단-순서](#판단-순서) | 입력 분류 우선순위 | 운영 매뉴얼 |
-| [배치-표](#배치-표) | 자료별 정본 위치 | 운영 매뉴얼 |
-| [대응표와-실행](#대응표와-실행) | 이동·복사·링크 규칙 | 운영 매뉴얼 |
-| [예외와-보존](#예외와-보존) | 모호함·중복·기밀·repo | 운영 매뉴얼 |
-| [관련-문서](#관련-문서) | 설립과 이전 | 운영 매뉴얼 |
+| [decision-order](#decision-order) | Priority for classifying inputs | Operating manual |
+| [placement-table](#placement-table) | Canonical location by material type | Operating manual |
+| [mapping-table-and-execution](#mapping-table-and-execution) | Move, copy, and link rules | Operating manual |
+| [exceptions-and-preservation](#exceptions-and-preservation) | Ambiguity, duplicates, confidentiality, repos | Operating manual |
+| [related-documents](#related-documents) | Founding and migration | Operating manual |
 
-## 판단-순서
+## decision-order
 
-1. **권한:** 이 자료를 읽거나 옮길 수 있는지 확인합니다. 기밀·NDA·라이선스 자료는 그 정책을 먼저 적용합니다.
-2. **소유권:** 특정 프로젝트, 회사 공통, 기관 업무, 개인 기록 중 누가 책임지는지 정합니다.
-3. **용도:** 실행 중인 연구, 재사용 절차, 이론, 업무 지시, 원 증거, 최종 산출물 중 무엇인지 정합니다.
-4. **수명:** 진행 중이면 현재 영역에, 종료·제출 원본이면 보존 위치에 둡니다. 과거 날짜라는 이유만으로 보관하지 않습니다.
-5. **확신:** 근거가 부족하면 자동 배치를 멈추고 원위치 또는 승인된 INBOX에 둡니다.
+1. **Authority:** Confirm you may read or move this material. Apply confidentiality, NDA, and license policies first.
+2. **Ownership:** Decide who is responsible: a specific project, the company as a whole, institutional work, or a personal record.
+3. **Purpose:** Decide whether it is active research, a reusable procedure, theory, a work instruction, raw evidence, or a final deliverable.
+4. **Lifespan:** Ongoing material goes in its current area; closed or submitted originals go in a preservation location. Never archive something only because its date is old.
+5. **Confidence:** If grounds are insufficient, stop automatic placement and leave it in place or in the approved INBOX.
 
-## 배치-표
+## placement-table
 
-| 자료 | 정본 위치 | 판단 근거·행동 |
+| Material | Canonical location | Grounds and action |
 |---|---|---|
-| 회사 우선순위·조정·운영 결정 | HQ 색인·Decisions | 여러 프로젝트를 조정하는 정보 |
-| 지시·승인·작업 경과 | TaskNote | 작업 하나에 노트 하나 |
-| 특정 연구의 가설·회의·대안 | 프로젝트 `10_NOTES/` | 연구 질문·프로젝트 ID로 소유권 확인 |
-| 회로·구조·설계 근거 | 프로젝트 설계 영역 | 기존 회사의 설계 경로를 따름 |
-| 코드 저장소 | 프로젝트 source 또는 공용 repo 영역 | Git repo 경계를 보존하고 submodule로 연결 |
-| 원 데이터·시뮬레이션·측정 | 승인된 원본 저장소 | Vault에는 Data_Index의 위치·버전·조건·hash를 기록 |
-| 보고서·발표·논문 작업본 | 해당 프로젝트 reports/publications 영역 | 원 데이터와 주장·그림의 추적 관계 유지 |
-| 제출본·납품본 | 프로젝트 closeout 또는 승인된 보존 위치 | 덮어쓰지 않고 정확한 버전 보존 |
-| 재사용 절차·장비·EDA 설정 | Technical Wiki | 다른 프로젝트도 사용하는 절차 |
-| 개념·공식·유도·이론 학습 | Theory Wiki | 특정 프로젝트에 종속되지 않는 설명 |
-| 기관 공통 행정·가이드 | 로컬 프로필의 기관 영역 | 선택 영역, 새 회사에 자동 생성하지 않음 |
-| 심사 원고·개인 재무 | 로컬 기밀 영역 | 일반 프로젝트나 공개 repo에 배치 금지 |
-| 아직 분류 불가 | INBOX 또는 원위치 | 미확정 이유와 다음 담당 기록 |
-| 종료한 프로젝트 | Archive | HQ 보관 결정 후 링크·repo 검증하며 이동 |
+| Company priorities, coordination, operating decisions | HQ index, Decisions | Information that coordinates several projects |
+| Instructions, approvals, work progress | TaskNote | One note per task |
+| Hypotheses, meetings, alternatives for a specific study | Project `10_NOTES/` | Confirm ownership via research question and project ID |
+| Circuit, structure, design rationale | Project design area | Follow the existing company's design paths |
+| Code repositories | Project source or shared repo area | Preserve Git repo boundaries and connect as submodules |
+| Raw data, simulation, measurement | Approved original storage | Record location, version, conditions, and hash in the vault's Data_Index |
+| Working copies of reports, presentations, papers | The project's reports/publications area | Keep traceability between raw data and claims and figures |
+| Submitted or delivered versions | Project closeout or approved preservation location | Never overwrite; keep the exact version |
+| Reusable procedures, equipment, EDA settings | Technical Wiki | Procedures other projects also use |
+| Concepts, formulas, derivations, theory study | Theory Wiki | Explanations not tied to a specific project |
+| Institutional administration and guides | Institutional area in the local profile | Optional area; not created automatically for a new company |
+| Manuscripts under review, personal finances | Local confidential area | Never place in ordinary projects or public repos |
+| Not yet classifiable | INBOX or in place | Record why it is undecided and who acts next |
+| Closed projects | Archive | Move after HQ's archive decision, verifying links and repos |
 
-기존 회사의 하위 폴더 이름은 로컬 프로필과 CONTEXT가 정합니다. 같은 내용을 새 분류 폴더에 복사해 두 개의 정본을 만들지 않습니다.
+An existing company's subfolder names are set by its local profile and CONTEXT. Never copy the same content into a new classification folder and create two canonical copies.
 
-## 대응표와-실행
+## mapping-table-and-execution
 
 ```text
 원본 경로 | 소유 영역 | 기밀 등급 | 배치 근거 | 대상 경로
@@ -57,20 +57,20 @@ updated: 2026-09-16
 영향 링크·Canvas·설정 | 실행 결과 | 최종 hash | 미확정 이유
 ```
 
-자료를 실제로 옮기기 전에 대응표를 작업 노트에 고정합니다. 사용자 요청이 해당 이동을 명시적으로 허락했다면 그 근거를 기록하고 실행하며 같은 권한을 다시 묻지 않습니다. 범위를 새로 넓히는 이동은 별도 결정으로 남깁니다.
+Fix the mapping table (columns above, written in Korean for HQ) in the task note before actually moving material. If the user's request explicitly allowed that move, record the grounds and execute without asking for the same permission again. Moves that newly widen the scope are left as a separate decision.
 
-파일명만으로 확실한 항목은 경로·프로젝트 ID·색인으로 판정할 수 있습니다. 내용 확인은 허용 범위에서만 하고, 판단 근거와 원본 위치를 기록합니다.
+Items that are certain from file names alone may be classified by path, project ID, and index. Inspect content only within the allowed scope, and record the grounds and original location.
 
-## 예외와-보존
+## exceptions-and-preservation
 
-- 중복 후보는 hash로 비교하고 정본 소유권을 확인합니다. 같다는 이유만으로 영구 삭제하지 않습니다.
-- Git repo는 탐색기 이동을 하지 않습니다. `git mv`·submodule 경로·원격·포인터·문서 링크를 함께 처리합니다.
-- 새 이름과 기존 파일이 충돌하면 덮어쓰지 않습니다. 두 원본을 보존하고 버전 또는 소유권을 확인합니다.
-- 바이너리·원 데이터·제출본은 불변 원본을 유지합니다. 변환본·편집본은 별도로 만들고 원본을 링크합니다.
-- 자료를 읽을 권한이 없으면 파일명·승인된 색인만 다룹니다. 분류를 위해 외부 서비스에 원문을 보내지 않습니다.
+- Compare duplicate candidates by hash and confirm canonical ownership. Never permanently delete something just because it is identical.
+- Never move a Git repo in a file explorer. Handle `git mv`, submodule paths, remotes, pointers, and document links together.
+- If a new name collides with an existing file, never overwrite. Keep both originals and confirm version or ownership.
+- Binaries, raw data, and submitted versions stay as immutable originals. Create converted or edited copies separately and link the original.
+- Without permission to read material, handle only file names and approved indexes. Never send source text to an external service for classification.
 
-## 관련-문서
+## related-documents
 
-- [AI 회사 설립 지침](AI_Bootstrap_agent.md) — 새 회사 설립 흐름
-- [이전 절차](Migration_admin.md) — 기존 회사 변경
-- [작업 공간 구조](../Architecture/Workspace_Layout_admin.md) — 영역별 책임
+- [AI company bootstrap guide](AI_Bootstrap_agent.md) — flow for founding a new company
+- [Migration procedure](Migration_admin.md) — changing an existing company
+- [Workspace layout](../Architecture/Workspace_Layout_admin.md) — responsibilities by area

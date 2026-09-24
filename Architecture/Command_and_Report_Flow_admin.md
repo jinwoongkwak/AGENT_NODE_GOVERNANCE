@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 명령과-보고-체계
@@ -71,7 +71,7 @@ sequenceDiagram
 
 - **초안만 원할 때:** HQ가 `초안:`으로 요청하면 결정 대기에서 멈춥니다 ([채팅 명령](../HQ/Commands_and_Approval_admin.md#채팅-명령)).
 
-지시를 [작업 계약](../AI/Roles/Coordinator_agent.md#계약-정규화)으로 고정하는 확장 세부 조항은 Coordinator의 계약 정규화 조항(CO-111–CO-114)에 있습니다.
+지시를 [작업 계약](../AI/Roles/Coordinator_agent.md#contract-normalization)으로 고정하는 확장 세부 조항은 Coordinator의 계약 정규화 조항(CO-111–CO-114)에 있습니다.
 
 ## 결정과-승인-흐름
 
@@ -99,7 +99,7 @@ sequenceDiagram
 
 | 단계 | 할 일 | 정의 |
 |---|---|---|
-| 기록 | `# 현재 상태`를 갱신하고 버전 붙은 기록 항목을 `# 기록`에 추가 | [기록 구조](../AI/Reporting_Style_agent.md#기록-구조) |
+| 기록 | `# 현재 상태`를 갱신하고 버전 붙은 기록 항목을 `# 기록`에 추가 | [기록 구조](../AI/Reporting_Style_agent.md#record-structure) |
 | 알림 | 작업의 보고 정책에 맞춰 HQ에게 알림 | [보고 정책](../HQ/Control_Settings_admin.md#보고-정책) |
 | 정본 반영 | 결과가 STATUS·Decisions·Wiki에 속하면 반영 | [정본 승격 확인](../HQ/Review_and_Closure_admin.md#정본-승격-확인) |
 | 후속 제안 | 미해결이나 인계가 남으면 중복 없는 다음 버전 제안을 즉시 작성 | [후속 제안 처리](../HQ/Review_and_Closure_admin.md#후속-제안-처리) |
@@ -107,7 +107,7 @@ sequenceDiagram
 
 ### 예외-중심-보고-확장
 
-내부 반복(계획 수정, 재평가, 한도 안의 재시도)은 모두 기록하지만 HQ에게는 알리지 않습니다. HQ에게는 결정 필요, 실패·중단, 완료, 계약에 적힌 milestone만 알립니다 ([HQ 보고 시점](../AI/Roles/Coordinator_agent.md#hq-보고-시점)).
+내부 반복(계획 수정, 재평가, 한도 안의 재시도)은 모두 기록하지만 HQ에게는 알리지 않습니다. HQ에게는 결정 필요, 실패·중단, 완료, 계약에 적힌 milestone만 알립니다 ([HQ 보고 시점](../AI/Roles/Coordinator_agent.md#hq-reporting-points)).
 
 ## 작업-상태
 
@@ -157,7 +157,7 @@ stateDiagram-v2
 
 ## 교환-기록-흐름
 
-[과정 역할](Organization_admin.md#과정-역할)을 도입하면 역할 사이의 전달물이 [교환 기록](Document_System_admin.md#교환-기록)으로 남습니다. 역할은 본문만 돌려주고, Coordinator가 [Router](../AI/Routing_agent.md#router의-역할)로 기록을 저장하며 대표 노트에 링크를 추가합니다.
+[과정 역할](Organization_admin.md#과정-역할)을 도입하면 역할 사이의 전달물이 [교환 기록](Document_System_admin.md#교환-기록)으로 남습니다. 역할은 본문만 돌려주고, Coordinator가 [Router](../AI/Routing_agent.md#router-role)로 기록을 저장하며 대표 노트에 링크를 추가합니다.
 
 ```mermaid
 flowchart LR
@@ -174,7 +174,7 @@ flowchart LR
     H --> B
 ```
 
-단계마다 어떤 기록을 누가 만드는지는 [단계별 기록](../AI/Workflow_agent.md#단계별-기록)에 있습니다.
+단계마다 어떤 기록을 누가 만드는지는 [단계별 기록](../AI/Workflow_agent.md#records-by-stage)에 있습니다.
 
 ## 관련-문서
 

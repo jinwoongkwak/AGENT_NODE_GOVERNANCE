@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 문서-체계
@@ -52,7 +52,7 @@ TaskNote는 AI 작업의 유일한 명령·보고 단위입니다. 작업 하나
 
 - **별도 파일 금지:** 지시서나 보고서 파일을 따로 만들지 않습니다. 원 데이터·이미지·로그는 원래 위치를 링크합니다.
 
-- **필드:** frontmatter 필드와 허용 값은 [대표 task 필드](../AI/Task_and_Record_Schema_agent.md#대표-task-필드)에 있습니다. 문서 종류 전체를 한 형식으로 맞추는 규칙은 [frontmatter](Frontmatter_admin.md)에 있습니다.
+- **필드:** frontmatter 필드와 허용 값은 [대표 task 필드](../AI/Task_and_Record_Schema_agent.md#primary-task-fields)에 있습니다. 문서 종류 전체를 한 형식으로 맞추는 규칙은 [frontmatter](Frontmatter_admin.md)에 있습니다.
 
 ## 교환-기록
 
@@ -62,8 +62,8 @@ TaskNote는 AI 작업의 유일한 명령·보고 단위입니다. 작업 하나
 |---|---|
 | 위치 | 대표 task 저장 폴더의 `R/` |
 | 색인 | 작업 관리 도구의 작업으로 색인하지 않음. 기록 전용 뷰로 봄 |
-| 이름 | 파일 이름이 기록 ID ([ID와 파일명](../AI/Task_and_Record_Schema_agent.md#id와-파일명)) |
-| 필드 | 최대 4개 ([교환 기록 필드](../AI/Task_and_Record_Schema_agent.md#교환-기록-필드)) |
+| 이름 | 파일 이름이 기록 ID ([ID와 파일명](../AI/Task_and_Record_Schema_agent.md#ids-and-filenames)) |
+| 필드 | 최대 4개 ([교환 기록 필드](../AI/Task_and_Record_Schema_agent.md#exchange-record-fields)) |
 | 불변 | 발행한 기록은 고치지 않고, 정정은 새 기록으로 |
 | 기록 범위 | 입력 목록, 산출물, 판단 근거 요약, 검증 결과, 다음 인계. 모델의 숨은 내부 사고 과정까지 기록하는 것은 아님 |
 
@@ -84,7 +84,7 @@ TaskNote는 AI 작업의 유일한 명령·보고 단위입니다. 작업 하나
 
 | 단계 | TaskNote | 교환 기록 (확장 사양) | 정본 |
 |---|---|---|---|
-| 생성 | 행동하기 전에 만듦 | 역할 산출물을 [Router](../AI/Routing_agent.md#router의-역할)가 발행 | 프로젝트 시작이나 HQ 결정 때 |
+| 생성 | 행동하기 전에 만듦 | 역할 산출물을 [Router](../AI/Routing_agent.md#router-role)가 발행 | 프로젝트 시작이나 HQ 결정 때 |
 | 진행 | `# 현재 상태`와 `# 기록`을 갱신 | 추가만 하고 고치지 않음 | 검증된 결과만 반영 |
 | 종료 | 완료 기준과 검증 통과 후 [종료](Command_and_Report_Flow_admin.md#작업-상태) | 대표 task와 함께 보존 | 유지 |
 | 보관 | 이전 체계의 기록은 읽기 전용 보관소에 두고 새 기록을 이어 붙이지 않음 | 보존 | 끝난 프로젝트는 보관 영역으로 이동 |

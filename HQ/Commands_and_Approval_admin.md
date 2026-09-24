@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 명령과-승인
@@ -53,7 +53,7 @@ HQ가 AI에게 지시하고, 제안서를 읽고, 결정·승인·실행 지시�
 
 ### 결정-요청-형식-확장
 
-[과정 역할](../Architecture/Organization_admin.md#과정-역할)을 도입하면 결정 요청은 질문 1개와 멈춘 이유, 선택지별 영향, AI 권장과 근거, 응답이 없을 때의 상태, 결정 후 재개 지점을 한 화면에 담습니다 ([결정 요청 형식](../AI/Roles/Coordinator_agent.md#결정-요청-형식)).
+[과정 역할](../Architecture/Organization_admin.md#과정-역할)을 도입하면 결정 요청은 질문 1개와 멈춘 이유, 선택지별 영향, AI 권장과 근거, 응답이 없을 때의 상태, 결정 후 재개 지점을 한 화면에 담습니다 ([결정 요청 형식](../AI/Roles/Coordinator_agent.md#decision-request-format)).
 
 ## 결정표-작성
 
@@ -99,7 +99,7 @@ HQ가 AI에게 지시하고, 제안서를 읽고, 결정·승인·실행 지시�
 
 ### 수정-범위-확인-확장
 
-`수정:`이 무엇을 바꿨는지 불명확하면 AI는 진행 중인 실행을 멈추고 변경 범위를 확인합니다. 재개할 때는 저장해 둔 [checkpoint](../AI/Roles/Coordinator_agent.md#checkpoint와-재개)와 현재 입력을 비교합니다.
+`수정:`이 무엇을 바꿨는지 불명확하면 AI는 진행 중인 실행을 멈추고 변경 범위를 확인합니다. 재개할 때는 저장해 둔 [checkpoint](../AI/Roles/Coordinator_agent.md#checkpoint-and-resume)와 현재 입력을 비교합니다.
 
 ## 버전-규칙
 
@@ -115,7 +115,7 @@ HQ가 AI에게 지시하고, 제안서를 읽고, 결정·승인·실행 지시�
 
 ### 내부-반복-버전-확장
 
-과정 역할 사이의 계획 수정, 재평가, 재실행은 버전을 올리지 않고 [교환 기록](../Architecture/Document_System_admin.md#교환-기록)의 순번으로 추적합니다. 범위·기준·권한·예산이 바뀌는 minor와 목표가 바뀌는 major만 새 run을 시작합니다 ([run과 버전](../AI/Task_and_Record_Schema_agent.md#run과-버전-확장)).
+과정 역할 사이의 계획 수정, 재평가, 재실행은 버전을 올리지 않고 [교환 기록](../Architecture/Document_System_admin.md#교환-기록)의 순번으로 추적합니다. 범위·기준·권한·예산이 바뀌는 minor와 목표가 바뀌는 major만 새 run을 시작합니다 ([run과 버전](../AI/Task_and_Record_Schema_agent.md#runs-and-versions-extended)).
 
 ## 관련-문서
 

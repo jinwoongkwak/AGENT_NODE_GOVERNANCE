@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 제어-설정
@@ -33,12 +33,12 @@ HQ가 작업마다 조절할 수 있는 값과 기본값입니다. 값은 [TaskN
 | 실행 모드 | `execution_mode` | autonomous, after-approval, manual | [실행 모드](../Architecture/Risk_and_Authority_admin.md#실행-모드) | 운영 |
 | 보고 정책 | `report_policy` | decision-only, milestone, final | [보고 정책](#보고-정책) | 운영 |
 | 쓰기 범위 | `write_scope` | 경로 목록 | [쓰기 범위](#쓰기-범위) | 운영 |
-| 의존성 | `blockedBy` | 막고 있는 task 링크 | [대표 task 필드](../AI/Task_and_Record_Schema_agent.md#대표-task-필드) | 운영 |
+| 의존성 | `blockedBy` | 막고 있는 task 링크 | [대표 task 필드](../AI/Task_and_Record_Schema_agent.md#primary-task-fields) | 운영 |
 | 일정 | `scheduled`, `due` | 작업 관리 도구의 값 | [tasknote 필드](../Architecture/Frontmatter_admin.md#tasknote-필드) | 운영 |
-| 예산과 반복 한도 | `# 지시`의 [작업 계약](../AI/Roles/Coordinator_agent.md#계약-정규화) | 시간, 호출 수, 반복 횟수 | [예산과 반복 한도](#예산과-반복-한도) | 확장 사양 |
+| 예산과 반복 한도 | `# 지시`의 [작업 계약](../AI/Roles/Coordinator_agent.md#contract-normalization) | 시간, 호출 수, 반복 횟수 | [예산과 반복 한도](#예산과-반복-한도) | 확장 사양 |
 | 검토 깊이 | `# 현재 상태` | 경량, 표준, 엄격 | [검토 깊이](../Architecture/Risk_and_Authority_admin.md#검토-깊이) | 확장 사양 |
 | 위임 범위 | `# 지시`의 작업 계약 | AI가 고를 수 있는 선택 목록 | [위임 범위](#위임-범위) | 확장 사양 |
-| 자원 키 | `# 지시`의 작업 계약 | 라이선스·장비 이름 | [잠금과 예산](../AI/Roles/Coordinator_agent.md#잠금과-예산) | 확장 사양 |
+| 자원 키 | `# 지시`의 작업 계약 | 라이선스·장비 이름 | [잠금과 예산](../AI/Roles/Coordinator_agent.md#locks-and-budget) | 확장 사양 |
 
 ## 위험도와-실행-모드
 
@@ -67,7 +67,7 @@ HQ가 작업마다 조절할 수 있는 값과 기본값입니다. 값은 [TaskN
 | `milestone` | 번호가 붙은 milestone이 끝날 때 | 여러 단계로 나눈 도입 작업 |
 | `final` | 완료하거나 중단했을 때 | 대부분의 작업 |
 
-보고의 형식은 [기록 형식](../AI/Reporting_Style_agent.md#기록-구조)을, 보고가 오가는 흐름은 [보고 흐름](../Architecture/Command_and_Report_Flow_admin.md#보고-흐름)을 봅니다.
+보고의 형식은 [기록 형식](../AI/Reporting_Style_agent.md#record-structure)을, 보고가 오가는 흐름은 [보고 흐름](../Architecture/Command_and_Report_Flow_admin.md#보고-흐름)을 봅니다.
 
 ## 쓰기-범위
 
@@ -85,12 +85,12 @@ HQ가 작업마다 조절할 수 있는 값과 기본값입니다. 값은 [TaskN
 
 | 항목 | 기본값 | 넘으면 | 정의 |
 |---|---|---|---|
-| 계획 평가 | 최초 포함 3회 | HQ 보고 + 제안서 | [반복 한도](../AI/Roles/Evaluator_agent.md#반복-한도) |
+| 계획 평가 | 최초 포함 3회 | HQ 보고 + 제안서 | [반복 한도](../AI/Roles/Evaluator_agent.md#iteration-limit) |
 | 같은 blocking 발견 | 연속 2회 | 3회를 기다리지 않고 HQ | 같은 곳 |
-| 결과 보완 | 같은 기준·범위 안에서 2회 | HQ | [검증 판정과 보완 한도](../AI/Roles/Evaluator_agent.md#검증-판정과-보완-한도) |
-| 문서 계획 단계 | 활동 시간 30분, 모델 호출 10회 | 먼저 닿은 상한에서 멈추고 요약 | [잠금과 예산](../AI/Roles/Coordinator_agent.md#잠금과-예산) |
+| 결과 보완 | 같은 기준·범위 안에서 2회 | HQ | [검증 판정과 보완 한도](../AI/Roles/Evaluator_agent.md#verification-verdict-and-fix-limit) |
+| 문서 계획 단계 | 활동 시간 30분, 모델 호출 10회 | 먼저 닿은 상한에서 멈추고 요약 | [잠금과 예산](../AI/Roles/Coordinator_agent.md#locks-and-budget) |
 | 실행 시간·EDA 자원 | 작업 계약에 명시 | 문서 작업의 30분 한도를 적용하지 않음 | 같은 곳 |
-| 새 유료 사용·라이선스 | 기존 허용 범위만 | HQ | [HQ로 올리는 조건](../AI/Roles/Coordinator_agent.md#hq로-올리는-조건) |
+| 새 유료 사용·라이선스 | 기존 허용 범위만 | HQ | [HQ로 올리는 조건](../AI/Roles/Coordinator_agent.md#escalation-to-hq) |
 
 수치는 시범 운영의 초기값이며, HQ만 조정합니다. AI는 스스로 올리거나 내리지 않습니다.
 

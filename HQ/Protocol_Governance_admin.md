@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 프로토콜-관리
@@ -49,11 +49,11 @@ AGENT_NODE_GOVERNANCE의 운영 규칙 채택은 HQ 결정으로만 바뀝니다
 
 | 순서 | 할 일 | 완료 확인 |
 |---:|---|---|
-| 1 | 선행 조건 해소: 작업 공간의 충돌 표시 제거, [백업](../AI/Common_Rules_agent.md#백업) 가능 상태 | [알려진 문제](../Architecture/Company_Profile_admin.md#알려진-문제)에 막힘 없음 |
+| 1 | 선행 조건 해소: 작업 공간의 충돌 표시 제거, [백업](../AI/Common_Rules_agent.md#backup) 가능 상태 | [알려진 문제](../Architecture/Company_Profile_admin.md#알려진-문제)에 막힘 없음 |
 | 2 | HQ가 승인 체크리스트를 모두 승인하고 실행 지시 | [승인과 실행 지시](Commands_and_Approval_admin.md#승인과-실행-지시) 기록 |
 | 3 | [`{entry-files}`](../Architecture/Company_Profile_admin.md#작업-공간-경로)의 읽기 순서를 [AI 안내](../AI/README.md)로 변경 | Agent가 새 순서로 읽음 |
 | 4 | [`{legacy-control-folder}`](../Architecture/Company_Profile_admin.md#작업-공간-경로)의 규약을 AGENT_NODE_GOVERNANCE 해당 섹션으로 가는 안내 문서로 교체 | 규칙 문장 중복 0 |
-| 5 | 템플릿, 영역 CONTEXT, Vault 규칙 문서를 새 [스키마](../AI/Task_and_Record_Schema_agent.md#스키마란)와 경로로 갱신 | 옛 규칙 문장 0 |
+| 5 | 템플릿, 영역 CONTEXT, Vault 규칙 문서를 새 [스키마](../AI/Task_and_Record_Schema_agent.md#what-is-a-schema)와 경로로 갱신 | 옛 규칙 문장 0 |
 | 6 | 승인된 확장 사양 내용을 운영로 바꾸고 새 DEC 기록 | 상태 표시와 결정 기록 일치 |
 | 7 | [이전 절차](../Setup/Migration_admin.md#실행과-복구)에 따라 단계별 검증·commit. 실패하면 이후 사용자 변경을 보존하면서 승인된 변경분만 복구 | 새 깨진 링크 0, 복구 시험 통과 |
 
@@ -64,7 +64,8 @@ AGENT_NODE_GOVERNANCE의 운영 규칙 채택은 HQ 결정으로만 바뀝니다
 | 파일 이름 | 공백 없는 영어 `Title_Case` + 주 독자 접미사 + 확장자. AI Agent가 주로 읽거나 기계가 읽는 파일은 `_agent`(`Common_Rules_agent.md`, `Context_Manifest_agent.json`), HQ·관리자가 읽는 설명 문서는 `_admin`(`Operating_Manual_admin.md`). 폴더 안내 문서 `README.md`와 `tools/`의 스크립트는 접미사를 붙이지 않음 |
 | frontmatter | `type: agent-node-governance`, `layer`, `status`, `version`, `updated` 다섯 개만 |
 | 첫 섹션 | `## overview` — 목적 1–3문장과 섹션 표 (섹션 링크 · 내용 · 적용 범위) |
-| 마지막 섹션 | 기본은 `## 관련-문서`. 최상위 README만 관리자 검토 체크리스트를 마지막에 둠 |
+| 마지막 섹션 | `_admin` 문서와 폴더 README는 `## 관련-문서`, `_agent` 문서는 `## related-documents`. 최상위 README만 관리자 검토 체크리스트를 마지막에 둠 |
+| 언어 | `_agent` 문서는 영어(제목·앵커 포함), `_admin` 문서와 README는 한국어. 단 vault 문서에 그대로 들어가는 템플릿·기록 토큰(`# 기록`, 기록 단계, 검토 요청 블록 등)은 한국어로 둠. HQ에게 가는 보고는 한국어 ([기록 구조](../AI/Reporting_Style_agent.md#record-structure)) |
 | 길이 | 문서당 250줄 이하 목표 |
 | 문단 | 3문장 이하. 병렬 항목이 3개 이상이면 표 |
 | 다이어그램 | Mermaid만 사용 |
@@ -80,7 +81,7 @@ AGENT_NODE_GOVERNANCE의 운영 규칙 채택은 HQ 결정으로만 바뀝니다
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.4.0
+version: 1.5.0
 updated: YYYY-MM-DD
 ---
 
@@ -175,11 +176,11 @@ GitHub는 제목에서 앵커를 만들 때 영문을 소문자로 바꾸고, �
 |---:|---|---|
 | 1 | 적합성 확인 | [이 모델이 맞지 않는 경우](../Architecture/Operating_Model_admin.md#이-모델이-맞지-않는-경우) |
 | 2 | [설치 안내](../Setup/README.md#새-기업-시작)에 따라 프로토콜 저장소를 독립 복제 | 회사 자료와 프로토콜 이력 분리 |
-| 3 | [프로필 템플릿](../Setup/Templates_agent.md#회사-프로필)으로 로컬 프로필 작성 | 기존 회사의 경로·승인·기밀 목록을 상속하지 않음 |
+| 3 | [프로필 템플릿](../Setup/Templates_agent.md#company-profile)으로 로컬 프로필 작성 | 기존 회사의 경로·승인·기밀 목록을 상속하지 않음 |
 | 4 | 쓰는 도구를 작업 공간 계층에 대응 | [도구 요구 조건](../Architecture/Workspace_and_Tools_admin.md#도구-요구-조건) |
 | 5 | 위험도 예시와 기밀 영역을 다시 정의 | [위험도](../Architecture/Risk_and_Authority_admin.md#위험도), [기밀 영역](../Architecture/Company_Profile_admin.md#기밀-영역) |
 | 6 | 역할 채택 범위 결정: 과정 역할 전체, 또는 단일 Agent로 시작 | [과정 역할](../Architecture/Organization_admin.md#과정-역할) |
-| 7 | 가상 작업으로 시험: 정상, 평가 반려, 승인 대기, 중단 후 재개, 실패 경로 | [작업 흐름](../AI/Workflow_agent.md#루프-한눈에) |
+| 7 | 가상 작업으로 시험: 정상, 평가 반려, 승인 대기, 중단 후 재개, 실패 경로 | [작업 흐름](../AI/Workflow_agent.md#loop-at-a-glance) |
 | 8 | 상위 프로토콜 버전은 유지하고 회사 채택 버전을 별도로 시작 | [채택과 버전 고정](../Setup/Adoption_admin.md#버전-구분) |
 
 ## 관련-문서

@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: hq
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 관리자-운영-매뉴얼
@@ -65,7 +65,7 @@ updated: 2026-09-16
 - 관리자가 부재하면 이미 승인된 범위만 계속합니다. 승인 대기 시간 경과는 승인이 아니며, 긴급하다는 이유만으로 기밀·외부 발신·원본 보존 규칙을 넘지 않습니다.
 - 다음 세션은 원 증거·입력·승인·완료 단계를 다시 확인합니다. 감시 서비스가 없으면 자동으로 다시 시작한다고 약속하지 않습니다.
 
-세부 값은 [제어 설정](Control_Settings_admin.md), 중단·재개 절차는 [작업 흐름](../AI/Workflow_agent.md#hq-판단과-재개)을 봅니다.
+세부 값은 [제어 설정](Control_Settings_admin.md), 중단·재개 절차는 [작업 흐름](../AI/Workflow_agent.md#hq-decision-and-resume)을 봅니다.
 
 ## 주간-운영
 

@@ -2,27 +2,27 @@
 type: agent-node-governance
 layer: ai
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
-# 기록-형식
+# record-format
 
 ## overview
 
-AI가 [TaskNote](../Architecture/Document_System_admin.md#작업-문서)의 `# 기록`, `# 결정 및 승인`, `# 근거`와 채팅 최종 보고를 쓰는 형식입니다. 읽는 사람이 한 번에 상태를 파악하고 필요한 결정이나 검토 대상을 바로 열 수 있어야 합니다. 별도 보고서 파일은 만들지 않습니다.
+The format AI uses for a [TaskNote](../Architecture/Document_System_admin.md#작업-문서)'s `# 기록`, `# 결정 및 승인`, and `# 근거` sections and for the final chat report. A reader must grasp the status at a glance and open any needed decision or review item directly. Do not create separate report files.
 
-| 섹션 | 내용 | 적용 |
+| Section | Content | Applies |
 |---|---|---|
-| [기록-구조](#기록-구조) | 기록 항목의 틀 | 운영 매뉴얼 |
-| [표와-체크리스트](#표와-체크리스트) | 내용별 형식 | 운영 매뉴얼 |
-| [줄바꿈](#줄바꿈) | 빠르게 훑을 수 있는 배치 | 운영 매뉴얼 |
-| [링크](#링크) | 파일 링크 규칙 | 운영 매뉴얼 |
-| [사실-추정-권장](#사실-추정-권장) | 확인된 것과 추정의 구분 | 운영 매뉴얼 |
-| [미해결과-인계](#미해결과-인계) | 남은 일의 기록과 검토 블록 | 운영 매뉴얼 |
-| [관련-문서](#관련-문서) | 후속 제안과 스키마 | 운영 매뉴얼 |
+| [record-structure](#record-structure) | Record entry template and report language | Operating manual |
+| [tables-and-checklists](#tables-and-checklists) | Format by content type | Operating manual |
+| [line-breaks](#line-breaks) | Layout that scans quickly | Operating manual |
+| [links](#links) | File link rules | Operating manual |
+| [fact-estimate-recommendation](#fact-estimate-recommendation) | Separating verified facts from estimates | Operating manual |
+| [unresolved-and-handoff](#unresolved-and-handoff) | Recording remaining work and the review block | Operating manual |
+| [related-documents](#related-documents) | Follow-up proposals and schema | Operating manual |
 
-## 기록-구조
+## record-structure
 
 ```markdown
 ### YYYY-MM-DD · AI · <계획|실행|검증|검토 요청|완료> · Vx.y.z
@@ -46,69 +46,71 @@ AI가 [TaskNote](../Architecture/Document_System_admin.md#작업-문서)의 `# �
 - **다음 버전 제안:** 없음
 ```
 
-- **결과를 먼저 씁니다.**
+- **Write to HQ in Korean.** Records, reports, decision tables, and chat messages for HQ are in Korean; technical terms may stay in English. Governance documents and agent-to-agent records are in English.
 
-- **파일을 바꾸지 않은 분석도** 사용한 입력과 검증 방법을 남깁니다.
+- **Lead with the result.**
 
-- **문단은 3문장 이하**로 두고, 병렬 항목이 3개 이상이면 표로 바꿉니다.
+- **Analysis that changed no files** still records the inputs used and how it was verified.
 
-- **버전**은 [버전 규칙](../HQ/Commands_and_Approval_admin.md#버전-규칙)을 따릅니다.
+- **Keep paragraphs to three sentences or fewer**; use a table for three or more parallel items.
 
-## 표와-체크리스트
+- **Versions** follow the [version rules](../HQ/Commands_and_Approval_admin.md#버전-규칙).
 
-| 내용 | 형식 | 필수 요소 |
+## tables-and-checklists
+
+| Content | Format | Required elements |
 |---|---|---|
-| 같은 속성을 가진 항목 3개 이상 | 표 | 항목, 조치·판단, 상태·결과, 근거 |
-| HQ가 결정할 사항 | [결정표](../HQ/Commands_and_Approval_admin.md#결정표-작성) | 번호, 질문, 선택지, AI 권장, 결정 |
-| HQ가 검토할 사항 | 체크리스트 | 파일 링크, 검토 이유 |
-| 후속 조치 | 체크리스트 | 담당, 한 줄짜리 완료 조건 |
-| 진행 상태 비교 | 표 | `완료`, `진행 중`, `대기`, `보류`, `확인 필요` 중 하나 |
-| 실행 계획 | 번호 표 | 단계, 대상, 작업, 담당, 승인 필요 여부 |
-| 변경 파일 | 종류별 목록 | 생성, 수정, 이동, 휴지통 구분과 링크 |
-| 미해결·인계 | 체크리스트 | 원인, 담당, 다음 행동, 막힘 여부 |
+| Three or more items sharing attributes | Table | Item, action or judgment, status or result, basis |
+| Items HQ must decide | [Decision table](../HQ/Commands_and_Approval_admin.md#결정표-작성) | Number, question, options, AI recommendation, decision |
+| Items HQ must review | Checklist | File link, reason for review |
+| Follow-up actions | Checklist | Owner, one-line completion condition |
+| Progress comparison | Table | One of `완료`, `진행 중`, `대기`, `보류`, `확인 필요` |
+| Execution plan | Numbered table | Step, target, action, owner, approval needed |
+| Changed files | List by type | Created, modified, moved, trashed, with links |
+| Unresolved items and handoffs | Checklist | Cause, owner, next action, blocking or not |
 
-- 결정이나 사용자 행동을 문단 속에 숨기지 않습니다.
+- Never bury decisions or user actions in a paragraph.
 
-- 표 셀은 짧게 쓰고 긴 설명은 표 아래에 둡니다.
+- Keep table cells short; put long explanations below the table.
 
-- 한 TaskNote에서 HQ가 처리할 결정과 행동은 합쳐 10개 이하입니다 ([주의력 예산](../HQ/HQ_Role_admin.md#주의력-예산)).
+- Decisions and actions for HQ in one TaskNote total 10 or fewer ([attention budget](../HQ/HQ_Role_admin.md#주의력-예산)).
 
-## 줄바꿈
+## line-breaks
 
-- 제목, 표, 체크리스트, 문단 사이에는 빈 줄을 둡니다.
+- Put a blank line between headings, tables, checklists, and paragraphs.
 
-- 한 글머리표에 서로 다른 결과를 이어 쓰지 않습니다.
+- Do not combine different results in one bullet.
 
-- 체크리스트 앞뒤와 표 뒤의 설명 앞에는 빈 줄을 둡니다.
+- Put blank lines before and after checklists, and before any explanation that follows a table.
 
-## 링크
+## links
 
-작업 기록의 링크는 작업 공간에서 바로 열리는 형식으로 씁니다. 이 회사의 형식은 [`{record-link-format}`](../Architecture/Company_Profile_admin.md#도구-설정)에 있습니다. AGENT_NODE_GOVERNANCE 문서 자체의 링크 규칙은 [링크와 연결](../HQ/Protocol_Governance_admin.md#링크와-연결)을 따릅니다.
+Write links in task records in a format that opens directly in the workspace. This company's format is in [`{record-link-format}`](../Architecture/Company_Profile_admin.md#도구-설정). Links within AGENT_NODE_GOVERNANCE documents themselves follow [links and connections](../HQ/Protocol_Governance_admin.md#링크와-연결).
 
-| 규칙 | 내용 |
+| Rule | Content |
 |---|---|
-| 전체 경로 | 파일은 작업 공간 루트부터의 전체 경로와 짧은 표시 이름으로 링크 |
-| 표 안 | 표시 이름 구분자를 이스케이프 |
-| 폴더 | 폴더는 링크하지 않고 그 폴더의 README·STATUS·색인 파일을 링크. 없으면 경로를 코드로 |
-| 옮긴 파일 | 이동했거나 휴지통으로 보낸 파일은 현재 위치를 링크 |
-| 작업 공간 밖 | 파일 URL 링크, 웹 주소는 일반 Markdown 링크 |
-| 기밀 | 기밀 원고·개인 기록은 링크하지 않고 승인된 색인만 링크 ([기밀](Common_Rules_agent.md#기밀)) |
-| 예시 | 예시와 자리표시자는 코드로 감싸 링크 검사에서 뺌 |
-| 확인 | 기록을 마칠 때 새로 쓴 링크가 열리는지 확인하고 검증에 남김 |
+| Full path | Link files with the full path from the workspace root and a short display name |
+| In tables | Escape the display-name separator |
+| Folders | Do not link folders; link the folder's README, STATUS, or index file. If none, write the path as code |
+| Moved files | Link the current location of moved or trashed files |
+| Outside the workspace | File URL links; web addresses as normal Markdown links |
+| Confidential | Do not link confidential manuscripts or personal records; link only approved indexes ([confidentiality](Common_Rules_agent.md#confidentiality)) |
+| Examples | Wrap examples and placeholders in code so link checks skip them |
+| Check | When finishing a record, confirm new links open and note it under verification |
 
-## 사실-추정-권장
+## fact-estimate-recommendation
 
-- **검증된 사실**은 근거 파일이나 검사 방법과 함께 적습니다.
+- **Verified facts** are written with their source file or check method.
 
-- **추정**은 `추정` 또는 `확인 필요`로 표시합니다.
+- **Estimates** are marked `추정` or `확인 필요`.
 
-- **권장**은 `AI 권장`으로 표시하고 선택 가능한 대안과 분리합니다.
+- **Recommendations** are marked `AI 권장` and kept separate from the available alternatives.
 
-- **개수와 크기**는 `스크립트 집계`, `파일명 기준`처럼 측정 방법을 씁니다.
+- **Counts and sizes** state the measurement method, such as `스크립트 집계` or `파일명 기준`.
 
-## 미해결과-인계
+## unresolved-and-handoff
 
-HQ 확인이 남으면 기록 단계는 `검토 요청`, 채팅 보고 첫 줄은 `검토 대기 — HQ 할 일 N개`로 씁니다. `미해결`이나 `다음 인계`가 하나라도 있으면 [후속 제안 처리](../HQ/Review_and_Closure_admin.md#후속-제안-처리) 규칙으로 다음 버전 제안을 씁니다. 검토 요청은 다음과 같이 씁니다.
+When HQ confirmation remains, the record stage is `검토 요청` and the first line of the chat report is `검토 대기 — HQ 할 일 N개`. If any `미해결` or `다음 인계` item exists, write the next-version proposal under the [follow-up proposal](../HQ/Review_and_Closure_admin.md#후속-제안-처리) rules. Write the review request as follows.
 
 ```markdown
 ## 검토 요청
@@ -120,13 +122,13 @@ HQ 확인이 남으면 기록 단계는 `검토 요청`, 채팅 보고 첫 줄�
 | Q1 | 구현 방식 | A / B / C | C | |
 ```
 
-### 교환-기록-색인-확장
+### exchange-record-index-extended
 
-[과정 역할](../Architecture/Organization_admin.md#과정-역할)을 도입하면 [Router](Routing_agent.md#router의-역할)가 대표 노트 `# 기록` 끝의 `## 교환 기록 색인`에 기록마다 한 줄을 추가합니다. 형식은 `- R01 · 003 · evaluation · revise · <기록 링크>`입니다. Coordinator는 판정 변화, HQ 인계, 완료 때만 위의 기록 구조로 항목을 씁니다.
+When [process roles](../Architecture/Organization_admin.md#과정-역할) are adopted, the [Router](Routing_agent.md#router-role) adds one line per record to `## 교환 기록 색인` at the end of the primary note's `# 기록`. The format is `- R01 · 003 · evaluation · revise · <record link>`. The Coordinator writes an entry in the record structure above only on a verdict change, an HQ handoff, or completion.
 
-## 관련-문서
+## related-documents
 
-- [검토와 종료](../HQ/Review_and_Closure_admin.md) — HQ가 이 기록을 읽는 법
-- [작업과 기록 스키마](Task_and_Record_Schema_agent.md) — 기록 문서의 필드와 구획
-- [공통 규칙](Common_Rules_agent.md) — 기록에 남길 입력과 검증
-- [AI 안내](README.md) — AI 문서 목록
+- [Review and closure](../HQ/Review_and_Closure_admin.md) — how HQ reads these records
+- [Task and record schema](Task_and_Record_Schema_agent.md) — fields and sections of record documents
+- [Common rules](Common_Rules_agent.md) — inputs and checks to record
+- [AI guide](README.md) — list of AI documents

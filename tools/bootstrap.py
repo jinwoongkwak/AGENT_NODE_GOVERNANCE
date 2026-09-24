@@ -13,7 +13,7 @@ import sys
 PROTOCOL = Path(__file__).resolve().parents[1]
 PROTOCOL_PATH = '00_HQ/90_SYSTEM/AGENT_NODE_GOVERNANCE'
 TASKS = '00_HQ/10_PLANNING/TaskNotes/Tasks/AI'
-VERSION = '1.4.0'
+VERSION = '1.5.0'
 
 
 def atom(value, label):

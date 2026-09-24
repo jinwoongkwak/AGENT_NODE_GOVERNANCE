@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.4.0
-updated: 2026-09-16
+version: 1.5.0
+updated: 2026-09-23
 ---
 
 # 운영-모델
@@ -37,7 +37,7 @@ updated: 2026-09-16
 | 원칙 | 뜻 | 구현하는 장치 |
 |---|---|---|
 | 기억은 문서에 | 대화나 Agent의 기억이 아니라 문서에 상태와 결정을 남김 | [정본 문서](Document_System_admin.md#정본-문서), [TaskNote](Document_System_admin.md#작업-문서) |
-| 안전은 장치로 | 사람의 승인보다 백업·휴지통·버전 관리로 되돌릴 수 있게 함. 승인은 위험한 일에만 요구 | [위험도](Risk_and_Authority_admin.md#위험도), [백업](../AI/Common_Rules_agent.md#백업) |
+| 안전은 장치로 | 사람의 승인보다 백업·휴지통·버전 관리로 되돌릴 수 있게 함. 승인은 위험한 일에만 요구 | [위험도](Risk_and_Authority_admin.md#위험도), [백업](../AI/Common_Rules_agent.md#backup) |
 | 통제는 명시적으로 | 작업마다 실행 방식과 보고 시점을 정하고, 승인과 실행을 나눌 수 있음 | [실행 모드](Risk_and_Authority_admin.md#실행-모드), [보고 정책](../HQ/Control_Settings_admin.md#보고-정책) |
 | 사람은 결정만 | AI는 나머지를 끝내고 결정이 필요한 것만 올림 | [판단 권한 경계](Risk_and_Authority_admin.md#판단-권한-경계) |
 

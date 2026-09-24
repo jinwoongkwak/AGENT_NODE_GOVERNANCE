@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -57,6 +57,7 @@ AGENT_NODE_GOVERNANCE에 나오는 용어의 뜻과 그 용어를 정의한 섹�
 | 발견 | Evaluator가 기록한 결함 (finding) | [발견-기록](../AI/Roles/Evaluator_agent.md#recording-findings) | 확장 사양 |
 | checkpoint | 중단·대기 전에 저장하는 재개 정보 | [checkpoint와-재개](../AI/Roles/Coordinator_agent.md#checkpoint-and-resume) | 확장 사양 |
 | receipt | 실행 단계가 끝났다는 기록 | [receipt와-재시도](../AI/Roles/Executor_agent.md#receipts-and-retries) | 확장 사양 |
+| 독립 확인 | 기본 모드에서 작성과 분리된 새 문맥 subagent가 결과나 계획을 확인하는 절차 | [independent-check](../AI/Workflow_agent.md#independent-check) | 운영 매뉴얼 |
 
 ## 문서-용어
 
@@ -71,6 +72,7 @@ AGENT_NODE_GOVERNANCE에 나오는 용어의 뜻과 그 용어를 정의한 섹�
 | 스키마 | 문서 종류·필드·본문 구획·문서 사이 규칙의 약속 | [스키마란](../AI/Task_and_Record_Schema_agent.md#what-is-a-schema) | 확장 사양 |
 | 불변식 | 문서 사이에 항상 성립해야 하는 규칙 | [불변식](../AI/Task_and_Record_Schema_agent.md#invariants) | 확장 사양 |
 | 조항 번호 | CO·PL·EV·EX로 시작하는 역할 조항 ID | [문서-작성-규칙](../HQ/Protocol_Governance_admin.md#문서-작성-규칙) | 확장 사양 |
+| 로드맵 | 프로젝트나 포트폴리오의 방향, 다음 단계, 일정을 담은 HQ 승인 정본 | [roadmap](../AI/Roadmap_agent.md) | 운영 매뉴얼 |
 
 ## 기술-용어
 

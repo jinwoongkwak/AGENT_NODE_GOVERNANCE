@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 

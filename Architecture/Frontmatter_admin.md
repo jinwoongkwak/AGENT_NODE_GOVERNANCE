@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -20,6 +20,7 @@ updated: 2026-09-23
 | [tasknote](#tasknote) | TaskNote 필드와 허용 값 | 운영 매뉴얼 |
 | [프로젝트-status](#프로젝트-status) | STATUS 필드와 허용 값 | 운영 매뉴얼 |
 | [프로젝트-readme](#프로젝트-readme) | 프로젝트 README 필드 | 운영 매뉴얼 |
+| [로드맵](#로드맵) | 프로젝트·포트폴리오 로드맵 필드 | 운영 매뉴얼 |
 | [결정-기록과-색인](#결정-기록과-색인) | Decisions와 색인 문서 | 운영 매뉴얼 |
 | [기술-wiki와-저장소-카드](#기술-wiki와-저장소-카드) | 기술 Wiki와 repo-card | 운영 매뉴얼 |
 | [이론-wiki](#이론-wiki) | 이론 Wiki 노트 | 운영 매뉴얼 |
@@ -63,6 +64,8 @@ python AGENT_NODE_GOVERNANCE/tools/check_frontmatter.py --root . --local NODE_PR
 | TaskNote (사람) | `{task-folder}` | `tags`에 `task`, `admin` | 3 | 필드별 |
 | 프로젝트 STATUS | 프로젝트 폴더의 `STATUS.md` | 파일 이름 | 6 | `status`·`phase`·`next_deadline`은 HQ (위험도 2) |
 | 프로젝트 README | 프로젝트 폴더의 `README.md` | `project_id` 있음 | 3 | Agent |
+| 프로젝트 로드맵 | 프로젝트 폴더의 `ROADMAP.md` | 파일 이름 | 4 | Agent. `approved_version`은 HQ 승인 원문이 있을 때만 |
+| 포트폴리오 로드맵 | `Portfolio_Roadmap.md` | `type: portfolio-roadmap` | 3 | 같음 |
 | 결정 기록 | `Decisions.md` | 파일 이름 | 3 | Agent |
 | 색인 | 색인 문서 | `type` 값 | 2 | Agent |
 | 저장소 카드 | 기술 Wiki | `type: repo-card` | 8 | Agent |
@@ -168,6 +171,18 @@ AI TaskNote의 `status`·`owner`·`hq_todo`는 [작업 상태](Command_and_Repor
 | 6 | `draft_by` | 선택 | TaskNote 링크 또는 legacy ID |
 | 7 | `llm_model` | AI 작성 시 | 초안을 만든 모델 이름 |
 
+## 로드맵
+
+[로드맵](../AI/Roadmap_agent.md) 절차로 만든 HQ 승인 정본입니다. 프로젝트 로드맵은 파일 이름 `ROADMAP.md`로, 포트폴리오 로드맵은 `type` 값으로 식별합니다. 일정은 본문 Gantt와 STATUS `next_deadline`에 있으므로 frontmatter에 두지 않습니다.
+
+| 순서 | 필드 | 필수 | 형식·허용 값 |
+|---:|---|---|---|
+| 1 | `project_id` | 예 (프로젝트 로드맵만) | 프로젝트 ID |
+| 2 | `type` | 예 | `project-roadmap` · `portfolio-roadmap` |
+| 3 | `approved_version` | 예 | `V<major>.<minor>.<patch>`. HQ 승인 원문이 있을 때만 채우고, 미승인은 `""` |
+| 4 | `updated` | 예 | 날짜 |
+| 5 | `llm_model` | AI 작성 시 | 로드맵을 쓴 모델 이름 |
+
 ## 결정-기록과-색인
 
 | 종류 | 순서대로 필드 | 허용 값 |
@@ -231,6 +246,7 @@ frontmatter가 없는 기술 Wiki 노트에는 이 표의 필드를 모두 넣�
 | Q5 | 공동 연구 README `type` | `collaboration` | [프로젝트-readme](#프로젝트-readme) |
 | Q6 | 기술 Wiki | frontmatter가 없는 노트에 최신 필드 구성을 모두 넣고, `status`에는 설명 문장을 쓰지 않음 | [기술-wiki-노트](#기술-wiki-노트) |
 | Q7 | 전체 | 값이 없는 선택 필드도 키는 보여 주고 값만 비움 | [공통-표기](#공통-표기) |
+| Q8 | 로드맵 | 최소 필드 `project_id`·`type`·`approved_version`·`updated`·`llm_model` (2026-09-23, 로드맵 제안 02 Q1) | [로드맵](#로드맵) |
 
 ## 관련-문서
 

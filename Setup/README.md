@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: setup
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -25,10 +25,10 @@ updated: 2026-09-23
 
 | 모드 | 필수 | 사용 조건 | 기록 |
 |---|---|---|---|
-| 기본 — 초기 권장 | Markdown, 백업, 단일 Agent, HQ | Router 없이도 시작 가능. 위험도와 승인 경계 유지 | TaskNote, STATUS, Decisions |
+| 기본 — 초기 권장 | Markdown, 백업, 작업 Agent 1개와 확인용 새 문맥 subagent, HQ | Router 없이도 시작 가능. 위험도와 승인 경계 유지 | TaskNote, STATUS, Decisions |
 | 확장 — 선택 | 기본 + Router, 역할별 호출, 잠금·재개 검증 | [라우팅 시험](../AI/Routing_agent.md#tests)과 [파일럿](Migration_admin.md#파일럿)을 통과한 뒤 별도 활성화 | 표준·엄격 작업에 교환 기록 추가 |
 
-위험도와 검토 깊이는 모드와 별개입니다. 기본 모드의 중요한 결과는 HQ가 검토하며, 같은 Agent의 자체 확인을 독립 평가라고 적지 않습니다. 확장 모드의 독립 평가가 불가능하면 그 경로를 멈추고 도입 계획을 조정합니다.
+위험도와 검토 깊이는 모드와 별개입니다. 기본 모드의 위험도 1–2 결과는 작성과 분리된 새 문맥 subagent가 [독립 확인](../AI/Workflow_agent.md#independent-check)하고, 중요한 결과는 HQ가 검토합니다. subagent를 부를 수 없으면 `독립 확인 불성립`을 기록하고 HQ 검토로 넘깁니다. 확장 모드의 독립 평가가 불가능하면 그 경로를 멈추고 도입 계획을 조정합니다.
 
 ## 새-기업-시작
 

@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -53,7 +53,7 @@ updated: 2026-09-23
 
 | 깊이 | 조건 | 필수 절차 |
 |---|---|---|
-| 경량 | 위험도 0–1, 단순·가역적, 기존 절차와 객관적인 완료 기준이 분명 | instruction → 실행 → 결과 확인 → report |
+| 경량 | 위험도 0–1, 단순·가역적, 기존 절차와 객관적인 완료 기준이 분명 | instruction → 실행 → [독립 확인](../AI/Workflow_agent.md#independent-check) → report (위험도 0은 HQ 요청 시) |
 | 표준 | 연구 판단, 여러 단계, 재작업 가능성이 큼 | 계획과 평가 반복 → 실행 → 독립 결과 검증 |
 | 엄격 | 위험도 2, 핵심 설계, 공개 산출물, 오류 비용이 큼 | 표준 + HQ 권한 확인 + 작업별 검증 강화 |
 

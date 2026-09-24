@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -50,7 +50,7 @@ AI 폴더는 AI Agent의 매뉴얼입니다. 모든 Agent가 지키는 공통 �
 
 ## 작업-루프-요약
 
-현재 운영하는 작업 루프는 여덟 단계입니다.
+현재 운영하는 작업 루프는 아홉 단계입니다. 5단계 독립 확인은 새 문맥 subagent가 맡습니다.
 
 ```mermaid
 flowchart LR
@@ -59,7 +59,8 @@ flowchart LR
     C -->|위험도 0-1| D["실행"]
     C -->|결정 필요| H["HQ 결정"]
     H --> D
-    D --> E["기록"]
+    D --> I["독립 확인"]
+    I --> E["기록"]
     E --> F["정본 반영"]
     F --> G["후속 제안"]
     G --> Z["종료"]
@@ -75,6 +76,7 @@ flowchart LR
 | [공통 규칙](Common_Rules_agent.md) | 기밀·백업·버전 관리 조항이 필요할 때 | [기밀](Common_Rules_agent.md#confidentiality), [백업](Common_Rules_agent.md#backup), [버전 관리](Common_Rules_agent.md#version-control) | 운영 매뉴얼 |
 | [작업 흐름](Workflow_agent.md) | 여러 단계로 나뉜 작업의 순서를 볼 때 | [루프 한눈에](Workflow_agent.md#loop-at-a-glance), [HQ 판단과 재개](Workflow_agent.md#hq-decision-and-resume) | 운영 매뉴얼 |
 | [기록 형식](Reporting_Style_agent.md) | 기록과 결정표를 쓸 때 | [기록 구조](Reporting_Style_agent.md#record-structure) | 운영 매뉴얼 |
+| [로드맵](Roadmap_agent.md) | 프로젝트·포트폴리오 로드맵을 만들거나 갱신할 때 | [project-roadmap](Roadmap_agent.md#project-roadmap), [roadmap-check](Roadmap_agent.md#roadmap-check) | 운영 매뉴얼 |
 | [작업과 기록 스키마](Task_and_Record_Schema_agent.md) | 교환 기록을 만들 때 | [대표 task 필드](Task_and_Record_Schema_agent.md#primary-task-fields) | 확장 사양 |
 | [라우팅](Routing_agent.md) | Router로 파일을 만들 때 | [배치 규칙](Routing_agent.md#placement-rules) | 확장 사양 |
 | 역할 문서 | 맡은 역할의 조항을 확인할 때 | [역할 지도](#역할-지도) | 표 참조 |

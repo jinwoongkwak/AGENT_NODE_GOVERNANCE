@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -23,7 +23,7 @@ updated: 2026-09-23
 
 ## 조직도
 
-현재 운영은 HQ와 AI Agent 하나의 두 층입니다. 아래 그림은 확장 모드의 역할 구조입니다. 기본 모드에서는 같은 책임을 단일 Agent가 수행하고 독립 평가 여부를 사실대로 기록합니다.
+현재 운영은 HQ와 AI Agent 하나의 두 층입니다. 아래 그림은 확장 모드의 역할 구조입니다. 기본 모드에서는 같은 책임을 작업 Agent 하나가 수행하고, 결과는 새 문맥 subagent가 독립 확인합니다.
 
 ```mermaid
 flowchart TD
@@ -41,7 +41,7 @@ flowchart TD
 
 ## 과정-역할
 
-현재는 AI Agent 하나가 [작업 루프](../AI/Workflow_agent.md#loop-at-a-glance)의 모든 단계를 수행하고, 필요할 때 [전문 역할](#전문-역할)의 기준을 적용합니다.
+현재는 AI Agent 하나가 [작업 루프](../AI/Workflow_agent.md#loop-at-a-glance)를 수행하고 독립 확인 단계만 새 문맥 subagent가 맡으며, 필요할 때 [전문 역할](#전문-역할)의 기준을 적용합니다.
 
 ### 과정-역할-확장
 
@@ -90,8 +90,8 @@ flowchart TD
 
 | 원칙 | 내용 |
 |---|---|
-| 역할은 책임 단위 | [기본 모드](../Setup/README.md#도입-모드)에서는 단일 Agent가 순서대로 수행. 확장 모드는 Coordinator 세션이 각 역할을 호출 |
-| 평가 독립성 | 평가는 계획을 쓴 문맥과 분리된 새 호출로 받음. 불가능하면 그 사실을 기록하고 경량 작업만 계속 ([호출 규칙](../AI/Roles/Coordinator_agent.md#invocation-rules)) |
+| 역할은 책임 단위 | [기본 모드](../Setup/README.md#도입-모드)에서는 작업 Agent 하나가 순서대로 수행하고 확인은 새 문맥 subagent. 확장 모드는 Coordinator 세션이 각 역할을 호출 |
+| 평가 독립성 | 평가·확인은 작성 문맥과 분리된 새 호출로 받음. 기본 모드는 [독립 확인](../AI/Workflow_agent.md#independent-check), 확장 모드는 Evaluator. 불가능하면 그 사실을 기록하고 HQ 검토로 넘김 ([호출 규칙](../AI/Roles/Coordinator_agent.md#invocation-rules)) |
 | 쓰기 경계 | HQ는 지시·결정을 편집할 수 있고, Agent 중에서는 Coordinator만 TaskNote를 씀. 다른 역할은 본문을 스테이징으로 돌려줌 ([런타임과 Router](Workspace_and_Tools_admin.md#런타임과-router)) |
 | 전달 경로 | 역할끼리 직접 주고받지 않고 모두 Coordinator를 거침 |
 

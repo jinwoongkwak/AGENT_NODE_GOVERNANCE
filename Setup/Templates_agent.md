@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: setup
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -19,6 +19,8 @@ Forms needed to start a new company. Copy the code block contents into the compa
 | [area-context](#area-context) | Per-area authority and canonical documents | Operating manual |
 | [task-note](#task-note) | Basic mode TaskNote | Operating manual |
 | [project-status](#project-status) | STATUS body | Operating manual |
+| [project-roadmap](#project-roadmap) | Project ROADMAP.md | Operating manual |
+| [portfolio-roadmap](#portfolio-roadmap) | Portfolio_Roadmap.md | Operating manual |
 | [decision-record](#decision-record) | Actual HQ decisions | Operating manual |
 | [related-documents](#related-documents) | Setup and schema | Operating manual |
 
@@ -158,7 +160,116 @@ Write dependencies in `blockedBy` as a list of task links. The old `blocked_by` 
 <산출물·검증·목표 시점>
 ```
 
-STATUS frontmatter values for status, stage, priority, and deadline are set by the local company's adopted field rules and HQ decisions. This template never fixes those values on its own.
+STATUS frontmatter values for status, phase, and deadline are set by the local company's adopted field rules and HQ decisions. This template never fixes those values on its own.
+
+## project-roadmap
+
+A project roadmap follows [roadmap](../AI/Roadmap_agent.md#project-roadmap). Keep exactly three next steps; unsourced items go under `HQ 검토 필요`. Mermaid blocks use `~~~` fences inside this template.
+
+```markdown
+---
+project_id: <P2xxx_NAME>
+type: project-roadmap
+approved_version: ""
+updated: YYYY-MM-DD
+llm_model: <이 로드맵을 쓴 모델>
+---
+
+# <프로젝트 이름> 로드맵
+
+## 목표
+<README 성공 기준을 인용하고 링크>
+
+## 완료한 것
+| 시점 | 결과 | 근거 |
+|---|---|---|
+
+## 현재 위치
+<STATUS와 같은 사실, 막힘, 기다리는 외부 입력>
+
+## 다음 단계
+| # | 할 일 | 담당 | 첫 행동 | 완료 조건 | 목표 시점 | 근거 |
+|---|---|---|---|---|---|---|
+| 1 | | | | | YYYY-MM-DD 또는 추정 | |
+| 2 | | | | | | |
+| 3 | | | | | | |
+
+## 일정
+~~~mermaid
+gantt
+    dateFormat YYYY-MM-DD
+    section 다음 단계
+    단계 1 :s1, YYYY-MM-DD, 14d
+~~~
+
+## HQ 검토 필요
+| # | 질문 | 선택지 | AI 권장 |
+|---|---|---|---|
+
+## 근거
+- <이 로드맵이 기대는 파일 링크>
+```
+
+## portfolio-roadmap
+
+The portfolio roadmap follows [roadmap](../AI/Roadmap_agent.md#portfolio-roadmap). Write it only after the project roadmaps are approved.
+
+```markdown
+---
+type: portfolio-roadmap
+approved_version: ""
+updated: YYYY-MM-DD
+llm_model: <이 로드맵을 쓴 모델>
+---
+
+# 포트폴리오 로드맵
+
+## 한눈에
+<3–5줄 요약: 지금 어디에 있고, 다음 연구 방향은 무엇인지>
+
+## 프로젝트 현황
+| 프로젝트 | 목표 | 단계 | 다음 단계 | 시점 | 로드맵 |
+|---|---|---|---|---|---|
+
+## 프로젝트 사이 연결
+~~~mermaid
+flowchart LR
+    A["P2xxx"] -->|공유 기술| B["P2yyy"]
+~~~
+| 연결 | 내용 | 활용 방법 |
+|---|---|---|
+
+## 지난 5년 기술 동향
+~~~mermaid
+timeline
+    title 주제별 흐름
+    2021 : <사건>
+    2026 : <사건>
+~~~
+| 주제 | 흐름 | 대표 출처 (학회·연도) | 우리 프로젝트와의 관계 |
+|---|---|---|---|
+
+## 다음 연구 방향 (AI 권장)
+<방향 하나와 근거. 사실과 추정을 구분>
+
+## 과거 → 현재 → 미래
+~~~mermaid
+flowchart LR
+    P1["과거 프로젝트"] --> C1["진행 중 프로젝트"] --> F["다음 연구 방향"]
+~~~
+
+## 일정
+~~~mermaid
+gantt
+    dateFormat YYYY-MM-DD
+    section P2xxx
+    다음 단계 1 :a1, YYYY-MM-DD, 30d
+~~~
+
+## HQ 결정 필요
+| # | 질문 | 선택지 | AI 권장 |
+|---|---|---|---|
+```
 
 ## decision-record
 

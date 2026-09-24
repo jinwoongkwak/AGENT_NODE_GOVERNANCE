@@ -2,8 +2,8 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.5.0
-updated: 2026-09-16
+version: 1.6.0
+updated: 2026-09-23
 ---
 
 # 작업-공간-구조
@@ -28,6 +28,7 @@ workspace/
     README.md                 # 현재 우선순위와 문서 지도
     Project_Index.md          # STATUS를 요약하는 뷰
     Decisions.md              # 회사 차원의 결정
+    Portfolio_Roadmap.md      # 포트폴리오 방향·연결·일정 (HQ 승인본)
     10_PLANNING/TaskNotes/Tasks/AI/        # 지시·승인·실행·보고
     90_SYSTEM/
       AGENT_NODE_GOVERNANCE/            # 상위 프로토콜 저장소
@@ -38,6 +39,7 @@ workspace/
   20_PROJECTS/<project-id>/
     README.md                 # 목적·성공 기준·범위
     STATUS.md                 # 현재 상태·다음 행동
+    ROADMAP.md                # 방향과 다음 단계 3개 (HQ 승인본)
     10_NOTES/Decisions.md
     30_SOURCE/                # 코드 저장소·데이터 색인
     60_CLOSEOUT/               # 필요 시 납품·재현·종료 근거

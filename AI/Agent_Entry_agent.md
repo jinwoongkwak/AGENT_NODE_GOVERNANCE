@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -50,6 +50,7 @@ After reading through step 3, classify the request and open only the documents i
 | Checking the order of multi-stage work | [Workflow](Workflow_agent.md#loop-at-a-glance) | All extended specs |
 | Founding a new company and placing materials | [Bootstrap guide](../Setup/AI_Bootstrap_agent.md), [workspace layout](../Architecture/Workspace_Layout_admin.md), [material placement](../Setup/Material_Placement_agent.md) | All role documents |
 | Changing protocol rules | [Protocol governance](../HQ/Protocol_Governance_admin.md) | — |
+| Project or portfolio roadmap | [Roadmap](Roadmap_agent.md), [independent check](Workflow_agent.md#independent-check) | Role documents |
 | Extended mode (only once the Router is implemented and enabled) | [Routing](Routing_agent.md), [task and record schema](Task_and_Record_Schema_agent.md), [role map](README.md#역할-지도) | — |
 
 All documents and when to open them are listed in [`Context_Manifest_agent.json`](Context_Manifest_agent.json). Open `extended` or `reference` documents only when the table above requires them.
@@ -183,10 +184,12 @@ Canonical: [record-structure](Reporting_Style_agent.md#record-structure)
 
 - **Create the TaskNote before acting,** including for chat requests.
 
+- **Get an independent check** before closing risk-level 1–2 work and before executing risk-level-2 plans ([independent check](Workflow_agent.md#independent-check)).
+
 ## related-documents
 
 - [AI guide](README.md) — role map and list of AI documents
 - [Common rules](Common_Rules_agent.md) — confidentiality, files, backup, version control
-- [Workflow](Workflow_agent.md) — the eight-stage loop
+- [Workflow](Workflow_agent.md) — the nine-stage loop and independent check
 - [Risk and authority](../Architecture/Risk_and_Authority_admin.md) — canonical decision criteria
 - [AGENT_NODE_GOVERNANCE guide](../README.md) — overall document map

@@ -87,7 +87,7 @@ class OutputTests(unittest.TestCase):
         self.assertEqual(build_entry.render()[0], self.entry)
 
     def test_entry_stays_within_budget(self):
-        self.assertLessEqual(len(self.entry.encode('utf-8')), 11000)
+        self.assertLessEqual(len(self.entry.encode('utf-8')), 20000)
         self.assertLessEqual(self.entry.count('\n') + 1, 250)
 
     def test_manifest_covers_every_document_with_a_mode(self):

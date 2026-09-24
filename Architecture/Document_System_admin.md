@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: architecture
 status: active
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -32,6 +32,8 @@ updated: 2026-09-23
 | 프로젝트 색인 | HQ가 보는 프로젝트 요약 표, 각 STATUS로 링크 | Agent | 위치는 `{project-index}` |
 | CONTEXT | 영역별 목적, 정본 목록, 기본 [쓰기 범위](../HQ/Control_Settings_admin.md#쓰기-범위), 기밀 영역 | HQ 결정으로 변경 | 위치는 [`{context-file}`](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#작업-공간-경로). 목록의 정본이 없으면 대체물을 만들지 않고 공백을 보고 |
 | Wiki | 재사용하는 절차와 개념 | Agent | 두 번째 프로젝트가 필요로 할 때 프로젝트에서 승격하고, 원본을 복제하지 않음 |
+| ROADMAP | 프로젝트의 방향과 다음 단계 3개. STATUS는 현재, ROADMAP은 앞으로 | Agent가 HQ 승인 후 작성 (위험도 1) | [로드맵](../AI/Roadmap_agent.md) 절차와 독립 확인을 거쳐 HQ가 승인한 버전만 둠. 사건이 생길 때 갱신 |
+| 포트폴리오 로드맵 | 모든 프로젝트의 연결, 기술 동향, 다음 연구 방향 | Agent가 HQ 승인 후 작성 | 위치 `00_HQ/Portfolio_Roadmap.md`. 프로젝트 로드맵이 승인된 뒤에만 작성 |
 
 STATUS 필드 값은 [회사 프로필](AGENT_NODE_GOVERNANCE/Architecture/Company_Profile_admin.md#영역과-정본)의 영역별 정본 목록을 따릅니다. 변경 권한의 경계는 [위험도](Risk_and_Authority_admin.md#위험도)에 있습니다.
 

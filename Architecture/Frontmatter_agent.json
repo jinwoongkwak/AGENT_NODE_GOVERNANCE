@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "status": "active",
- "protocol_version": "1.5.0",
+ "protocol_version": "1.6.0",
  "admin_doc": "Architecture/Frontmatter_admin.md",
  "notice": "Rules approved by HQ. Frontmatter_admin.md is the human-readable canonical source and this file is the machine-readable version of the same rules. To change a rule, edit and get approval for the admin document first, then align this file.",
  "conventions": {
@@ -107,6 +107,27 @@
    },
    "deprecated": {"priority": "(removed)"}
   },
+  "project_roadmap": {
+   "match": {"under": "{projects-folder}", "filename": "ROADMAP.md"},
+   "order": ["project_id", "type", "approved_version", "updated", "llm_model"],
+   "fields": {
+    "project_id": {"required": ["all"], "type": "text", "pattern_from": "project-id-pattern", "set_by": "agent", "change_risk": 1},
+    "type": {"required": ["all"], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"project-roadmap": "Project roadmap"}},
+    "approved_version": {"required": ["all"], "type": "version", "allow_empty": true, "set_by": "agent", "change_risk": 1, "meaning": "Filled only when HQ's original approval text exists. Unapproved is \"\""},
+    "updated": {"required": ["all"], "type": "date", "set_by": "agent", "change_risk": 1},
+    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "If written by AI, the model name"}
+   }
+  },
+  "portfolio_roadmap": {
+   "match": {"type_value": ["portfolio-roadmap"]},
+   "order": ["type", "approved_version", "updated", "llm_model"],
+   "fields": {
+    "type": {"required": ["all"], "type": "enum", "set_by": "agent", "change_risk": 1, "values": {"portfolio-roadmap": "Portfolio roadmap"}},
+    "approved_version": {"required": ["all"], "type": "version", "allow_empty": true, "set_by": "agent", "change_risk": 1, "meaning": "Filled only when HQ's original approval text exists. Unapproved is \"\""},
+    "updated": {"required": ["all"], "type": "date", "set_by": "agent", "change_risk": 1},
+    "llm_model": {"required": [], "type": "text", "set_by": "agent", "change_risk": 1, "meaning": "If written by AI, the model name"}
+   }
+  },
   "project_readme": {
    "match": {"under": "{projects-folder}", "filename": "README.md", "depth_max": 3, "has_key": "project_id"},
    "order": ["project_id", "type", "collaborators", "track", "created", "draft_by", "llm_model"],
@@ -195,6 +216,7 @@
   {"id": "Q4", "kind": "(all)", "field": "priority", "decision": "Removed from every kind"},
   {"id": "Q5", "kind": "project_readme", "field": "type", "decision": "A joint research README is collaboration"},
   {"id": "Q6", "kind": "technical_wiki", "field": "(all)", "decision": "Add every field in order to notes without frontmatter; never write explanatory sentences in status"},
-  {"id": "Q7", "kind": "(all)", "field": "Empty optional values", "decision": "Keep the key of an optional field even without a value; leave only the value empty"}
+  {"id": "Q7", "kind": "(all)", "field": "Empty optional values", "decision": "Keep the key of an optional field even without a value; leave only the value empty"},
+  {"id": "Q8", "kind": "project_roadmap, portfolio_roadmap", "field": "(all)", "decision": "Minimal fields project_id, type, approved_version, updated, llm_model (2026-09-23, roadmap proposal 02 Q1)"}
  ]
 }

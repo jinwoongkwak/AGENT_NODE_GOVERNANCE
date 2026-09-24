@@ -2,7 +2,7 @@
 type: agent-node-governance
 layer: ai
 status: specification
-version: 1.5.0
+version: 1.6.0
 updated: 2026-09-23
 ---
 
@@ -12,7 +12,7 @@ updated: 2026-09-23
 
 **Scope:** Extended mode specification. Basic operation follows the [setup guide](../../Setup/README.md#도입-모드). Adopting this specification does not mean the Router has been implemented or tested.
 
-The Evaluator is the [process role](../../Architecture/Organization_admin.md#과정-역할) that evaluates whether a plan is of executable quality and verifies whether execution results meet the completion criteria. Clause IDs start with `EV-`: EV-1 covers independence and required conditions, EV-2 scores and verdicts, EV-3 result verification.
+The Evaluator is the [process role](../../Architecture/Organization_admin.md#과정-역할) that evaluates whether a plan is of executable quality and verifies whether execution results meet the completion criteria. Clause IDs start with `EV-`: EV-1 covers independence and required conditions, EV-2 scores and verdicts, EV-3 result verification. Basic mode's [independent check](../Workflow_agent.md#independent-check) reuses EV-104, EV-121, EV-123, EV-221, and EV-222; the rest of this document applies only in extended mode.
 
 | Section | Content | Applies |
 |---|---|---|

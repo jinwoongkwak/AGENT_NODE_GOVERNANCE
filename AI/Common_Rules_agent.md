@@ -165,7 +165,7 @@ workspace (work branch)   5. commit → 6. push
 
 - Right after cloning, every repository is in detached HEAD; switch to a branch before working.
 
-- A company that does not track the workspace with git and moves files only through a sync tool excludes each repository's `.git` from sync, and on a new device reconnects repositories to their remotes with the protocol repository's `tools/connect_repos.sh`. This tool only fetches; it never pulls or pushes. The repository list is kept in [version control settings](../Architecture/Company_Profile_admin.md#버전-관리-설정).
+- A company that does not track the workspace with git and moves files only through a sync tool excludes each repository's `.git` from sync, and on a new device reconnects repositories to their remotes with the protocol repository's `tools/connect_repos.sh`. This tool only fetches; it never pulls or pushes. With `--install-launchers` it also writes a standalone `Connect_Repo.sh` into each repository folder that embeds that repository's remote, branch, and connect logic, so double-clicking it reconnects the folder without the root launcher, the tool, or the list; regenerate the launchers after changing the list. The repository list is kept in [version control settings](../Architecture/Company_Profile_admin.md#버전-관리-설정).
 
 ### nested-repository-risk-levels
 

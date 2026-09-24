@@ -5,8 +5,8 @@
  "note": "Only mode basic documents apply to basic operation. Open extended and reference documents only when the paths by task type in Agent_Entry_agent.md require them.",
  "totals": {
   "documents": 38,
-  "bytes": 340652,
-  "basic": 238550,
+  "bytes": 340962,
+  "basic": 238860,
   "extended": 80060,
   "reference": 22042
  },
@@ -22,7 +22,7 @@
    "path": "AI/Common_Rules_agent.md",
    "status": "active",
    "mode": "basic",
-   "bytes": 12240,
+   "bytes": 12550,
    "when_to_read": "Rules every AI agent follows regardless of role."
   },
   {
